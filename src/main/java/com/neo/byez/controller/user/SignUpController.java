@@ -21,7 +21,7 @@ import java.util.List;
 import static com.neo.byez.common.message.ValidatorMessage.*;
 
 @Controller
-@RequestMapping(value = "/register", produces = "application/text;charset=UTF-8")
+@RequestMapping("/register")
 public class SignUpController {
     // 생성자 주입
     // 주입받은 객체가 변하지 않거나(불변성 보장), 반드시 객체 주입이 필요한 경우
