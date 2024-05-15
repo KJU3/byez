@@ -10,8 +10,10 @@
         <!-- 고객 관련 : 수인 - 끝 -->
 
         <!-- 상품 관련 : 종헌 - 시작 -->
-        <typeAlias alias="ItemDto" type="com.statuscode.dto.ItemDto"/>
-        <typeAlias alias="BasketItemDto" type="com.statuscode.dto.BasketItemDto"/>
+        <typeAlias alias="ItemDto" type="com.neo.byez.domain.item.ItemDto"/>
+        <typeAlias alias="Category" type="com.neo.byez.domain.item.Category"/>
+        <typeAlias alias="BasketItemDto" type="com.neo.byez.domain.item.BasketItemDto"/>
+        <typeAlias alias="BasketDto" type="com.neo.byez.domain.item.BasketDto"/>
         <!-- 상품 관련 : 종헌 - 시작 -->
 
     </typeAliases>

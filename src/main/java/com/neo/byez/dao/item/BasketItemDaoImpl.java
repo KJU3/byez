@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BasketItemDaoImp implements BasketItemDao {
+public class BasketItemDaoImpl implements BasketItemDao {
     @Autowired
     SqlSession session;
 
-    private static final String namespace = "com.statuscode.dao.BasketItemDao.";
+    // com.neo.byez.dao.item.BasketItemDaoImpl
+    private static final String namespace = "com.neo.byez.dao.item.BasketItemDao.";
 
     // 00. 유저 장바구니 상품 카운트
     @Override
