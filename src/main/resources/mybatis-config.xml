@@ -9,5 +9,10 @@
         <typeAlias alias="UserInfoHistDto" type="com.neo.byez.domain.UserInfoHistDto"/>
         <!-- 고객 관련 : 수인 - 끝 -->
 
+        <!-- 상품 관련 : 종헌 - 시작 -->
+        <typeAlias alias="ItemDto" type="com.statuscode.dto.ItemDto"/>
+        <typeAlias alias="BasketItemDto" type="com.statuscode.dto.BasketItemDto"/>
+        <!-- 상품 관련 : 종헌 - 시작 -->
+
     </typeAliases>
 </configuration>
