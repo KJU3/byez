@@ -2,6 +2,7 @@ package com.neo.byez.service.item;
 
 
 import com.neo.byez.dao.item.LikeItemDao;
+import com.neo.byez.dao.item.LikeItemDaoImpl;
 import com.neo.byez.domain.item.LikeItemDto;
 import com.neo.byez.domain.item.LikeItemDtos;
 import java.util.List;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LikeItemServiceImpl implements LikeItemService {
 
     @Autowired
-    private LikeItemDao dao;
+    private LikeItemDaoImpl dao;
 
     public LikeItemServiceImpl() {}
 

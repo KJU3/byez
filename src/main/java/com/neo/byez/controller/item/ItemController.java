@@ -20,19 +20,19 @@ public class ItemController {
     @Autowired
     private ItemServiceImpl itemService;
 
-    @ResponseBody
-    @GetMapping("/")
-    public String home(Model model) {
-
-        try {
-            List<ItemDto> list = itemService.getAllItem();
-            model.addAttribute("list", list);
-        } catch (Exception e) {
-            model.addAttribute("err", "상품을 잘못 조회했습니다.");
-            e.printStackTrace();
-        }
-        return "index";
-    }
+//    @ResponseBody
+//    @GetMapping("/")
+//    public String home(Model model) {
+//
+//        try {
+//            List<ItemDto> list = itemService.getAllItem();
+//            model.addAttribute("list", list);
+//        } catch (Exception e) {
+//            model.addAttribute("err", "상품을 잘못 조회했습니다.");
+//            e.printStackTrace();
+//        }
+//        return "index";
+//    }
 
     @GetMapping("/item/categories/{code}")
     public String list(@PathVariable String code) {

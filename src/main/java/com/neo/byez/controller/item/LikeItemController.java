@@ -4,6 +4,7 @@ import com.neo.byez.common.validator.LikeItemValidator;
 import com.neo.byez.domain.item.LikeItemDto;
 import com.neo.byez.domain.item.LikeItemDtos;
 import com.neo.byez.service.item.LikeItemService;
+import com.neo.byez.service.item.LikeItemServiceImpl;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LikeItemController {
 
     @Autowired
-    private LikeItemService service;
+    private LikeItemServiceImpl service;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
