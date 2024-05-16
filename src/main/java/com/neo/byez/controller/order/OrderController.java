@@ -168,7 +168,7 @@ public class OrderController {
         // 만약 결과가 null이면 에러페이지 이동
         if (orderResultInfo == null){
             m.addAttribute("msg", "주문 내역 조회 실패");
-            return "/error";
+            return "/order/error";
         }
 
         // 주문 상세 정보 담기
