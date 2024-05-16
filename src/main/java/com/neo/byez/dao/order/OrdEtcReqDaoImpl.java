@@ -10,7 +10,7 @@ public class OrdEtcReqDaoImpl implements OrdEtcReqDao {
     @Autowired
     SqlSession session;
 
-    private static final String namespace = "com.neo.byez.dao.OrdEtcReqDao.";
+    private static final String namespace = "com.neo.byez.dao.order.OrdEtcReqDao.";
 
     @Override
     public int getCount(){

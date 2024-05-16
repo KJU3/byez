@@ -13,7 +13,7 @@ public class ItemOptionDaoImpl implements ItemOptionDao {
     @Autowired
     SqlSession session;
 
-    private static final String namespace = "com.neo.byez.dao.itemOptionMapper.";
+    private static final String namespace = "com.neo.byez.dao.order.itemOptionMapper.";
     @Override
     public List<ItemOptionDto> selectColor(String num) {
         return session.selectList(namespace + "selectColor", num);
