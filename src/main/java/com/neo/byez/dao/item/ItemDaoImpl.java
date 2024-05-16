@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ItemDaoImp implements ItemDao {
+public class ItemDaoImpl implements ItemDao {
 
     @Autowired
     SqlSession session;

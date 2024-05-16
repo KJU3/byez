@@ -6,15 +6,10 @@ import com.neo.byez.dao.UserDaoImpl;
 import com.neo.byez.domain.UserDto;
 import com.neo.byez.domain.item.BasketDto;
 import com.neo.byez.domain.item.BasketItemDto;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-import javax.sql.DataSource;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -38,7 +33,7 @@ public class BasketItemDaoImplTest {
     private UserDaoImpl userDao;
 
     @Autowired
-    private ItemDaoImp itemDao;
+    private ItemDaoImpl itemDao;
 
 
     // 0. [✅]초기 테스트
