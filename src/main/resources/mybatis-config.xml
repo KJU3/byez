@@ -19,5 +19,15 @@
         <typeAlias alias="ItemStateDto" type="com.neo.byez.domain.item.ItemStateDto"/>
         <!-- 상품 관련 : 종헌 - 끝 -->
 
+        <!-- 주문 관련 : 진우 - 시작 -->
+        <typeAlias alias="OrderDto" type="com.neo.byez.domain.OrderDto"/>
+        <typeAlias alias="OrderDetailDto" type="com.neo.byez.domain.OrderDetailDto"/>
+        <typeAlias alias="OrderStateDto" type="com.neo.byez.domain.OrderStateDto"/>
+        <typeAlias alias="PayDto" type="com.neo.byez.domain.PayDto"/>
+        <typeAlias alias="PayStateDto" type="com.neo.byez.domain.PayStateDto"/>
+        <typeAlias alias="PayHistoryDto" type="com.neo.byez.domain.PayHistoryDto"/>
+        <typeAlias alias="DeliveryDto" type="com.neo.byez.domain.DeliveryDto"/>
+        <typeAlias alias="OrderResultInfo" type="com.neo.byez.domain.OrderResultInfo"/>
+        <!-- 주문 관련 : 진우 - 끝 -->
     </typeAliases>
 </configuration>
