@@ -11,17 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class LikeItemServiceImpl implements LikeItemService {
+public class LikeItemServiceImpl {
 
     @Autowired
     private LikeItemDaoImpl dao;
 
     public LikeItemServiceImpl() {}
 
-
-
     // 00. 유저 좋아요 상품 목록 조회
-    @Override
     public List<LikeItemDto> getLikeItem(String id) throws Exception {
         try {
             List<LikeItemDto> dtos = dao.selectAll(id);
@@ -36,7 +33,6 @@ public class LikeItemServiceImpl implements LikeItemService {
         }
     }
     // 01. 유저 좋아요 상품 등록
-    @Override
     public boolean register(LikeItemDto dto) {
         int rowCnt = 0;
 
@@ -53,7 +49,6 @@ public class LikeItemServiceImpl implements LikeItemService {
     }
 
     // 02. 유저 좋아요 상품 삭제
-    @Override
     public boolean remove(LikeItemDto dto) {
         int rowCnt = 0;
 
@@ -69,7 +64,6 @@ public class LikeItemServiceImpl implements LikeItemService {
         return rowCnt == 1;
     }
 
-    @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean removeSeveral(LikeItemDtos dtos) throws Exception {
         int totalCnt = dtos.getList().size();
@@ -97,7 +91,6 @@ public class LikeItemServiceImpl implements LikeItemService {
 
 
     // 03. 유저 좋아요 상품 모두 삭제
-    @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean removeAll(String id) throws Exception {
         int totalCnt = dao.count(id);
@@ -117,7 +110,6 @@ public class LikeItemServiceImpl implements LikeItemService {
     }
 
     // 04. 유저 좋아요 상품 변경
-    @Override
     public boolean modify(LikeItemDto dto) {
         int rowCnt = 0;
 
@@ -131,6 +123,11 @@ public class LikeItemServiceImpl implements LikeItemService {
         }
 
         return rowCnt == 1;
+    }
+
+    // 05. 유저 좋아요 상품 페이징 조회
+    public List<LikeItemDto> getSelectedPage(Integer offSet, Integer pageSize) throws Exception {
+        return dao.selectPage(offSet, pageSize);
     }
 
 }
