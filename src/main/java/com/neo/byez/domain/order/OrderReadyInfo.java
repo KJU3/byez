@@ -1,10 +1,5 @@
 package com.neo.byez.domain.order;
 
-import com.neo.byez.domain.OrderStateDto;
-import com.neo.byez.domain.PayDto;
-import com.neo.byez.domain.PayStateDto;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 public class OrderReadyInfo {
