@@ -83,6 +83,21 @@ class LikeItemDaoImplTest {
 
     }
 
+    @Test
+    public void 유저_상품_페이지_조회() throws Exception {
+        // 유저 1, 상품 200, 좋아요 상품 200
+        // offSet : 48, pageSize : 12
+        // 12개 들고오는지 확인
+        List<LikeItemDto> likeItems = likeDao.selectPage(48, 12);
+        assertEquals(12, likeItems.size());
+
+        int num = 152;
+        for (LikeItemDto likeItem : likeItems) {
+            assertEquals(String.valueOf(num), likeItem.getNum());
+            num--;
+        }
+    }
+
 
 //    @AfterEach
 //    public void clear() throws Exception  {
