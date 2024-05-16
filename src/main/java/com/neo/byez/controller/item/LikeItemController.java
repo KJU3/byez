@@ -3,6 +3,7 @@ package com.neo.byez.controller.item;
 import com.neo.byez.common.validator.LikeItemValidator;
 import com.neo.byez.domain.item.LikeItemDto;
 import com.neo.byez.domain.item.LikeItemDtos;
+import com.neo.byez.domain.item.PageHandler;
 import com.neo.byez.service.item.LikeItemService;
 import com.neo.byez.service.item.LikeItemServiceImpl;
 import java.util.List;
@@ -38,7 +39,7 @@ public class LikeItemController {
         // 유저의 좋아요 상품 삭제함
         // 유저의 좋아요 상품 변경함
     @GetMapping()
-    public String list(Model model, HttpSession session, String msg) {
+    public String list(Integer page, Integer pageSize, Model model, HttpSession session, String msg) {
         // 세션에서 아이디 조회
         // 로그인
             // 로그인 되어 있으면
@@ -46,12 +47,27 @@ public class LikeItemController {
             // 로그인 안되있으면
                 // 메인 페이지로 이동
         String id = (String) session.getAttribute("id");
-        id = "1";
+        id = "user1";
+
+        // page, pageSize 검증
+        if (page == null) page = 1;
+        if (pageSize == null) pageSize = 12;
+
 
         try {
-            List<LikeItemDto> list = service.getLikeItem(id);
+
+            // 총 상품 수량 카운트
+            int totalCnt = service.getCount(id);
+
+            // ph 생성
+            PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+
+            // 서비스를 통해 해당 페이지 좋아요 상품 조회
+            Integer offset = ph.getPage() * ph.getPageSize();
+            List<LikeItemDto> list = service.getSelectedPage(offset, pageSize);
+
             model.addAttribute("list", list);
-            model.addAttribute("msg", msg);
+            model.addAttribute("ph", ph);
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", e.getMessage());

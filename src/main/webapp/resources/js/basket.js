@@ -279,14 +279,10 @@
         const minCnt = 1;
         const maxCnt = 1000;
 
-        if($(this).hasClass('minus')){
-          if(currCnt>minCnt){
-            currCnt--;
-          }
-        }else{
-          if(currCnt<maxCnt){
-            currCnt++;
-          }
+        if ($(this).hasClass('minus') && currCnt>minCnt){
+          currCnt--;
+        } else if (!$(this).hasClass('minus') && currCnt<maxCnt){
+          currCnt++;
         }
 
         $cnt.val(currCnt);

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="css/nav.css?after">
-    <link rel="stylesheet" href="css/like.css?after?after">
+    <link rel="stylesheet" href="css/like.css?after?after?after?after">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -91,7 +91,18 @@
             </ul>
             <!-- 버튼 및 페이징 -->
             <div class="btnPaging">
-
+                <!-- 이전 페이지 버튼 -->
+                <c:if test="${ph.showPrev}">
+                    <a href="<c:url value='/like?page=${ph.beginPage-1}&pageSize=${ph.pageSize}' />">&lt;</a>
+                </c:if>
+                <!-- 네비 숫자 -->
+                <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                    <a href="<c:url value='/like?page=${i}&pageSize=${ph.pageSize}'/>">${i}</a>
+                </c:forEach>
+                <!-- 이후 페이지 버튼 -->
+                <c:if test="${ph.showNext}">
+                    <a href="<c:url value='/like?page=${ph.endPage+1}&pageSize=${ph.pageSize}' />">&gt;</a>
+                </c:if>
             </div>
             <button class="modifyBtn">편집</button>
             <button class="btnStyle deleteBtn" style="display: none">삭제</button>

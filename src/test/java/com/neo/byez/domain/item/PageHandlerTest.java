@@ -16,7 +16,6 @@ class PageHandlerTest {
         // 좋아요 상품수 250, 현재 페이지 6
         // [PREV] 1 2 ... 10 [NEXT]
         // 마지막 페이지 21
-
         PageHandler ph = new PageHandler(250, 6, 12);
         ph.print();
 
@@ -33,7 +32,6 @@ class PageHandlerTest {
         // 좋아요 상품수 250, 현재 페이지 10
         // [PREV] 1 2 ... 10 [NEXT]
         // 마지막 페이지 20
-
         PageHandler ph = new PageHandler(250, 10, 12);
         ph.print();
 
@@ -50,7 +48,6 @@ class PageHandlerTest {
         // 좋아요 상품수 250, 현재 페이지 20
         // [PREV] 11 12 ... 20
         // 마지막 페이지 20
-
         PageHandler ph = new PageHandler(250, 20, 12);
         ph.print();
 

@@ -130,4 +130,9 @@ public class LikeItemServiceImpl {
         return dao.selectPage(offSet, pageSize);
     }
 
+    // 06. 유저의 상품 수량
+    public int getCount(String id) throws Exception {
+        return dao.count(id);
+    }
+
 }
