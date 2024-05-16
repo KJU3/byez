@@ -176,4 +176,22 @@ public class ItemServiceImpl {
     }
 
 
+
+
+    //     메인 페이지 여성 top 8 보주기
+    public List<ItemDto> showWTop8() throws Exception {
+        return dao.selectWTop8();
+    }
+
+    //     메인 페이지 남성 top 8 보주기
+    public List<ItemDto> showMTop8() throws Exception {
+        return dao.selectMTop8();
+    }
+
+    //     메인 페이지 혼성 top 8 보주기
+    public List<ItemDto> showUTop8() throws Exception {
+        return dao.selectUTop8();
+    }
+
+
 }
