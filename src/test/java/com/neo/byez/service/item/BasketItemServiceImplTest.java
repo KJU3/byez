@@ -20,7 +20,8 @@ public class BasketItemServiceImplTest {
     private BasketItemService basketItemService;
 
     // 0. 초기 테스트[✅]
-    @Test
+
+    @Before
     public void 주입_확인() throws Exception {
         assertNotNull(basketItemService);
     }
