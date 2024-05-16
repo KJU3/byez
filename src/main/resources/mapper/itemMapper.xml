@@ -74,31 +74,31 @@
 
   <select id="selectWTop8" resultType="ItemDto">
     select
-      a.*,
-      row_number() over (order by b.sales_qty desc) as rankk
-    from item a, item_state b
-    where a.num = b.num
-      and a.type='02'
-      limit 8;
+    i.*,
+    row_number() over (order by s.sales_qty desc) as rankk
+    from item i, item_state s
+    where i.num = s.num
+    and i.item_type=#{item_type}
+    limit 8;
   </select>
 
   <select id="selectMTop8" resultType="ItemDto">
     select
-      a.*,
-      row_number() over (order by b.sales_qty desc) as rankk
-    from item a, item_state b
-    where a.num = b.num
-      and a.type='01'
-      limit 8;
+    i.*,
+    row_number() over (order by s.sales_qty desc) as rankk
+    from item i, item_state s
+    where i.num = s.num
+    and i.item_type=#{item_type}
+    limit 8;
   </select>
 
   <select id="selectUTop8" resultType="ItemDto">
     select
-      a.*,
-      row_number() over (order by b.sales_qty desc) as rankk
-    from item a, item_state b
-    where a.num = b.num
-      and a.type='03'
-      limit 8;
+    i.*,
+    row_number() over (order by s.sales_qty desc) as rankk
+    from item i, item_state s
+    where i.num = s.num
+    and i.item_type=#{item_type}
+    limit 8;
   </select>
 </mapper>
