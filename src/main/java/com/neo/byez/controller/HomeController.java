@@ -14,14 +14,6 @@ import java.util.List;
 public class HomeController {
     @Autowired
     ItemServiceImpl itemService;
-    @GetMapping("/")
-    public String main() {
-        return "main";
-    }
-
-
-
-
 //    @RequestMapping("/")
 //    public String index(Model model) {
 //        ItemDto dto =new ItemDto();
