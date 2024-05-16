@@ -1,6 +1,5 @@
 package com.neo.byez.dao.order;
 
-import com.neo.byez.dao.order.PayHistoryDao;
 import com.neo.byez.domain.order.PayHistoryDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
