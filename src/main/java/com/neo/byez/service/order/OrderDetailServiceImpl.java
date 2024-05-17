@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class OrdDetailServiceImpl implements  OrdDetailService{
+public class OrderDetailServiceImpl implements  OrderDetailService{
 
     @Autowired
     OrderDetailDaoImpl ordDetailDao;

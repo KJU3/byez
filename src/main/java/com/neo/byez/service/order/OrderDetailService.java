@@ -7,7 +7,7 @@ import com.neo.byez.domain.order.OrderDetailDto;
 import java.util.List;
 import java.util.Map;
 
-public interface OrdDetailService {
+public interface OrderDetailService {
 
     public List<OrderDetailDto> selectOneOrdDetail(String ord_num) throws Exception;
     public List<OrderDetailDto> getOrderDetailsList(String id) throws Exception;

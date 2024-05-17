@@ -24,7 +24,7 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
     DeliveryDaoImpl deliveryDao;
 
     @Autowired
-    OrdDetailServiceImpl ordDetailService;
+    OrderDetailServiceImpl orderDetailService;
 
     @Autowired
     public OrdEtcReqServiceImpl(OrdEtcReqDaoImpl ordEtcReqDao, OrderDetailDaoImpl orderDetailDao, OrderDaoImpl orderDao, OrderStateDaoImpl orderStateDao, DeliveryDaoImpl deliveryDao) {
@@ -187,7 +187,7 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
             rowCnt += orderDao.updateStateCode(orderDto);
             rowCnt += orderStateDao.insertOrderState(orderStateDto);
             rowCnt += deliveryDao.insertRefundDlvInfo(deliveryDto);
-            rowCnt += ordDetailService.updateIfChanged(ordDetailDto);
+            rowCnt += orderDetailService.updateIfChanged(ordDetailDto);
             System.out.println("옵션업데이트 이전 카운트"+ rowCnt);
             rowCnt += orderDetailDao.updateEachOrdState(ordDetailDto);
             System.out.println("업데이트될 dto? : " + ordDetailDto);
