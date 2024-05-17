@@ -60,14 +60,7 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectList(namespace+"selectItemType", category);
     }
 
-//    // 상품 상태 등록
-//    public int insertItemState(ItemStateDto dto) throws Exception {
-//        return session.insert(namespace + "insertItemState", dto);
-//    }
-//    // 상품 가격 등록
-//    public int insertItemPrice(ItemPriceDto dto) throws Exception {
-//        return session.insert(namespace + "insertItemPrice", dto);
-//    }
+    // 상품 상태
 
 
     //    메인페이지 여성 top 8개 상품 띄우기

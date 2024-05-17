@@ -249,7 +249,7 @@
 </form>
 
 <!-- 주문 form -->
-<form action="order" method="get" class="orderCheckedBasketItemForm">
+<form action="order" method="post" class="orderCheckedBasketItemForm">
 </form>
 <%@include file="../views/include/quick.jsp"%>
 <%@include file="../views/include/footer.jsp"%>

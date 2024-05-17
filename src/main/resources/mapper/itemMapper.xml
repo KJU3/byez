@@ -49,15 +49,23 @@
   <!--  소분류  -->
   <!--  판매량, 리뷰수, 좋아요수 순으로 정렬  -->
   <!--  자바 객체에서 % 붙여서 넣어주기 -->
-  <select id="selectItemType" parameterType="Category" resultType="ItemDto">
-    select *
-    from item i
-    inner join item_state s
-    on i.num = s.num
-    where i.item_type like #{item_type_format}
-    order by s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
-  </select>
+<!--  <select id="selectItemType" parameterType="Category" resultType="ItemDto">-->
+<!--    select *-->
+<!--    from item i-->
+<!--    inner join item_state s-->
+<!--    on i.num = s.num-->
+<!--    where i.item_type like #{item_type_format}-->
+<!--    order by s.sales_qty desc, i.review_cnt desc, i.like_cnt desc-->
+<!--  </select>-->
 
+<!--    <select id="selectItemType" parameterType="Category" resultType="ItemDto">-->
+<!--      select *-->
+<!--      from item i-->
+<!--      inner join item_state s-->
+<!--      on i.num = s.num-->
+<!--      where i.item_type like #{item_type_format}-->
+<!--      order by s.sales_qty desc, i.review_cnt desc, i.like_cnt desc-->
+<!--    </select>-->
 <!--  &lt;!&ndash;  상품 상태 등록  &ndash;&gt;-->
 <!--  <insert id="insertItemState" parameterType="ItemStateDto">-->
 <!--    insert into item_state( num, sales_qty, view_cnt, stock_qty, state_code, reg_date, reg_id, up_date, up_id ) -->
@@ -81,6 +89,11 @@
     and i.item_type=#{item_type}
     limit 8;
   </select>
+<!--  &lt;!&ndash;  상품 상태  &ndash;&gt;-->
+<!--  <insert id="insertItemState" parameterType="ItemStateDto">-->
+<!--    insert into item_state( num, sales_qty, view_cnt, stock_qty, state_code, reg_date, reg_id, up_date, up_id )-->
+<!--    value( #{num}, #{sales_qty}, #{view_cnt}, #{stock_qty}, #{state_code}, now(), 'manager', now(), 'manager' )-->
+<!--  </insert>-->
 
   <select id="selectMTop8" resultType="ItemDto">
     select
@@ -91,6 +104,11 @@
     and i.item_type=#{item_type}
     limit 8;
   </select>
+<!--  <select id="selectItemState" parameterType="string" resultType="ItemStateDto">-->
+<!--    select *-->
+<!--    from item_state-->
+<!--    where num = #{num}-->
+<!--  </select>-->
 
   <select id="selectUTop8" resultType="ItemDto">
     select
@@ -101,4 +119,69 @@
     and i.item_type=#{item_type}
     limit 8;
   </select>
+<!--  <select id="selectAllItemState" resultType="ItemStateDto">-->
+<!--    select *-->
+<!--    from item_state-->
+<!--  </select>-->
+
+<!--  <update id="increaseSalesQty" parameterType="ItemStateDto">-->
+<!--    update item_state-->
+<!--    set-->
+<!--      sales_qty = sales_qty + #{qty},-->
+<!--      stock_qty = stock_qty - #{qty},-->
+<!--      up_date = now(),-->
+<!--      up_id = 'manager'-->
+<!--    where num = #{num}-->
+<!--  </update>-->
+
+<!--  <update id="increaseStockQty" parameterType="ItemStateDto">-->
+<!--    update item_state-->
+<!--    set-->
+<!--      stock_qty = stock_qty + #{qty},-->
+<!--      up_date = now(),-->
+<!--      up_id = 'manager'-->
+<!--    where num = #{num}-->
+<!--  </update>-->
+
+<!--  <update id="increaseViewCnt" parameterType="ItemStateDto">-->
+<!--    update item_state-->
+<!--    set-->
+<!--      view_cnt = view_cnt + 1,-->
+<!--      up_date = now(),-->
+<!--      up_id = 'manager'-->
+<!--    where num = #{num}-->
+<!--  </update>-->
+
+<!--  <update id="updateStateCode" parameterType="ItemStateDto">-->
+<!--    update item_state-->
+<!--    set-->
+<!--      state_code = #{code},-->
+<!--      up_date = now(),-->
+<!--      up_id = 'manager'-->
+<!--    where num = #{num}-->
+<!--  </update>-->
+
+<!--  <delete id="deleteItemState" parameterType="string">-->
+<!--    delete-->
+<!--    from item_state-->
+<!--    where num = #{num}-->
+<!--  </delete>-->
+
+<!--  <delete id="deleteAllItemState">-->
+<!--    delete-->
+<!--    from item_state-->
+<!--  </delete>-->
+
+<!--  &lt;!&ndash; 상품 상세 &ndash;&gt;-->
+<!--  <insert id="insertItemState" parameterType="ItemStateDto">-->
+<!--    insert into item_state( num, sales_qty, view_cnt, stock_qty, state_code, reg_date, reg_id, up_date, up_id )-->
+<!--      value( #{num}, #{sales_qty}, #{view_cnt}, #{stock_qty}, #{state_code}, now(), 'manager', now(), 'manager' )-->
+<!--  </insert>-->
+
+
+<!--  &lt;!&ndash;  상품 가격  &ndash;&gt;-->
+<!--  <insert id="insertItemPrice" parameterType="ItemPriceDto">-->
+<!--    insert into item_price( num, disc_rate, start_date, end_date, remark, reg_date, reg_id, up_date, up_id )-->
+<!--    value( #{num}, #{disc_rate}, now(), date_add(now(), interval #{period} month), #{remark}, now(), 'manager', now(), 'manager' )-->
+<!--  </insert>-->
 </mapper>

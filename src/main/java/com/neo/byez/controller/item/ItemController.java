@@ -1,6 +1,7 @@
 package com.neo.byez.controller.item;
 
 
+import com.neo.byez.domain.item.BasketItemDto;
 import com.neo.byez.domain.item.Category;
 import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.service.item.ItemServiceImpl;
@@ -62,15 +63,16 @@ public class ItemController {
         // 해당 상품 조회
         // 상세 페이지에 뿌리기
         System.out.println("detail");
-        return "index";
+        return "detail";
     }
 
     @PostMapping("/goods/{itemNum}")
-    public String order(@PathVariable String itemNum, @RequestBody ItemDto dto) {
+    public String order(@PathVariable String itemNum, @RequestBody BasketItemDto dto) {
         // 해당 상품 조회
         // 해당 주문 내역 주문 페이지로 이동
         System.out.println("go to order!!");
         return "index";
     }
+
 
 }

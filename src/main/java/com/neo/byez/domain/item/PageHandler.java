@@ -13,7 +13,6 @@ public class PageHandler {
     private boolean showNext;
 
     public PageHandler(int totalCnt, int page) {
-
         this(totalCnt, page, 10);
     }
 
