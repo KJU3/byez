@@ -20,6 +20,11 @@
     from item_state
   </select>
 
+  <select id="count" resultType="Integer">
+    select count(*)
+    from item_state
+  </select>
+
   <update id="increaseSalesQty" parameterType="map">
     update item_state
     set
@@ -48,7 +53,7 @@
     where num = #{num}
   </update>
 
-  <update id="" parameterType="map">
+  <update id="updateStateCode" parameterType="map">
     update item_state
     set
       state_code = #{state_code},
