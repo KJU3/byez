@@ -28,6 +28,8 @@ public interface OrderDetailService {
 
     public int updateOption(OrderDetailDto OrderDetailDto) throws Exception;
 
+
+
 //    public int updateOrdState(List list) throws Exception;
 
 
