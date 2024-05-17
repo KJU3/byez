@@ -22,14 +22,14 @@
     </thead>
     <tbody>
 
-    <c:forEach var="OrdDetailDto" items="${cancelList}">
+    <c:forEach var="orderDetailDto" items="${cancelList}">
         <tr>
-            <td>${OrdDetailDto.ord_date}</td>
-            <td>${OrdDetailDto.ord_num}</td>
-            <td>${OrdDetailDto.item_name} - 옵션 : ${OrdDetailDto.opt1}/${OrdDetailDto.opt2}</td>
-            <td>${OrdDetailDto.item_qty}</td>
-            <td>${OrdDetailDto.item_price}</td>
-            <td>${OrdDetailDto.ord_state}</td>
+            <td>${orderDetailDto.ord_date}</td>
+            <td>${orderDetailDto.ord_num}</td>
+            <td>${orderDetailDto.item_name} - 옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}</td>
+            <td>${orderDetailDto.item_qty}</td>
+            <td>${orderDetailDto.item_price}</td>
+            <td>${orderDetailDto.ord_state}</td>
         </tr>
     </c:forEach>
     </tbody>

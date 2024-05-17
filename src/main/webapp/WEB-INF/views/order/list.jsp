@@ -26,45 +26,45 @@
 
 <%--    <c:if test="${empty message}">--%>
     <tbody>
-    <c:forEach var="OrderDetailDto" items="${limitList}">
+    <c:forEach var="orderDetailDto" items="${limitList}">
         <tr>
-            <td>${OrderDetailDto.ord_date}
-                <input type="hidden" name="ord_date" value="${OrderDetailDto.ord_date}">
+            <td>${orderDetailDto.ord_date}
+                <input type="hidden" name="ord_date" value="${orderDetailDto.ord_date}">
             </td>
-            <td>${OrderDetailDto.ord_num}
+            <td>${orderDetailDto.ord_num}
                 <form action = "/order/cancel" method="post">
-                    <input type="hidden" name="ord_num" value="${OrderDetailDto.ord_num}">
-                <c:if test="${OrderDetailDto.ord_state == '주문완료'  }">
+                    <input type="hidden" name="ord_num" value="${orderDetailDto.ord_num}">
+                <c:if test="${orderDetailDto.ord_state == '주문완료'  }">
                 <input type="submit" class="cancel_button" value="취소">
                 </c:if>
                 </form>
                 <form action = "/refund" method="post">
-                    <input type="hidden" name="ord_num" value="${OrderDetailDto.ord_num}">
-                    <c:if test="${OrderDetailDto.ord_state == '배송완료' || '배송중'|| '교환완료'  }">
+                    <input type="hidden" name="ord_num" value="${orderDetailDto.ord_num}">
+                    <c:if test="${orderDetailDto.ord_state == '배송완료' || '배송중'|| '교환완료'  }">
                         <input type="submit" class="refund_button" value="반품">
                     </c:if>
                 </form>
                 <form action = "/exchange" method="post">
-                    <input type="hidden" name="seq" value="${OrderDetailDto.seq}">
-                    <input type="hidden" name="ord_num" value="${OrderDetailDto.ord_num}">
-                    <input type="hidden" name="item_num" value="${OrderDetailDto.item_num}">
-                    <input type="hidden" name="opt1" value="${OrderDetailDto.opt1}">
-                    <input type="hidden" name="opt2" value="${OrderDetailDto.opt2}">
+                    <input type="hidden" name="seq" value="${orderDetailDto.seq}">
+                    <input type="hidden" name="ord_num" value="${orderDetailDto.ord_num}">
+                    <input type="hidden" name="item_num" value="${orderDetailDto.item_num}">
+                    <input type="hidden" name="opt1" value="${orderDetailDto.opt1}">
+                    <input type="hidden" name="opt2" value="${orderDetailDto.opt2}">
 
-                    <c:if test="${OrderDetailDto.ord_state == '배송완료' || '배송중'|| '교환완료'  }">
+                    <c:if test="${orderDetailDto.ord_state == '배송완료' || '배송중'|| '교환완료'  }">
                         <input type="submit" class="exchange_button" value="교환">
                     </c:if>
                 </form>
             </td>
-            <td>${OrderDetailDto.item_name} - 옵션 : ${OrderDetailDto.opt1}/${OrderDetailDto.opt2}</td>
-            <td>${OrderDetailDto.item_qty}</td>
+            <td>${orderDetailDto.item_name} - 옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}</td>
+            <td>${orderDetailDto.item_qty}</td>
 <%--            <td>${OrdDetailDto.item_qty * OrdDetailDto.price}</td>--%>
-            <td>${OrderDetailDto.item_price}</td>
-            <td>${OrderDetailDto.ord_state}
+            <td>${orderDetailDto.item_price}</td>
+            <td>${orderDetailDto.ord_state}
                 <form action = "/confirmPurchase" method = "post">
 <%--           hidden타입의 주문상태를 담아둔다--%>
-                    <input type="hidden" name="ord_num" value="${OrderDetailDto.ord_num}">
-                    <c:if test="${OrderDetailDto.ord_state == '배송완료' || '교환완료'  }">
+                    <input type="hidden" name="ord_num" value="${orderDetailDto.ord_num}">
+                    <c:if test="${orderDetailDto.ord_state == '배송완료' || '교환완료'  }">
                         <input type="submit" id="confirm_button" value="구매확정">
                         <input type = "hidden" name="ord_state" value="구매확정">
                         <input type = "hidden" name="state_code" value="CPS">

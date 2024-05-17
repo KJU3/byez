@@ -272,7 +272,7 @@ public class OrdEtcReqController {
         m.addAttribute("sizeList", sizeList);
         m.addAttribute("ord_num",ord_num);
         m.addAttribute("dlvDto", dlvDto);
-        m.addAttribute("OrderDetailDto", ordDetailDto);
+        m.addAttribute("orderDetailDto", ordDetailDto);
         m.addAttribute("itemOptionDto", itemOptionDto);
 
         System.out.println("옵션변경전 : " + ordDetailDto);

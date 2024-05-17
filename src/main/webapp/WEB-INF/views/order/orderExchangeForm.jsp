@@ -90,8 +90,8 @@
             changeBtn.addEventListener("click", function() {
                 let selectedColor = document.getElementById('color').value;
                 let selectedSize = document.getElementById('size').value;
-                let originalColor = '${OrdDetailDto.opt1}';
-                let originalSize = '${OrdDetailDto.opt2}';
+                let originalColor = '${OrderDetailDto.opt1}';
+                let originalSize = '${OrderDetailDto.opt2}';
                 if((selectedColor === "" || selectedSize === "" ) || selectedColor === originalColor  && selectedSize === originalSize ){
                     alert("옵션을 선택해주세요");
                     let originalOption = document.getElementById('option');
@@ -275,20 +275,20 @@
         <tbody>
 
             <tr>
-                <td>${OrdDetailDto.ord_date}</td>
-                <td>${OrdDetailDto.ord_num}</td>
+                <td>${orderDetailDto.ord_date}</td>
+                <td>${orderDetailDto.ord_num}</td>
                 <td>
                     <div id = "option">
-                            ${OrdDetailDto.item_name} - 옵션: ${OrdDetailDto.opt1}/${OrdDetailDto.opt2}
+                            ${orderDetailDto.item_name} - 옵션: ${orderDetailDto.opt1}/${orderDetailDto.opt2}
                     </div>
                     <div id = "changedOption" style ="display :  none;">
-                            ${OrdDetailDto.item_name} - <span id="options"></span>
+                            ${orderDetailDto.item_name} - <span id="options"></span>
                     </div>
                     <input type="button" id = "changeOptionBtn" value = "옵션변경">
                 </td>
-                <td>${OrdDetailDto.item_qty}</td>
-                <td>${OrdDetailDto.item_price}</td>
-                <td>${OrdDetailDto.ord_state}</td>
+                <td>${orderDetailDto.item_qty}</td>
+                <td>${orderDetailDto.item_price}</td>
+                <td>${orderDetailDto.ord_state}</td>
             </tr>
 
         </tbody>
@@ -303,7 +303,7 @@
                 </div>
                 <div class="ct">
                     상품명
-                    [옵션 : ${OrdDetailDto.opt1}/${OrdDetailDto.opt2}]
+                    [옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}]
                     <br>
                     상품옵션
                     Color
@@ -365,11 +365,11 @@
             </thead>
             <tbody id="currentAddress">
             <tr>
-                <td>${dlvDto.rcpr}</td>
-                <td>${dlvDto.zpcd}</td>
-                <td>${dlvDto.main_addr}</td>
-                <td>${dlvDto.detail_addr}</td>
-                <td>${dlvDto.rcpr_mobile}</td>
+                <td>${deliveryDto.rcpr}</td>
+                <td>${deliveryDto.zpcd}</td>
+                <td>${deliveryDto.main_addr}</td>
+                <td>${deliveryDto.detail_addr}</td>
+                <td>${deliveryDto.rcpr_mobile}</td>
             </tr>
             </tbody>
             <tbody id="newAddress" style="display: none;">
@@ -386,15 +386,15 @@
 
     <input type ="hidden" name="opt1" value = "${selectedColor}">
     <input type ="hidden" name="opt2" value = "${selectedSize}">
-    <input type="hidden" name="appcn_name" value="${dlvDto.rcpr}">
-    <input type="hidden" name="appcn_mobile" value="${dlvDto.rcpr_mobile}">
-    <input type="hidden" name="rcpr" value="${dlvDto.rcpr}">
-    <input type="hidden" name="zpcd" value="${dlvDto.zpcd}">
-    <input type="hidden" name="main_addr" value="${dlvDto.main_addr}">
-    <input type="hidden" name="detail_addr" value="${dlvDto.detail_addr}">
-    <input type="hidden" name="rcpr_mobile" value="${dlvDto.rcpr_mobile}">
+    <input type="hidden" name="appcn_name" value="${deliveryDto.rcpr}">
+    <input type="hidden" name="appcn_mobile" value="${deliveryDto.rcpr_mobile}">
+    <input type="hidden" name="rcpr" value="${deliveryDto.rcpr}">
+    <input type="hidden" name="zpcd" value="${deliveryDto.zpcd}">
+    <input type="hidden" name="main_addr" value="${deliveryDto.main_addr}">
+    <input type="hidden" name="detail_addr" value="${deliveryDto.detail_addr}">
+    <input type="hidden" name="rcpr_mobile" value="${deliveryDto.rcpr_mobile}">
     <input type="hidden" name="ord_num" value="${ord_num}">
-    <input type="hidden" name="seq" value="${OrdDetailDto.seq}">
+    <input type="hidden" name="seq" value="${orderDetailDto.seq}">
     <input type="hidden" name="type_code" value="E">
     <input type="hidden" name="state_code" value="EXC1">
     <input type="hidden" name="ord_state" value="교환신청">
