@@ -44,10 +44,10 @@
     where num = #{num}
   </update>
 
-  <update id="increaseViewCnt" parameterType="map">
+  <update id="increaseViewCnt" parameterType="string">
     update item_state
     set
-      view_cnt = view_cnt + #{cnt},
+      view_cnt = view_cnt + 1,
       up_date = now(),
       up_id = 'manager'
     where num = #{num}

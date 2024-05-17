@@ -37,8 +37,8 @@ public class ItemStateDaoImpl {
         return session.update(namespace + "increaseStockQty", map);
     }
 
-    public int increaseViewCnt(Map map) throws Exception {
-        return session.update(namespace + "increaseViewCnt", map);
+    public int increaseViewCnt(String num) throws Exception {
+        return session.update(namespace + "increaseViewCnt", num);
     }
 
     public int updateStateCode(Map map) throws Exception {
