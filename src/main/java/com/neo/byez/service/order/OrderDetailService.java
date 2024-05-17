@@ -30,6 +30,8 @@ public interface OrderDetailService {
 
 
 
+
+
 //    public int updateOrdState(List list) throws Exception;
 
 
