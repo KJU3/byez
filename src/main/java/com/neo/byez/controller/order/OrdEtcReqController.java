@@ -19,7 +19,7 @@ public class OrdEtcReqController {
     @Autowired
     OrdEtcReqServiceImpl ordEtcReqService;
     @Autowired
-    OrderDetailServiceImpl ordDetailService;
+    OrderDetailServiceImpl orderDetailService;
     @Autowired
     DeliveryDaoImpl deliveryDao;
 
@@ -55,10 +55,10 @@ public class OrdEtcReqController {
     public String cancelForm(String ord_num,  Model m) throws Exception {
 
         System.out.println(ord_num);
-        List<OrderDetailDto> cancelList = ordDetailService.selectOneOrdDetail(ord_num);
+        List<OrderDetailDto> cancelList = orderDetailService.selectOneOrdDetail(ord_num);
         m.addAttribute("ord_num",ord_num);
         m.addAttribute("cancelList",cancelList);
-        return "orderCancelPage";
+        return "/order/orderCancelForm";
     }
 
     @RequestMapping(value = "/cancelOrder")
@@ -82,12 +82,12 @@ public class OrdEtcReqController {
         //
         //aaa 고객이 주문한 모든 내역을 불러옴
         //실제 구현시에는 로그인한 고객의 아이디를 세션에서 불러와 조회한다.
-        List<OrderDetailDto> list = ordDetailService.getOrderDetailsList("aaa");
+        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("aaa");
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);
         //주문내역을 불러올때 주문번호가 ordDetailDto에 담기기 때문에
         //
-        m.addAttribute("ordDetailDto", orderDetailDto);
+        m.addAttribute("orderDetailDto", orderDetailDto);
 
         /*
         트랜잭션으로 묶인 일련의 주문취소 메서드를
@@ -182,27 +182,27 @@ public class OrdEtcReqController {
 
         List<DeliveryDto>list = deliveryDao.selectByOrdNum(ord_num);
         DeliveryDto deliveryDto = list.get(0);
-        List<OrderDetailDto> refundList = ordDetailService.selectOneOrdDetail(ord_num);
+        List<OrderDetailDto> refundList = orderDetailService.selectOneOrdDetail(ord_num);
         m.addAttribute("ord_num",ord_num);
         m.addAttribute("refundList",refundList);
-        m.addAttribute("dlvDto", deliveryDto);
+        m.addAttribute("deliveryDto", deliveryDto);
 
-        return "orderRefundForm";
+        return "/order/orderRefundForm";
     }
 
     @RequestMapping(value = "/refundOrder")
-    public String refundOrder(Model m, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto ordDetailDto, OrderDto orderDto,DeliveryDto deliveryDto) throws Exception {
+    public String refundOrder(Model m, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto,DeliveryDto deliveryDto) throws Exception {
 
-        List<OrderDetailDto> list = ordDetailService.getOrderDetailsList("aaa");
+        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("aaa");
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);
         //주문내역을 불러올때 주문번호가 ordDetailDto에 담기기 때문에
-        m.addAttribute("ordDetailDto", ordDetailDto);
+        m.addAttribute("orderDetailDto", orderDetailDto);
         System.out.println(ordEtcReqDto);
         System.out.println(deliveryDto.getDetail_addr());
         System.out.println(deliveryDto.getMain_addr());
 
-        ordEtcReqService.insertRefundInfo(ordEtcReqDto , ordDetailDto, orderDto, orderStateDto, deliveryDto);
+        ordEtcReqService.insertRefundInfo(ordEtcReqDto , orderDetailDto, orderDto, orderStateDto, deliveryDto);
 
         return "redirect:/order/list";
      }
@@ -263,36 +263,36 @@ public class OrdEtcReqController {
         List<DeliveryDto>list = deliveryDao.selectByOrdNum(ord_num);
 
         DeliveryDto dlvDto = list.get(0);
-        List<OrderDetailDto> exchangeList = ordDetailService.selectOneOrdDetail(ord_num);
-        OrderDetailDto ordDetailDto = ordDetailService.selectOneSeqForExchange(ord_num, seq);
-        List<ItemOptionDto> colorList = ordDetailService.selectColorOption(item_num);
-        List<ItemOptionDto> sizeList = ordDetailService.selectSizeOption(item_num);
+        List<OrderDetailDto> exchangeList = orderDetailService.selectOneOrdDetail(ord_num);
+        OrderDetailDto ordDetailDto = orderDetailService.selectOneSeqForExchange(ord_num, seq);
+        List<ItemOptionDto> colorList = orderDetailService.selectColorOption(item_num);
+        List<ItemOptionDto> sizeList = orderDetailService.selectSizeOption(item_num);
 
         m.addAttribute("colorList", colorList);
         m.addAttribute("sizeList", sizeList);
         m.addAttribute("ord_num",ord_num);
         m.addAttribute("dlvDto", dlvDto);
-        m.addAttribute("OrdDetailDto", ordDetailDto);
+        m.addAttribute("OrderDetailDto", ordDetailDto);
         m.addAttribute("itemOptionDto", itemOptionDto);
 
         System.out.println("옵션변경전 : " + ordDetailDto);
 
-        return "orderExchangeForm";
+        return "/order/orderExchangeForm";
     }
 
     @RequestMapping(value = "/exchangeOrder")
     public String exchangeOrder(Model m,  String num, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto, DeliveryDto deliveryDto, ItemOptionDto itemOptionDto) throws Exception {
 
-        List<OrderDetailDto> list = ordDetailService.getOrderDetailsList("aaa");
-        List<ItemOptionDto> colorList = ordDetailService.selectColorOption(num);
-        List<ItemOptionDto> sizeList = ordDetailService.selectSizeOption(num);
+        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("aaa");
+        List<ItemOptionDto> colorList = orderDetailService.selectColorOption(num);
+        List<ItemOptionDto> sizeList = orderDetailService.selectSizeOption(num);
 
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);
         m.addAttribute("colorList", colorList);
         m.addAttribute("sizeList", sizeList);
         //주문내역을 불러올때 주문번호가 ordDetailDto에 담기기 때문에
-        m.addAttribute("ordDetailDto", orderDetailDto);
+        m.addAttribute("orderDetailDto", orderDetailDto);
 
         System.out.println("옵션변경선택후 : " + orderDetailDto);
 

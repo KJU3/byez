@@ -75,9 +75,9 @@ public class OrderDetailController {
             m.addAttribute("pageSize", pageSize);
             m.addAttribute("list", list);
         } catch (IndexOutOfBoundsException e) {
-            return "list";
+            return "/order/list";
         }
-        return "list";
+        return "/order/list";
     }
 
     /*주문취소 반품 교환리스트 보여주기*/
@@ -127,9 +127,9 @@ public class OrderDetailController {
             m.addAttribute("pageSize", pageSize);
             m.addAttribute("list", list);
         } catch (IndexOutOfBoundsException e) {
-            return "list";
+            return "/order/list";
         }
-        return "list";
+        return "/order/list";
     }
 
 
