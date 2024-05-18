@@ -133,4 +133,10 @@
         SET review = 'Y'
         WHERE ord_num =#{ord_num} AND item_num=#{item_num}
     </update>
+
+    <update id="updateOrdState" parameterType="OrderDetailDto">
+        update ord_detail
+        set ord_state = #{ord_state}
+        where ord_num = #{ord_num}
+    </update>
 </mapper>

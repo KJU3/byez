@@ -61,6 +61,42 @@
                 shippingCostField.textContent = '반품사유를 선택하면 반품배송비를 확인할 수 있습니다.';
         }
 
+    //TODO 수거지 변경 시 수거지 입력 유효성 검증
+    function checkRcpr() {
+        // 수거신청인 입력값 유효성 검증
+        // 한글만 가능
+        let inputField = document.querySelector('input[name="new_rcpr"]');
+        let name = inputField.value;
+        let pattern = new RegExp('^[\s,ㄱ-ㅎ가-힣]+$');
+
+        if (name.length > 0 && !name.match(pattern)) {
+            alert("이름은 한글만 입력 가능합니다.");
+            inputField.value = "";
+            return false;
+        }
+        return true;
+    }
+
+    // function checkZpcd(){
+    //     //우편번호 입력값 유효성검증
+    //     // 5자리 숫자만 가능
+    //     let inputField = document.querySelector('input[name="new_zpcd"]');
+    //     let zpcd = inputField.value;
+    //     let pattern = new RegExp('^[0-9]{5}$');
+    //
+    //     if ( !zpcd.match(pattern)) {
+    //         alert("우편번호는 숫자만 입력가능합니다.");
+    //         inputField.value = "";
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    function checkRcprMobile(){
+        //수거신청 휴대폰번호 입력값 유효성검증
+        //숫자만 가능
+    }
+
         //반품신청버튼 클릭
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("refundBtn").onclick = function() {
@@ -103,7 +139,6 @@
                     return false;
                 }
 
-                //휴대폰번호는 null가능하게 수정된 상태이기 때문에 검증에서 제외
                     let refundConfirm = confirm("반품하시겠습니까?");
                     if (refundConfirm) {
                         updateHiddenFields();
@@ -203,11 +238,11 @@
             <tr>
 <%--    oninput 이벤트처리하면 특수문자등 들어가지 말아야 할 것이 입력되었을때 바로 확인 가능함--%>
 <%--     focus 사용하면 입력완료 시 다음으로 넘어간다.--%>
-                <td><input type="text" name="new_rcpr" value=""></td>
-                <td><input type="text" name="new_zpcd" value=""></td>
+                <td><input type="text" name="new_rcpr" value="" oninput="checkRcpr()"></td>
+                <td><input type="text" name="new_zpcd" value="" oninput="checkZpcd()"></td>
                 <td><input type="text" name="new_main_addr" value=""></td>
                 <td><input type="text" name="new_detail_addr" value=""></td>
-                <td><input type="text" name="new_rcpr_mobile" value=""></td>
+                <td><input type="text" name="new_rcpr_mobile" value="" oninput="checkRcprMobile()"></td>
             </tr>
             </tbody>
         </table>

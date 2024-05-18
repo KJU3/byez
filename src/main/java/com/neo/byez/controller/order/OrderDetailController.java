@@ -47,7 +47,7 @@ public class OrderDetailController {
         임의로 cust DB에 저장된 aaa라는 고객아이디를 사용
         아이디별 주문내역 조회하기 메서드로 받은 값을 list에 담아 모델에 저장하여 view로 옮겨준다
          */
-        String id = "aaa";
+        String id = "asdf1234";
 
         try {
             List<OrderDetailDto> list = orderDetailService.getOrderDetailsList(id);
@@ -99,7 +99,7 @@ public class OrderDetailController {
         아이디별 주문내역 조회하기 메서드로 받은 값을 list에 담아 모델에 저장하여 view로 옮겨준다
          */
 
-        String id = "aaa";
+        String id = "asdf1234";
 
         try {
             List<OrderDetailDto> list = orderDetailService.getOrderDetailsList(id);

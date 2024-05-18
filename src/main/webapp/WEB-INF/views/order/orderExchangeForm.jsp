@@ -90,8 +90,8 @@
             changeBtn.addEventListener("click", function() {
                 let selectedColor = document.getElementById('color').value;
                 let selectedSize = document.getElementById('size').value;
-                let originalColor = '${OrderDetailDto.opt1}';
-                let originalSize = '${OrderDetailDto.opt2}';
+                let originalColor = '${orderDetailDto.opt1}';
+                let originalSize = '${orderDetailDto.opt2}';
                 if((selectedColor === "" || selectedSize === "" ) || selectedColor === originalColor  && selectedSize === originalSize ){
                     alert("옵션을 선택해주세요");
                     let originalOption = document.getElementById('option');
@@ -217,6 +217,7 @@
                     alert("입력 필드에 특수문자가 포함되어 있습니다.");
                     return false;
                 }
+
                 let selectedColor = document.getElementById('color').value;
                 let selectedSize = document.getElementById('size').value;
                 let rcpr = document.querySelector('input[name="rcpr"]').value;
@@ -294,6 +295,7 @@
         </tbody>
     </table>
 
+
     <div id="modal" class="dialog" style = "display:none">
         <div class="tb">
             <div class="inner" style="max-width:800px;">
@@ -307,7 +309,7 @@
                     <br>
                     상품옵션
                     Color
-                    <select name = "color" id="color">
+                    <select name ="color" id="color">
                             <option value = "">색상</option>
                         <c:forEach var="itemOptionDto" items="${colorList}">
                             <option value = ${itemOptionDto.color}>${itemOptionDto.color}</option>
