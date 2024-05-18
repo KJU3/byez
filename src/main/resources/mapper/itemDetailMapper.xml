@@ -19,11 +19,16 @@
   <select id="select" parameterType="string" resultType="ItemDetailDto">
     select *
     from item_detail
-    where num = #{num};
+    where num = #{num}
   </select>
 
   <select id="selectAll" resultType="ItemDetailDto">
     select *
+    from item_detail
+  </select>
+
+  <select id="count" resultType="int">
+    select count(*)
     from item_detail
   </select>
 
@@ -47,17 +52,17 @@
       reg_id = 'manager',
       up_date = now(),
       up_id = 'manager'
-    where num = #{num};
+    where num = #{num}
   </update>
 
   <delete id="delete" parameterType="string">
     delete
     from item_detail
-    where num = #{num};
+    where num = #{num}
   </delete>
 
   <delete id="deleteAll">
     delete
-    from item_detail;
+    from item_detail
   </delete>
 </mapper>
