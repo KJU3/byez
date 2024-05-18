@@ -44,7 +44,7 @@
     where num = #{num}
   </update>
 
-  <delete id="delete" parameterType="ItemPriceDto">
+  <delete id="delete" parameterType="string">
     delete
     from item_price
     where num = #{num}
