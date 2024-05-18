@@ -12,7 +12,7 @@ public class ItemColorDaoImpl {
     @Autowired
     private SqlSession session;
 
-    private static final String namespace = "com.neo.byez.dao.item.ItemColorDa.";
+    private static final String namespace = "com.neo.byez.dao.item.ItemColorDao.";
 
 
 
