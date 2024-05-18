@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.neo.byez.dao.item.ItemPriceDao">
-  <select id="count" parameterType="Integer">
+  <select id="count" resultType="Integer">
     select count(*)
     from item_price
   </select>
