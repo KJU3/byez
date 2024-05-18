@@ -35,9 +35,6 @@ public class ItemDaoImpl implements ItemDao {
         return session.insert(namespace +"insert", dto);
     }
 
-    // 상품 상태 등록
-
-    // 상품 가격 등록
 
 
     // 수정

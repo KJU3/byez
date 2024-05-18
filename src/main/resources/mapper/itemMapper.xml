@@ -9,16 +9,103 @@
     from item
   </select>
 
-  <select id="selectAll" resultType="ItemDto">
-    select *
-    from item
-  </select>
-
   <select id="select" parameterType="string" resultType="ItemDto">
     select *
     from item
     where num = #{num}
   </select>
+
+  <select id="selectAll" resultType="ItemDto">
+    select
+        i.num as num,
+        i.name as name,
+        i.item_type as item_type,
+        i.cust_type as cust_type,
+        i.price as price,
+        i.disc_price as disc_price,
+        i.main_img as main_img,
+        i.review_cnt as review_cnt,
+        i.review_rate as review_rate,
+        i.like_cnt as like_cnt,
+        i.col as col
+    from item i
+    inner join item_state s
+    on i.num = s.num
+    inner join item_detail d
+    on i.num = d.num
+    order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
+  </select>
+
+  <select id="selectByCategory" parameterType="Category" resultType="ItemDto">
+    select
+      i.num as num,
+      i.name as name,
+      i.item_type as item_type,
+      i.cust_type as cust_type,
+      i.price as price,
+      i.disc_price as disc_price,
+      i.main_img as main_img,
+      i.review_cnt as review_cnt,
+      i.review_rate as review_rate,
+      i.like_cnt as like_cnt,
+      i.col as col
+    from item i
+    inner join item_state s
+    on i.num = s.num
+    inner join item_detail d
+    on i.num = d.num
+    where i.item_type like #{item_type_format}
+    order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
+  </select>
+
+  <select id="selectDiscountItem" parameterType="Category" resultType="ItemDto">
+    select
+      i.num as num,
+      i.name as name,
+      i.item_type as item_type,
+      i.cust_type as cust_type,
+      i.price as price,
+      i.disc_price as disc_price,
+      i.main_img as main_img,
+      i.review_cnt as review_cnt,
+      i.review_rate as review_rate,
+      i.like_cnt as like_cnt,
+      i.col as col
+    from item i
+    inner join item_state s
+    on i.num = s.num
+    inner join item_detail d
+    on i.num = d.num
+    where i.item_type like #{item_type_format}
+    and i.price > i.disc_price
+    order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc;
+  </select>
+
+
+  <select id="selectDetailItem" parameterType="string" resultType="ItemDetailPageDto">
+    select
+      i.num as num,
+      i.name as name,
+      d.detail_name as detail_name,
+      i.cust_type as cust_type,
+      i.price as price,
+      i.disc_price as disc_price,
+      p.disc_rate as disc_rate,
+      d.detail_img as detail_img,
+      d.mfg_corp as mfg_corp,
+      d.mfg_name as mfg_name,
+      d.mfg_date as mfg_date,
+      d.model as model,
+      d.origin as origin,
+      d.matr as matr,
+      d.caut as caut
+    from item i
+    inner join item_detail d
+    on i.num = d.num
+    inner join item_price p
+    on i.num = p.num
+  </select>
+
 
   <insert id="insert" parameterType="ItemDto">
     insert into item( num, name, price, disc_price, main_img, review_cnt, like_cnt, review_rate, col, reg_date, reg_id, up_date, up_id, item_type, cust_type)
@@ -172,16 +259,4 @@
 <!--    from item_state-->
 <!--  </delete>-->
 
-<!--  &lt;!&ndash; 상품 상세 &ndash;&gt;-->
-<!--  <insert id="insertItemState" parameterType="ItemStateDto">-->
-<!--    insert into item_state( num, sales_qty, view_cnt, stock_qty, state_code, reg_date, reg_id, up_date, up_id )-->
-<!--      value( #{num}, #{sales_qty}, #{view_cnt}, #{stock_qty}, #{state_code}, now(), 'manager', now(), 'manager' )-->
-<!--  </insert>-->
-
-
-<!--  &lt;!&ndash;  상품 가격  &ndash;&gt;-->
-<!--  <insert id="insertItemPrice" parameterType="ItemPriceDto">-->
-<!--    insert into item_price( num, disc_rate, start_date, end_date, remark, reg_date, reg_id, up_date, up_id )-->
-<!--    value( #{num}, #{disc_rate}, now(), date_add(now(), interval #{period} month), #{remark}, now(), 'manager', now(), 'manager' )-->
-<!--  </insert>-->
 </mapper>
