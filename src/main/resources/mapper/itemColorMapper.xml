@@ -47,7 +47,7 @@
     delete from item_color
   </delete>
 
-  <delete id="deleteAllSize" parameterType="string">
+  <delete id="deleteAllColor" parameterType="string">
     delete from item_color
     where num = #{num}
   </delete>
