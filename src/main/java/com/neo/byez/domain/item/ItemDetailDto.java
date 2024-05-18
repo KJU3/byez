@@ -1,5 +1,7 @@
 package com.neo.byez.domain.item;
 
+import java.util.Objects;
+
 // 상세 페이지에서 활용
 public class ItemDetailDto {
     private String num;
@@ -186,6 +188,30 @@ public class ItemDetailDto {
 
     public String getUp_id() {
         return up_id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ItemDetailDto that = (ItemDetailDto) o;
+        return price == that.price && num.equals(that.num) && Objects.equals(detail_name,
+                that.detail_name) && Objects.equals(comt, that.comt)
+                && Objects.equals(detail_img, that.detail_img) && Objects.equals(
+                mfg_corp, that.mfg_corp) && Objects.equals(mfg_name, that.mfg_name)
+                && Objects.equals(model, that.model) && Objects.equals(origin,
+                that.origin) && Objects.equals(matr, that.matr) && Objects.equals(
+                caut, that.caut);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(num, detail_name, comt, detail_img, price, mfg_corp, mfg_name, model,
+                origin, matr, caut);
     }
 
     public void setUp_id(String up_id) {

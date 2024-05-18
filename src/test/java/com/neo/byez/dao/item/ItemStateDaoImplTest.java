@@ -33,7 +33,7 @@ class ItemStateDaoImplTest {
     private UserDaoImpl userDao;
 
     @Autowired
-    ItemDaoImpl itemDao;
+    private ItemDaoImpl itemDao;
 
     @Autowired
     private ItemStateDaoImpl itemStateDao;
