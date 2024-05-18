@@ -104,6 +104,7 @@
     on i.num = d.num
     inner join item_price p
     on i.num = p.num
+    where i.num = #{num}
   </select>
 
 

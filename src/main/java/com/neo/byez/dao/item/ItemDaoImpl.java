@@ -1,6 +1,7 @@
 package com.neo.byez.dao.item;
 
 import com.neo.byez.domain.item.Category;
+import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
@@ -20,22 +21,32 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectOne(namespace + "count");
     }
 
+    public ItemDto select(String num) throws Exception {
+        return session.selectOne(namespace +"select", num);
+    }
+
     // 모두 조회
     public List<ItemDto> selectAll() throws Exception {
         return session.selectList(namespace + "selectAll");
     }
 
-    // 조회
-    public ItemDto select(String num) throws Exception {
-        return session.selectOne(namespace +"select", num);
+    public List<ItemDto> selectByCategory(Category category) throws Exception {
+        return session.selectList(namespace + "selectByCategory", category);
     }
+
+    public List<ItemDto> selectDiscountItem(Category category) throws Exception {
+        return session.selectList(namespace + "selectDiscountItem", category);
+    }
+
+    public ItemDetailPageDto selectDetailItem(String num) throws Exception {
+        return session.selectOne(namespace + "selectDetailItem", num);
+    }
+
 
     // 등록
     public int insert(ItemDto dto) throws Exception {
         return session.insert(namespace +"insert", dto);
     }
-
-
 
     // 수정
     public int update(ItemDto dto) throws Exception {
