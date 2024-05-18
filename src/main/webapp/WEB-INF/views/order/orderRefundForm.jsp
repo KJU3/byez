@@ -355,6 +355,52 @@
         return true;
     }
 
+    // function checkZpcd(){
+    //     //우편번호 입력값 유효성검증
+    //     // 5자리 숫자만 가능
+    //     let inputField = document.querySelector('input[name="new_zpcd"]');
+    //     let zpcd = inputField.value;
+    //     let pattern = new RegExp('^[0-9]{5}$');
+    //
+    //     if ( !zpcd.match(pattern)) {
+    //         alert("우편번호는 숫자만 입력가능합니다.");
+    //         inputField.value = "";
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    function checkRcprMobile(){
+        //수거신청 휴대폰번호 입력값 유효성검증
+        //숫자만 가능
+    }
+
+        //반품신청버튼 클릭
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("refundBtn").onclick = function() {
+                let form = $('form');
+                let chg_chk = form.find('input[name="chg_chk"]:checked').val();
+                let new_rcpr = form.find('input[name="new_rcpr"]').val().trim();
+                let new_zpcd = form.find('input[name="new_zpcd"]').val().trim();
+                let new_main_addr = form.find('input[name="new_main_addr"]').val().trim();
+                let new_detail_addr = form.find('input[name="new_detail_addr"]').val().trim();
+                let new_rcpr_mobile = form.find('input[name="new_rcpr_mobile"]').val().trim();
+    //TODO 수거지 변경 시 수거지 입력 유효성 검증
+    function checkRcpr() {
+        // 수거신청인 입력값 유효성 검증
+        // 한글만 가능
+        let inputField = document.querySelector('input[name="new_rcpr"]');
+        let name = inputField.value;
+        let pattern = new RegExp('^[\s,ㄱ-ㅎ가-힣]+$');
+
+        if (name.length > 0 && !name.match(pattern)) {
+            alert("이름은 한글만 입력 가능합니다.");
+            inputField.value = "";
+            return false;
+        }
+        return true;
+    }
+
     function checkZpcd() {
         // 우편번호 입력값 유효성 검증
         // 5자리 숫자만 가능
@@ -449,4 +495,3 @@
 </script>
 </body>
 </html>
-
