@@ -25,8 +25,8 @@ public class ItemSizeDaoImpl {
         return session.insert(namespace + "insert", dto);
     }
 
-    public ItemOptDto select(String num) throws Exception {
-        return session.selectOne(namespace + "select", num);
+    public List<ItemOptDto> select(String num) throws Exception {
+        return session.selectList(namespace + "select", num);
     }
 
     public List<ItemOptDto> selectAll() throws Exception {

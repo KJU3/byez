@@ -34,7 +34,7 @@
     update item_size
     set code = #{new_code}
     where num = #{num}
-    and code = #{code};
+    and code = #{code}
   </update>
 
   <delete id="delete" parameterType="ItemOptDto">
