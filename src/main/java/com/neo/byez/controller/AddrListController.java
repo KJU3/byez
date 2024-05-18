@@ -66,7 +66,7 @@ public class AddrListController {
 
         addrListService.registerAddr(addressEntryDto);
 
-        return "redirect: /home";
+        return "redirect: /goMyAddrList";
     }
 
     @RequestMapping("/editAddress")
