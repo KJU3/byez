@@ -45,7 +45,7 @@
         order by review_num
     </select>
 
-    <select id="selectJoinItem" parameterType="String" resultType="com.statuscode.domain.ReviewItemJoinDto">
+    <select id="selectJoinItem" parameterType="String" resultType="com.neo.byez.domain.ReviewItemJoinDto">
         SELECT r.*, o.*,i.main_img
         FROM review r
                  INNER JOIN ord_detail o ON r.item_num = o.item_num AND r.ord_num = o.ord_num

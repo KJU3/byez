@@ -14,7 +14,7 @@ import java.util.Map;
 public class ReviewDaoImpl implements ReviewDao {
     @Autowired
     SqlSession sqlSession;
-    private static String namespace = "com.statuscode.dao.ReviewDao";
+    private static String namespace = "com.neo.byez.dao.ReviewDao";
 
 
     @Override

@@ -105,7 +105,7 @@
     </select>
 
 
-    <select id="getSearchAllOpt" parameterType="map" resultType="com.statuscode.domain.QnaCateJoinDto">
+    <select id="getSearchAllOpt" parameterType="map" resultType="com.neo.byez.domain.QnaCateJoinDto">
         SELECT *
         FROM qna
         INNER JOIN qna_cate_code_tb ON qna.cate_num=qna_cate_code_tb.cate_num

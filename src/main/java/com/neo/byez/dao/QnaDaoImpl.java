@@ -14,7 +14,7 @@ import java.util.Map;
 public class QnaDaoImpl implements QnaDao {
     @Autowired
     SqlSession sqlSession;
-    private static String namespace = "com.statuscode.dao.QnaDao.";
+    private static String namespace = "com.neo.byez.dao.QnaDao.";
 
     @Override
     public int count() {
