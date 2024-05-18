@@ -293,7 +293,7 @@ public class OrderDetailDaoImplTest {
 @Test
 // 이 메서드는 원래 사용자이름으로 가져오며 ord_state가 "구매확정"인 값을 가져오는 기능이다.
 // 추후에 ord_state가 어떻게 될지 논의 후 해당 메소드 mapper sql에 where절에 ord_state 을 추가할 것
-public void selectById() throws Exception {
+public void 리뷰안한사용자리뷰값주기() throws Exception {
     // 테이블 초기화
     orderDetailDao.deleteAll();
     assertTrue(orderDetailDao.countAll() == 0);
