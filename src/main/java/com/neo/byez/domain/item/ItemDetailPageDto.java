@@ -192,4 +192,28 @@ public class ItemDetailPageDto {
         String[] sizes = size.split(",");
         return Arrays.asList(sizes);
     }
+
+
+    @Override
+    public String toString() {
+        return "ItemDetailPageDto{" +
+                "num='" + num + '\'' +
+                ", name='" + name + '\'' +
+                ", detail_name='" + detail_name + '\'' +
+                ", cust_type='" + cust_type + '\'' +
+                ", price=" + price +
+                ", disc_price=" + disc_price +
+                ", disc_rate=" + disc_rate +
+                ", col='" + col + '\'' +
+                ", size='" + size + '\'' +
+                ", detail_img='" + detail_img + '\'' +
+                ", mfg_corp='" + mfg_corp + '\'' +
+                ", mfg_name='" + mfg_name + '\'' +
+                ", mfg_date='" + mfg_date + '\'' +
+                ", model='" + model + '\'' +
+                ", origin='" + origin + '\'' +
+                ", matr='" + matr + '\'' +
+                ", caut='" + caut + '\'' +
+                '}';
+    }
 }

@@ -10,6 +10,7 @@ import com.neo.byez.dao.item.ItemSizeDaoImpl;
 import com.neo.byez.dao.item.ItemStateDaoImpl;
 import com.neo.byez.domain.item.Category;
 import com.neo.byez.domain.item.ItemDetailDto;
+import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.domain.item.ItemOptDto;
 import com.neo.byez.domain.item.ItemPriceDto;
@@ -32,6 +33,8 @@ public class ItemServiceImpl {
     // 7. review : 별점, 리뷰수 계산
 
     // # 추후에 재고 테이블도 따로 만들어야함
+
+    private static final StringBuilder sb = new StringBuilder();
 
     private ItemDaoImpl itemDao;
     private ItemStateDaoImpl itemStateDao;
@@ -156,10 +159,10 @@ public class ItemServiceImpl {
 
 
         // 상품 색상 정보 등록, 메인 테이블 col에 red,black,blue 형식으로 저장
-        String colors = "";
-        for (ItemOptDto itemColorDto : itemColorDtos) {
-            rowCnt += itemColorDao.insert(itemColorDto);
-            colors += itemColorDto.getCode() + ",";
+        sb.setLength(0);
+        for (ItemOptDto color : itemColorDtos) {
+            rowCnt += itemColorDao.insert(color);
+            sb.append(color.getCode()).append(",");
         }
 
 
@@ -177,7 +180,7 @@ public class ItemServiceImpl {
         // 할인가 계산
         int discountPrice = (int)(target.getPrice() * discountRate);
         target.setDisc_price(discountPrice); // 할인가 적용해서 저장
-        target.setCol(colors); // 색상 정보 저장
+        target.setCol(sb.toString()); // 색상 정보 저장
         rowCnt += itemDao.update(target); // 테이블 변경
 
         // 적용된 로우수가 기대한 값과 다른 경우 롤백 처리
@@ -213,46 +216,39 @@ public class ItemServiceImpl {
     // ㅅ
     public List<ItemDto> readByCategory(Category category) throws Exception {
         /* 처리 작업 */
-
-
         /* 예외 판별 */
-
-
         /* 반환 */
-        return null;
+        return itemDao.selectByCategory(category);
     }
 
-    public List<ItemDto> readDiscountItem() throws Exception {
-        /* 처리 작업 */
-
-
-        /* 예외 판별 */
-
-
-        /* 반환 */
-        return null;
+    public List<ItemDto> readDiscountItem(Category category) throws Exception {
+        return itemDao.selectDiscountItem(category);
     }
 
     public List<ItemDto> readBestItem() throws Exception {
         /* 처리 작업 */
-
-
         /* 예외 판별 */
-
-
         /* 반환 */
         return null;
     }
 
-    public ItemDto readDetailItem() throws Exception {
-        /* 처리 작업 */
+    public ItemDetailPageDto readDetailItem(String num) throws Exception {
+        // 상세 페이지 dto 조회
+        ItemDetailPageDto itemDetailPageDto = itemDao.selectDetailItem(num);
+
+        // 옵션값 추가
+        sb.setLength(0);
+        List<ItemOptDto> sizes = itemSizeDao.select(num);
+        sizes.stream().forEach(size -> sb.append(size.getCode()).append(","));
+        itemDetailPageDto.setSize(sb.toString());
+
+        sb.setLength(0);
+        List<ItemOptDto> colors = itemColorDao.select(num);
+        colors.stream().forEach(color -> sb.append(color.getCode()).append(","));
+        itemDetailPageDto.setCol(sb.toString());
 
 
-        /* 예외 판별 */
-
-
-        /* 반환 */
-        return null;
+        return itemDetailPageDto;
     }
 
 

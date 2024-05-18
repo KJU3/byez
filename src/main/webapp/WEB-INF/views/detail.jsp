@@ -27,63 +27,41 @@
         <div class="info">
             <div class="infoImgWrapper">
                 <img src="/img/detail1.jpeg" alt="" class="detail_img">
-                <p>소재 : <span class="matr">면 100%</span></p>
-                <p>제조국 : <span class="origin">베트남</span></p>
-                <p>제조사 : <span class="mfg_corp">㈜이랜드월드</span></p>
-                <p>제조자 : <span class="mfg_name"></span></p>
-                <p>제조일자 : <span class="mfg_date">2024년 1월</span></p>
-                <p>상품출시일자 : <span class="rel_date">2023년 12월</span></p>
-                <p>모델명 : <span class="model"></span></p>
+                <p>소재 : <span class="matr">${itemDetail.matr}</span></p>
+                <p>제조국 : <span class="origin">${itemDetail.origin}</span></p>
+                <p>제조사 : <span class="mfg_corp">${itemDetail.mfg_corp}</span></p>
+                <p>제조자 : <span class="mfg_name">${itemDetail.mfg_name}</span></p>
+                <p>제조일자 : <span class="mfg_date">${itemDetail.mfg_date}</span></p>
+                <p>상품출시일자 : <span class="rel_date"></span></p>
+                <p>모델명 : <span class="model">${itemDetail.model}</span></p>
                 <p>취급 시 주의사항 :
-                    <span class="caut">자세한 주의사항은 상세페이지 참고해주세요.<br>
-                            지퍼/단추/스냅 등은 잠그신 후 뒤집어서 세탁해 주시기 바랍니다.<br>
-                            땀과 비 등에 의해 젖은 상태로 오래 방치 할 경우 변색의 우려가 있습니다.<br>
-                            소비자 부주의로 인한 제품 손상은 보상 되지 않습니다.</span>
+                    <span class="caut">${itemDetail.caut}</span>
                 </p>
             </div>
             <div class="infoWrapper">
-                <p class="detail_name">라이트 2-WAY 카고 와이드 팬츠 (나일론)_SPTCE23G01</p>
-                <div class="type">여성용</div>
+                <p class="detail_name">${itemDetail.detail_name}</p>
+                <div class="type">${itemDetail.cust_type}</div>
                 <p>
-                    <span class="disc_price">29,900</span>
-                    <span class="price">39,900</span>
-                    <span class="disc_rate">25%</span>
+                    <span class="disc_price"><fmt:formatNumber value="${itemDetail.disc_price}" pattern="#,###"/></span>
+                    <span class="price"><fmt:formatNumber value="${itemDetail.price}" pattern="#,###"/></span>
+                    <span class="disc_rate">${itemDetail.disc_rate * 100}%</span>
                 </p>
-                <!-- <div class="newbie">
+                <div class="newbie">
                     <span>신규가입 혜택</span>
                     <a href="#">
                         <span>신규 가입 시 웰컴 쿠폰팩 즉시 지급</span>
                         <i class="fa-solid fa-chevron-right"></i>
                     </a>
-                </div> -->
+                </div>
                 <div class="optionBox">
                     <p>Color</p>
                     <ul class="col">
-                        <input type="hidden" class="opt2" name="opt2" value="${basketItemDto.opt2}" placeholder="${basketItemDto.opt2}" >
+                        <input type="hidden" class="opt2" name="opt2" >
                         <select class="changeOpt2" onchange="selectOpt2(this.value);">
-                            <option value="COL1">블랙</option>
-                            <option value="COL2">화이트</option>
-                            <option value="COL3">브라운</option>
-                            <option value="COL4">그린</option>
+                            <c:forEach var="color" items="${itemDetail.colors}">
+                                <option value=${color}>${color}</option>
+                            </c:forEach>
                         </select>
-<%--                        <li>--%>
-<%--                            <button>(19) BLACK</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>(20) RED</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>(21) CREAM</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>(22) MIDDLE MELANGE GRAY</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>(23) PINK</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>(24) BEIGE</button>--%>
-<%--                        </li>--%>
                     </ul>
 <%--                    <p>--%>
 <%--                        <span>[필수] </span>--%>
@@ -100,13 +78,11 @@
 <%--                        <li>--%>
 <%--                            <button>L (095)</button>--%>
 <%--                        </li>--%>
-                        <input type="hidden" class="opt1" name="opt1" value="${basketItemDto.opt1}" placeholder="${basketItemDto.opt1}">
+                        <input type="hidden" class="opt1" name="opt1">
                         <select class="changeOpt1" onchange="selectOpt1(this.value);">
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
+                            <c:forEach var="size" items="${itemDetail.sizes}">
+                                <option value=${size}>${size}</option>
+                            </c:forEach>
                         </select>
                     </ul>
 <%--                    <p>--%>
@@ -478,15 +454,15 @@
                         <p>첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~첫번째 볼드체 p태그~~~~~</p>
                         <p>체격이 있는 편인데 XL도 큰 느낌은 아니어서 XXL가 딱 적당해요! 더운 봄 날씨 와중에 냉방병이나 비온 뒤 급 쌀쌀한 날씨 커버 해주기에는 부족함이 딱히 없어요. 엄청 가볍고 얇은데다 어느 정도 방수도 되기 때문에 작은 비 정도는 원 마일 웨어로 문제 없습니다! 접을 수 있도록 스트랩과 주머니 뒷 부분이 잘 되어 있어서 평상시 휴대하기에도 너무 만족스러워요. 다만 지퍼가 잘 집혀서 지퍼 마감만 좋은 지퍼로 바꿔주면 더 좋을 것 같아요.</p>
                         <ul class="review_pic">
-                            <!-- <li>
-                                <img src="img/hello1.jpeg" alt="">
+                            <li>
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="img/hello2.jpeg" alt="">
+                                <img src="/img/hello2.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="img/hello3.jpeg" alt="">
-                            </li> -->
+                                <img src="/img/hello3.jpeg" alt="">
+                            </li>
                         </ul>
                     </div>
                     <div>
