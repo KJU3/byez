@@ -74,8 +74,6 @@ public class DataValidator {
                 if (a + 1 == b && b + 1 == c && c + 1 == d) {
                     wrongPwdFormat = SEQUENTIAL_CHARACTERS.getMessage();
                     return false;
-                } else {
-                    return true;
                 }
             }
         }
@@ -88,11 +86,8 @@ public class DataValidator {
         if (email.isEmpty() || email.isBlank()) {
             wrongEmailFormat = EMAIL_MISSING.getMessage();
             return false;
-        } else if (email.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+        } else if (!email.matches("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}")) {
             wrongEmailFormat = INVALID_EMAIL_FORMAT.getMessage();
-            return false;
-        } else if (!(email.contains("@") && email.contains("."))) {
-            wrongEmailFormat = WRONG_EMAIL_FORMAT.getMessage();
             return false;
         }
         return true;
