@@ -5,131 +5,55 @@
     <title>login page</title>
 </head>
 
-<style>
-    * { box-sizing: border-box; }
-    form {
-        border: solid black 3px;
-        padding: 10px;
-        width:500px;
-        height:600px;
-        display: flex;
-        flex-direction: column;
-        align-items:center;
-        position : absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) ;
-    }
-    .title {
-        text-align: center;
-        color: darkblue;
-        font-weight: bold;
-        font-size: 35px;
-    }
-    .input-field {
-        justify-content: center;
-        width: 400px;
-        height: 40px;
-        border : 1px solid rgb(89,117,196);
-        padding: 0 10px;
-        margin-bottom: 10px;
-        line-height: 40px;
-    }
-    #id, #pwd {
-        width: 250px;
-        height: 30px;
-        border: none;
-        background: transparent;
-    }
-    #id:focus, #pwd:focus { outline: none; }
-    #login-msg {
-        height: 30px;
-        text-align:center;
-        font-size:15px;
-        color:red;
-        margin-bottom: 20px;
-    }
-    #error-msg {
-        font-size:15px;
-        margin-bottom: 20px;
-    }
-    input::placeholder { font-size: 15px; }
-    input[type=checkbox] {
-        text-align: right;
-        margin: 10px;
-    }
-    input[type=submit] {
-        width: 400px;
-        height: 50px;
-        color: whitesmoke;
-        font-size: 20px;
-        font-weight: bold;
-        background-color: darkblue;
-    }
-    input[type=submit]:hover {
-        background-color: yellow;
-        color: black;
-        font-weight: bold;
-        font-size: 23px;
-    }
-    #simple-sign-up-in {
-        margin: 20px;
-    }
-    #find-id-and-pwd {
-        font-size: 15px;
-        /*우측 정렬이 안됨...*/
-        float: right;
-    }
-    a, div > a:visited, div > a:hover,  div > a:focus,  div > a:active {
-        text-align: right;
-        margin: 10px;
-        text-decoration: none;
-        color: black;
-        font-family: Arial, Sans-serif, serif;
-        font-weight: bold;
-        font-size: 20px;
-    }
-    span {
-        margin: 20px 5px 5px 0;
-        font-family: Arial, Sans-serif, Serif;
-        font-weight: bold;
-    }
-    #id-error-msg, #pwd-length-error-msg { color: red }
-</style>
+<link rel="stylesheet" href="/css/loginForm.css">
 
 <body>
-<form action="/login/in" method="POST">
-    <div class = title><h3>Login</h3></div>
-    <div id="login-msg">
-        <c:if test="${not empty memberShipCheckMsg}">
-            <h5>${memberShipCheckMsg}</h5>
-        </c:if>
-        <c:if test="${not empty notMatchMsg}">
-            <h5>${notMatchMsg}</h5>
-        </c:if>
-    </div>
-    <div id="error-msg">
-        ${errorMsg}
-    </div>
-    <div class="input-field">ID: <input type="text" id="id" name="id" value="${cookie['id'].value}" maxlength="20" placeholder="ID (20자리 이하의 영문 아이디)" oninput="checkIdFormat()"></div>
-        <div id="id-error-msg"></div><br>
-    <div class="input-field">PASSWORD: <input type="password" id="pwd" name="pwd" placeholder="PASSWORD" oninput="checkPwdLength()"></div>
-        <div id="pwd-length-error-msg"></div><br>
-    <label><input type="checkbox" name="rememberId" ${cookie['id'] != null ? 'checked' : ''}>아이디 저장</label>
+    <form action="/login/in?prevPage=${prevPage}" method="POST">
+        <div class = title>Login</div>
+        <div class="login-msg">
+            <c:if test="${not empty memberShipCheckMsg}">
+                ${memberShipCheckMsg}
+            </c:if>
+            <c:if test="${not empty notMatchMsg}">
+                ${notMatchMsg}
+            </c:if>
+        </div>
+        <section class="input-class">
+            <div class="input-field">ID: <input type="text" id="id" name="id" value="${cookie['id'].value}" maxlength="20" placeholder="ID (20자리 이하의 영문 아이디)" oninput="checkIdFormat()"></div>
+                <div class="id-error-msg"></div><br>
+            <div class="input-field">PASSWORD: <input type="password" id="pwd" name="pwd" placeholder="PASSWORD" oninput="checkPwdLength()"></div>
+        </section>
+        <div class="error-msg">
+            ${errorMsg}
+        </div>
 
-    <a id="find-id-and-pwd" href="/find/authorize">아이디/비밀번호 찾기</a>
-    <input type="submit" value="Login">
+        <div class="pwd-length-error-msg"></div><br>
+        <div class="additional-function">
+            <label><input type="checkbox" name="rememberId" ${cookie['id'] != null ? 'checked' : ''}> 아이디 저장</label>
+            <span>
+                <a href="/find/findIdForm">아이디 찾기</a> |
+                <a href="/find/findPwdForm">비밀번호 찾기</a>
+            </span>
+        </div>
+        <input type="submit" value="Login">
 
         <%--  회원가입  --%>
-<%--    <span>SUPAO 쇼핑몰의 회원이 아니신가요?</span>--%>
-<%--    <input type="submit" value="Sign up">--%>
+        <div class="sign-up-button">
+            byez 쇼핑몰의 회원이 아니신가요?
+            <button><a href="/register/verify">SIGN UP</a></button>
+        </div>
 
-    <div id="simple-sign-up-in">--------- 간편 가입 및 로그인 ----------</div>
-    <%--REST API key (=client_id): 873c82dfa901cd280c11ee222e944826--%>
-    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoLogin">
-        <img src="../image/kakao_login_logo.png" alt="Kakao 로그인">
-    </a>
-</form>
+        <div class="simple-sign-up">
+            간편 가입 및 로그인
+            <%--REST API key (=client_id): 873c82dfa901cd280c11ee222e944826--%>
+            <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoLogin">
+                <img src="/img/kakao_login_logo.png" alt="Kakao 로그인" class="login-logo">
+            </a>
+<%--            <a href="#">--%>
+<%--                <img src="/img/naver_login_logo.png" alt="Naver 로그인" class="login-logo">--%>
+<%--            </a>--%>
+        </div>
+    </form>
 </body>
 
 <script>
