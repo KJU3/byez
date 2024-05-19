@@ -14,8 +14,8 @@
     <select id="selectAllUserInfoHist" resultType="UserInfoHistDto">
         SELECT ch.chg_seq, ch.id, code.chg_code, code.changed_element, ch.bef_info, ch.af_info, ch.chg_date
         FROM cust_hist AS ch
-                 JOIN cust_changed_info_code_tb AS code
-                      ON ch.chg_code = code.chg_code
+        JOIN cust_changed_info_code_tb AS code
+        ON ch.chg_code = code.chg_code
         ORDER BY ch.chg_seq
     </select>
 
@@ -23,8 +23,8 @@
     <select id="selectAllActiveUserInfoHist" resultType="UserInfoHistDto">
         SELECT ch.chg_seq, ch.id, code.chg_code, code.changed_element, ch.bef_info, ch.af_info, ch.chg_date
         FROM cust_hist AS ch
-                 JOIN cust_changed_info_code_tb AS code
-                      ON ch.chg_code = code.chg_code
+        JOIN cust_changed_info_code_tb AS code
+        ON ch.chg_code = code.chg_code
         WHERE join_state = 'Y'
         ORDER BY ch.chg_seq
     </select>
@@ -33,8 +33,8 @@
     <select id="selectUserInfoHist" parameterType="String" resultType="UserInfoHistDto">
         SELECT ch.chg_seq, ch.id, code.chg_code, code.changed_element, ch.bef_info, ch.af_info, ch.chg_date
         FROM cust_hist AS ch
-                 JOIN cust_changed_info_code_tb AS code
-                      ON ch.chg_code = code.chg_code
+        JOIN cust_changed_info_code_tb AS code
+        ON ch.chg_code = code.chg_code
         WHERE id = #{id}
         ORDER BY ch.chg_seq
     </select>
