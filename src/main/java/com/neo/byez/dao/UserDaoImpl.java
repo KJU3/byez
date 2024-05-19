@@ -51,9 +51,15 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace + "countActiveUser");
     }
 
-    // 탈퇴 회원을 제외한, 가입상태 'Y' 인 모든 고객 조회
+    // 회원가입한 전체 고객 조회
     @Override
     public List<UserDto> selectUserAll() throws Exception {
+        return session.selectList(namespace + "selectUserAll");
+    }
+
+    // 탈퇴 회원을 제외한, 가입상태 'Y' 인 모든 고객 조회
+    @Override
+    public List<UserDto> selectActiveUserAll() throws Exception {
         return session.selectList(namespace + "selectUserAll");
     }
 
@@ -81,6 +87,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int insertUser(UserDto userDto) throws Exception {
         return session.insert(namespace + "insertUser", userDto);
+    }
+
+    // 2.2. 전체 가입고객(탈퇴회원 포함) 중 특정 아이디를 가진 고객 존재여부 확인
+    @Override
+    public UserDto selectAllUserId(String id) throws Exception {
+        return session.selectOne(namespace + "selectAllUserId", id);
     }
 
     // UPDATE
@@ -122,6 +134,24 @@ public class UserDaoImpl implements UserDao {
         map.put("id", id);
         map.put("email", email);
         return session.update(namespace + "updateUserEmail", map);
+    }
+
+    // 5.2. 생년월일 변경
+    @Override
+    public int updateUserBefBirth(String id, Integer bef_birth) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("bef_birth", bef_birth);
+        return session.update(namespace + "updateUserBefBirth", map);
+    }
+
+    // 5.3. 핸드폰 번호 변경
+    @Override
+    public int updateUserMobileNum(String id, Integer mobile_num) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("mobile_num", mobile_num);
+        return session.update(namespace + "updateUserMobileNum", map);
     }
 
     // UPDATE
