@@ -3,7 +3,10 @@ package com.neo.byez.dao.item;
 import com.neo.byez.domain.item.Category;
 import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
+import com.neo.byez.domain.item.SearchCondition;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,16 +29,19 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     // 모두 조회
-    public List<ItemDto> selectAll() throws Exception {
-        return session.selectList(namespace + "selectAll");
+    public List<ItemDto> selectAll(Integer page, Integer pageSize) throws Exception {
+        Map map = new HashMap();
+        map.put("offset", (page-1)*pageSize);
+        map.put("pageSize", pageSize);
+        return session.selectList(namespace + "selectAll", map);
     }
 
-    public List<ItemDto> selectByCategory(Category category) throws Exception {
-        return session.selectList(namespace + "selectByCategory", category);
+    public List<ItemDto> selectBySearchCondition(SearchCondition SearchCondition) throws Exception {
+        return session.selectList(namespace + "selectBySearchCondition", SearchCondition);
     }
 
-    public List<ItemDto> selectDiscountItem(Category category) throws Exception {
-        return session.selectList(namespace + "selectDiscountItem", category);
+    public List<ItemDto> selectDiscountItem(SearchCondition SearchCondition) throws Exception {
+        return session.selectList(namespace + "selectDiscountItem", SearchCondition);
     }
 
     public ItemDetailPageDto selectDetailItem(String num) throws Exception {

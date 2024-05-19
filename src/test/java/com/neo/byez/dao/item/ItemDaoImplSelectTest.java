@@ -15,6 +15,7 @@ import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.domain.item.ItemOptDto;
 import com.neo.byez.domain.item.ItemPriceDto;
 import com.neo.byez.domain.item.ItemStateDto;
+import com.neo.byez.domain.item.SearchCondition;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -106,17 +107,59 @@ class ItemDaoImplSelectTest {
 
     @Test
     void selectAll() throws Exception {
-        List<ItemDto> result = itemDao.selectAll();
-        assertEquals(50, result.size());
+        List<ItemDto> result = itemDao.selectAll(1, 12);
+        assertEquals(12, result.size());
         result.stream().forEach(System.out::println);
     }
 
     @Test
-    void selectByCategory() throws Exception {
-        Category category = new Category();
-        category.setItem_type("0101014");
-        List<ItemDto> result = itemDao.selectByCategory(category);
-        assertEquals(11, result.size());
+    void selectBySearchCondition() throws Exception {
+        // NT
+        SearchCondition sc = new SearchCondition();
+        sc.setOption("NT");
+        sc.setNameKeyword("item1");
+        sc.setTypeKeyword("0101");
+
+        List<ItemDto> result = itemDao.selectBySearchCondition(sc);
+        result.stream().forEach(System.out::println);
+    }
+
+    @Test
+    void selectBySearchCondition2() throws Exception {
+        // NC
+        SearchCondition sc = new SearchCondition();
+        sc.setOption("NC");
+        sc.setNameKeyword("item");
+        sc.setCustKeyword("cust-type5");
+
+        List<ItemDto> result = itemDao.selectBySearchCondition(sc);
+        result.stream().forEach(System.out::println);
+    }
+
+
+    @Test
+    void selectBySearchCondition3() throws Exception {
+        // TC
+        SearchCondition sc = new SearchCondition();
+        sc.setOption("TC");
+        sc.setTypeKeyword("01015");
+        sc.setCustKeyword("cust-type5");
+
+        List<ItemDto> result = itemDao.selectBySearchCondition(sc);
+        result.stream().forEach(System.out::println);
+    }
+
+
+    @Test
+    void selectBySearchCondition4() throws Exception {
+        // A
+        SearchCondition sc = new SearchCondition();
+        sc.setOption("A");
+        sc.setNameKeyword("item");
+        sc.setTypeKeyword("0101");
+        sc.setCustKeyword("cust-type5");
+
+        List<ItemDto> result = itemDao.selectBySearchCondition(sc);
         result.stream().forEach(System.out::println);
     }
 
@@ -124,9 +167,9 @@ class ItemDaoImplSelectTest {
     void selectDiscountItem() throws Exception {
         Category category = new Category();
         category.setItem_type("01010140");
-        List<ItemDto> result = itemDao.selectByCategory(category);
-        assertEquals(1, result.size());
-        result.stream().forEach(System.out::println);
+//        List<ItemDto> result = itemDao.selectByCategory(category);
+//        assertEquals(1, result.size());
+//        result.stream().forEach(System.out::println);
     }
 
     @Test

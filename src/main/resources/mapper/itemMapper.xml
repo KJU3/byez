@@ -15,7 +15,7 @@
     where num = #{num}
   </select>
 
-  <select id="selectAll" resultType="ItemDto">
+  <select id="selectAll" parameterType="map" resultType="ItemDto">
     select
         i.num as num,
         i.name as name,
@@ -34,9 +34,10 @@
     inner join item_detail d
     on i.num = d.num
     order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
+    limit #{offset}, #{pageSize}
   </select>
 
-  <select id="selectByCategory" parameterType="Category" resultType="ItemDto">
+  <select id="selectBySearchCondition" parameterType="SearchCondition" resultType="ItemDto">
     select
       i.num as num,
       i.name as name,
@@ -54,11 +55,38 @@
     on i.num = s.num
     inner join item_detail d
     on i.num = d.num
-    where i.item_type like #{item_type_format}
+    where true
+      <choose>
+        <when test='option=="NT"'>
+          AND i.name LIKE concat('%', #{nameKeyword}, '%')
+          AND i.item_type LIKE concat('%', #{typeKeyword}, '%')
+        </when>
+        <when test='option=="NC"'>
+          AND i.name LIKE concat('%', #{nameKeyword}, '%')
+          AND i.cust_type =  #{custKeyword}
+        </when>
+        <when test='option=="TC"'>
+          AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+          AND i.cust_type =  #{custKeyword}
+        </when>
+        <otherwise>
+          AND i.name LIKE concat('%', #{nameKeyword}, '%')
+          AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+          AND i.cust_type =  #{custKeyword}
+        </otherwise>
+      </choose>
     order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
+    limit #{offset}, #{pageSize}
   </select>
 
-  <select id="selectDiscountItem" parameterType="Category" resultType="ItemDto">
+<!--  <select id="selectByCategory" parameterType="SearchCondition" resultType="ItemDto">-->
+<!--    select-->
+<!--      count(*)-->
+<!--    from item -->
+<!--    where item_type like concat(#{item_type}, '%')-->
+<!--  </select>-->
+
+  <select id="selectDiscountItem" parameterType="SearchCondition" resultType="ItemDto">
     select
       i.num as num,
       i.name as name,
@@ -76,10 +104,39 @@
     on i.num = s.num
     inner join item_detail d
     on i.num = d.num
-    where i.item_type like #{item_type_format}
+    where true
+    <choose>
+      <when test='option=="NT"'>
+        AND i.name LIKE concat('%', #{nameKeyword}, '%')
+        AND i.item_type LIKE concat('%', #{typeKeyword}, '%')
+      </when>
+      <when test='option=="NC"'>
+        AND i.name LIKE concat('%', #{nameKeyword}, '%')
+        AND i.cust_type =  #{custKeyword}
+      </when>
+      <when test='option=="TC"'>
+        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+        AND i.cust_type =  #{custKeyword}
+      </when>
+      <otherwise>
+        AND i.name LIKE concat('%', #{nameKeyword}, '%')
+        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+        AND i.cust_type =  #{custKeyword}
+      </otherwise>
+    </choose>
     and i.price > i.disc_price
-    order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc;
+    order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
+    limit #{offset}, #{pageSize}
   </select>
+
+
+<!--  <select id="selectDiscountItem" parameterType="SearchCondition" resultType="ItemDto">-->
+<!--    select-->
+<!--     count(*)-->
+<!--    from item -->
+<!--    where item_type like concat(#{item_type}, '%')-->
+<!--    and i.price > i.disc_price-->
+<!--  </select>-->
 
 
   <select id="selectDetailItem" parameterType="string" resultType="ItemDetailPageDto">

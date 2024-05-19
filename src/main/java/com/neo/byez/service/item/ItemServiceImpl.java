@@ -81,8 +81,8 @@ public class ItemServiceImpl {
         // dao를 통해 전체 상품 조회
             // 예외 -> E
             // 성공 -> list
-        List<ItemDto> dtos = itemDao.selectAll();
-        return dtos;
+//        List<ItemDto> dtos = itemDao.selectAll();
+        return null;
     }
 
 //    @Transactional(rollbackFor = Exception.class)
@@ -201,7 +201,7 @@ public class ItemServiceImpl {
 
         /* 반환 */
             // 조회된 상품 리스트 반환
-        List<ItemDto> itemDtos = itemDao.selectAll();
+        List<ItemDto> itemDtos = null;
         int totalCnt = itemDao.count();
 
         if (totalCnt != itemDtos.size()) {
@@ -218,11 +218,11 @@ public class ItemServiceImpl {
         /* 처리 작업 */
         /* 예외 판별 */
         /* 반환 */
-        return itemDao.selectByCategory(category);
+        return null;
     }
 
     public List<ItemDto> readDiscountItem(Category category) throws Exception {
-        return itemDao.selectDiscountItem(category);
+        return null;
     }
 
     public List<ItemDto> readBestItem() throws Exception {
