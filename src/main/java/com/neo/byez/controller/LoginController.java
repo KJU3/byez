@@ -39,13 +39,14 @@ public class LoginController {
     }
 
     @GetMapping("/form")
-    public String moveToLoginForm() {
+    public String moveToLoginForm(HttpServletRequest request, Model model) {
+        model.addAttribute("prevPage", request.getParameter("prevPage"));
         return "loginForm";
     }
 
     // 유저가 입력한 데이터가 /login/in 으로 전송됨.
     @PostMapping("/in")
-    public String save(@Valid UserDto userDto, BindingResult result, boolean rememberId, Model model, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra) throws Exception {
+    public String save(@Valid UserDto userDto, BindingResult result, String prevPage, boolean rememberId, HttpServletResponse response, HttpServletRequest request, RedirectAttributes ra) throws Exception {
 
         // UserValidator 를 통해 확인한 에러를 메세지로 출력
         // result 객체에 error 가 있다면
@@ -78,7 +79,7 @@ public class LoginController {
         // 3.1.2. ID 존재하는 경우
         // 3.1.2.1. ID, PWD 일치여부 확인 후 이전 페이지로 이동
 
-        if (!userService.checkExistOfId(id)) {
+        if (!userService.checkExistOfId(id) && !id.isEmpty() && !id.isBlank()) {
             ra.addFlashAttribute("memberShipCheckMsg", "존재하지 않는 아이디입니다.");
             return "redirect:/login/form";
         }
@@ -89,8 +90,11 @@ public class LoginController {
         // 3.2.2. ID, PWD 일치하는 경우
         // 3.2.2.1. 최근 로그인 시간 업데이트
         // 3.2.2.2. 세션에 로그인 상태(loginState) 및 고객명 저장
+        // 3.2.2.3. 이전 페이지 주소 존재 시 이전 페이지로 이동하고, 없으면 메인 페이지로 이동
         if (!userService.checkPwdMatch(id, pwd)) {
-            ra.addFlashAttribute("notMatchMsg", "ID 또는 Password 가 일치하지 않습니다.");
+            if (!id.isEmpty() && !id.isBlank()) {
+                ra.addFlashAttribute("notMatchMsg", "ID 또는 Password 가 일치하지 않습니다.");
+            }
             return "redirect:/login/form";
         } else {
             userService.updateRecentLoginHist(id);
@@ -102,7 +106,12 @@ public class LoginController {
             session.setAttribute("userId", userId);
             session.setAttribute("userName", userName);
 
-            return "main";
+            // prevPage 이동
+            if (prevPage != null && !prevPage.isEmpty()) {
+                return "redirect:" + prevPage;
+            }
+
+            return "redirect:/";
         }
     }
 
@@ -110,7 +119,7 @@ public class LoginController {
     // 4.1. 세션 초기화하여 저장된 로그인 상태 삭제
     // 4.2. 로그아웃 후 메인 화면으로 이동
     @GetMapping("/out")
-    public String out(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session != null) {
             session.invalidate();
