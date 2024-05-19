@@ -106,7 +106,7 @@ public class UserServiceImplTest {
         assertNotNull(userService.getCustLoginInfo(id));
 
         // do
-        assertTrue(userService.changeToWithdrawalState(id) == 1);
+        assertTrue(userService.changeWithdrawalState(id));
 
         // then
         assertNull(userService.getCustLoginInfo(id));
@@ -206,11 +206,13 @@ public class UserServiceImplTest {
         assertNotNull(userService.getCustLoginInfo(id));
 
         // do
-        int expectedCnt = 1;
-        int actualCnt = userService.changeToWithdrawalState(id);
+
+//        int expectedCnt = 1;
+//        int actualCnt = userService.changeWithdrawalState(id);
 
         // then
-        assertEquals(expectedCnt, actualCnt);
+//        assertEquals(expectedCnt, actualCnt);
+        assertTrue(userService.changeWithdrawalState(id));
         assertNull(userService.getCustLoginInfo(id));
     }
 
@@ -254,7 +256,7 @@ public class UserServiceImplTest {
 
         // do & then
         // 탈퇴처리
-        userService.changeToWithdrawalState(id);
+        userService.changeWithdrawalState(id);
 
         // 탈퇴 고객 회원조회 불가함을 확인
         assertNull(userService.getCustLoginInfo(id));
@@ -348,7 +350,7 @@ public class UserServiceImplTest {
         testDto.setEmail(email);
 
         // 탈퇴 처리 및 탈퇴회원 조회 가능 여부 확인
-        userService.changeToWithdrawalState(id);
+        userService.changeWithdrawalState(id);
         assertNull(userService.getCustLoginInfo(id));
         // 탈퇴회원 이메일 입력 시 아이디 조회 실패하여 인증번호 업데이트 절차 진행 불가
         assertNull(userService.findUserId(testDto));
@@ -443,10 +445,11 @@ public class UserServiceImplTest {
         assertNotNull(userService.getCustLoginInfo(id));
 
         // 해당 고객 회원탈퇴 처리
-        // 탈퇴 처리 성공 시 1 반환
-        int expectedCnt = 1;
-        int actualCnt = userService.changeToWithdrawalState(id);
-        assertEquals(expectedCnt, actualCnt);
+        // 탈퇴 처리 성공 시 true
+        assertTrue(userService.changeWithdrawalState(id));
+//        int expectedCnt = 1;
+//        int actualCnt = userService.changeWithdrawalState(id);
+//        assertEquals(expectedCnt, actualCnt);
 
         // 변경할 이메일
         String email = "modified@example.com";
