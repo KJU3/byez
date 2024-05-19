@@ -1,0 +1,94 @@
+@charset "utf-8";
+/* * { margin: 0; padding: 0; border: 0; } */
+/* 앞에 점 삭제 */
+ul { list-style: none; }
+a { text-decoration: none; color: black; }
+li {
+    margin: 20px;
+}
+body {
+    border-style: solid;
+    border-width: 3px;
+    border-color: gray;
+    width: 700px;
+    height: 730px;
+    margin: 20px auto;
+}
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: whitesmoke;
+    font-family: sans-serif, serif, Arial;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+h4 {
+    margin: 15px 15px 10px;
+    color: red;
+    float: right;
+}
+h2 {
+    margin: 0 auto 20px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register-form {
+    position: relative;
+    padding: 10px 10px;
+    margin: 40px auto;
+    border-color: gray;
+    border-style:dashed;
+    border-width: 1px;
+    width: 650px;
+    height: 500px;
+}
+form {
+    font-weight: bold;
+}
+form h5 {
+    margin: 0 auto 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: midnightblue;
+}
+#birth2 {
+    width: 20px;
+}
+a, div > a:visited, div > a:hover,  div > a:focus,  div > a:active {
+    justify-items: center;
+    text-decoration: none;
+    color: black;
+}
+.error-msg {
+    margin: 10px auto;
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+}
+#name-error-msg, #id-error-msg, #pwd-length-error-msg, #match-error-msg, #birth-error-msg,  #tel-number-error-msg, #mobile-number-error-msg, #email-error-msg {
+    color: red;
+    font-weight: normal;
+    font-size: 15px;
+    margin: 0 auto;
+}
+.submit-button {
+    display: flex;
+    height: 100px;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 10px;
+}
+input[type="submit"], button, a {
+    width: 100px;
+    height: 30px;
+    background-color: black;
+    color: whitesmoke;
+}
+button:hover, input[type="submit"]:hover {
+    font-size: 15px;
+    font-weight: bold;
+}
