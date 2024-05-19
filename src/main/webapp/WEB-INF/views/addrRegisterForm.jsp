@@ -397,6 +397,13 @@
             return false;
         }
 
+        // 우편번호가 5 또는 6자리인지 확인
+        var zpcdPattern = /^\d{5,6}$/;
+        if (!zpcdPattern.test(zpcd.trim())) {
+            alert("우편번호는 5자리 또는 6자리 숫자여야 합니다.");
+            return false;
+        }
+
         // 상세주소가 비어 있는지 확인
         if (detailAddr.trim() === "") {
             alert("상세주소를 입력하세요.");
