@@ -191,6 +191,15 @@
 <!--  </select>-->
 
 
+<!--  <select id="selectDiscountItem" parameterType="SearchCondition" resultType="ItemDto">-->
+<!--    select-->
+<!--     count(*)-->
+<!--    from item -->
+<!--    where item_type like concat(#{item_type}, '%')-->
+<!--    and i.price > i.disc_price-->
+<!--  </select>-->
+
+
   <select id="selectDetailItem" parameterType="string" resultType="ItemDetailPageDto">
     select
       i.num as num,
