@@ -17,14 +17,14 @@ public class UserDto {
     private String card_num;
     private String mail_auth;
     private String mail_key;
-    private String join_date; // now() -> 문자열로 변환하여 저장
-    private String quit_date; // now() -> 문자열로 변환하여 저장
+    private String join_date;
+    private String quit_date;
     private String join_state;
     private Timestamp recent_login;
     private String remark;
-    private String reg_date; // now() -> 문자열로 변환하여 저장
+    private String reg_date;
     private String reg_id;
-    private String up_date; // now() -> 문자열로 변환하여 저장
+    private String up_date;
     private String up_id;
 
     public UserDto() {}
@@ -50,7 +50,20 @@ public class UserDto {
         this.recent_login = recent_login;
     }
 
-    // 회원가입 시 활용할 Dto 객체
+    // 고객 정보 조회 시 활용할 생성자
+    public UserDto(String id, String pwd, String name, String email, Integer bef_birth, Integer mobile_num, String mail_key, String join_state, Timestamp recent_login) {
+        this.id = id;
+        this.pwd = pwd;
+        this.name = name;
+        this.email = email;
+        this.bef_birth = bef_birth;
+        this.mobile_num = mobile_num;
+        this.mail_key = mail_key;
+        this.join_state = join_state;
+        this.recent_login = recent_login;
+    }
+
+    // 회원가입 시 활용할 생성자
     public UserDto(String id, String pwd, String name, Integer bef_birth, Integer af_birth, String sex, Integer tel_num,
             Integer mobile_num, String email, String reg_id,  String up_id) {
         this.id = id;
