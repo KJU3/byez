@@ -142,15 +142,20 @@ public class SignUpValidator implements Validator {
         // Email : 입력하지 않았거나 공백 들어간 경우
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", EMAIL_MISSING.getMessage());
 
-        // Email: 한글 작성 제한
-        if(email.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+        // Email: format 제한
+        if (!email.matches("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")) {
             errors.rejectValue("email", INVALID_EMAIL_FORMAT.getMessage());
         }
 
-        // Email: format 제한
-        if(!(email.contains("@") && email.contains("."))) {
-            errors.rejectValue("email", WRONG_EMAIL_FORMAT.getMessage());
-        }
+//        // Email: 한글 작성 제한
+//        if(email.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
+//            errors.rejectValue("email", INVALID_EMAIL_FORMAT.getMessage());
+//        }
+//
+//        // Email: format 제한
+//        if(!(email.contains("@") && email.contains("."))) {
+//            errors.rejectValue("email", WRONG_EMAIL_FORMAT.getMessage());
+//        }
     }
 
     // 생년월일 - 유효성 검증 메서드
