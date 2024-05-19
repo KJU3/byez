@@ -19,8 +19,7 @@ public class MailService {
     private final String senderName = "EZBY";
     private final String senderEmail = "parksuuuun@gmail.com";
 
-    @Autowired
-    UserDaoImpl userDao;
+    @Autowired UserDaoImpl userDao;
     @Autowired(required=false) JavaMailSender mailSender;
 
     // 인증번호 생성 메서드 makeRandomMailKey()
@@ -41,22 +40,22 @@ public class MailService {
     }
 
     // 아이디, 비밀번호 찾기 시 사용할 메일 인증 메서드
-    public void sendMailToUser(UserDto userDto) throws Exception {
+    public void sendMailToUser(UserDto userDto) {
         String recipient = userDto.getEmail();
 
         // 1. 6자리 랜덤키 생성
-//        String mail_key = new TempKey().getKey(6, false);
         String mail_key = makeRandomMailKey();
         // 2. 매개변수로 받은 userDto 객체에 인증번호 저장
-        System.out.println("메일 인증번호 저장 전 userDto: " + userDto);
         userDto.setMail_key(mail_key);
-        System.out.println("메일 인증번호 저장 후 userDto: " + userDto);
 
         // 3. 인증번호까지 저장한 매개변수로 받은 객체를 DB에 저장
-        userDao.updateMailKey(userDto);
-
         // 4. 고객에게 인증번호 포함된 메일 전송
-        send(recipient, mail_key);
+        try {
+            userDao.updateMailKey(userDto);
+            send(recipient, mail_key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // 회원가입 시 사용할 메일 인증 메서드

@@ -45,7 +45,18 @@ public interface UserService {
     // 4.1.1. 이메일 인증 후 이메일 주소 변경
     boolean modifyUserEmail(String id, String email);
 
+    // 4.2. 생년월일 변경
+    // 4.2.1. 생년월일 변경이력 저장
+    boolean modifyUserBefBirth(String id, Integer bef_birth);
+
+    // 4.3. 휴대폰 번호 변경
+    // 4.2.1. 휴대폰 번호 변경이력 저장
+    boolean modifyUserMobileNum(String id, Integer mobile_num);
+
+    // 전체 가입고객(탈퇴회원 포함)의 아이디 조회하여 아이디 중복여부 확인
+    UserDto checkDuplicatedId(String id);
+
     // 4. 회원탈퇴
     // 4.1. 회원탈퇴 시 가입상태(join_state) Y -> N 으로 업데이트
-    int changeToWithdrawalState(String id) throws Exception;
+    boolean changeWithdrawalState(String id) throws Exception;
 }

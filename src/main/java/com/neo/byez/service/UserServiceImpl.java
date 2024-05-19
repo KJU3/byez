@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
     // 암호화 전후 비밀번호 비교
     @Override
     public boolean checkPwdMatch(String id, String pwd) {
-
         // id로 조회한 비밀번호 (암호화하여 저장되어 있음)
         String encodedPwd;
         try {
@@ -129,7 +128,6 @@ public class UserServiceImpl implements UserService {
 
         // 가입회원인지 확인 후 비밀번호 변경 시도
         // 가입회원이 아닌 경우 비밀번호 변경 실패
-//        if (getCustLoginInfo(id) != null) {
         if (checkExistOfId(id)) {
             bef_info = getCustLoginInfo(id).getPwd();
             try {
@@ -243,11 +241,160 @@ public class UserServiceImpl implements UserService {
         return emailUpdateSuccess && historyInsertSuccess;
     }
 
+    // 4.2. 생년월일 변경
+    // 4.2.1. 생년월일 변경이력 저장
+    @Override
+    public boolean modifyUserBefBirth(String id, Integer bef_birth) {
+
+        // 생년월일 변경 코드 : CHG0003
+        String chg_code = "CHG0003";
+        // 변경 전 생년월일 저장 위한 변수 선언 및 초기화
+        Integer befBirthInfo = null;
+
+        // 생년월일 변경 성공 여부
+        // 생년월일 변경 성공 시 true 반환
+        // 생년월일 변경 실패 시 false 반환
+        boolean befBirthUpdateSuccess = false;
+
+        // 우선 가입회원인지 확인 후 생년월일 변경 시도
+        // 가입회원이 아닌 경우 생년월일 변경 실패
+        try {
+             if (getCustLoginInfo(id) != null) {
+                 if (getCustLoginInfo(id).getBef_birth() == null) {
+                     userDao.updateUserBefBirth(id, bef_birth);
+                     befBirthUpdateSuccess = true;
+                 } else {
+                     befBirthInfo = getCustLoginInfo(id).getBef_birth();
+                     userDao.updateUserBefBirth(id, bef_birth);
+                     befBirthUpdateSuccess = true;
+                 }
+            } else {
+                befBirthUpdateSuccess = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            befBirthUpdateSuccess = false;
+        }
+
+        // 변경이력 추가 성공 여부
+        // 변경이력 추가 성공 시 true 반환
+        // 변경이력 추가 실패 시 false 반환
+        boolean historyInsertSuccess = false;
+        try {
+            if (befBirthUpdateSuccess) {
+                // 변경 전 생년월일
+                String bef_info = (befBirthInfo != null) ? befBirthInfo.toString() : "NULL";
+                // 변경 후 생년월일
+                String af_info = String.valueOf(getCustLoginInfo(id).getBef_birth());
+                UserInfoHistDto userInfoHistDto = new UserInfoHistDto(id, chg_code, bef_info, af_info, id, id);
+
+                userInfoHistDao.insertUserInfoHist(userInfoHistDto);
+                historyInsertSuccess = true;
+            } else {
+                historyInsertSuccess = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            historyInsertSuccess = false;
+        }
+
+        // 생년월일 변경 성공 및 변경 이력 추가 성공 시 true 반환
+        return befBirthUpdateSuccess && historyInsertSuccess;
+    }
+
+    // 4.3. 휴대폰 번호 변경
+    // 4.2.1. 휴대폰 번호 변경이력 저장
+    @Override
+    public boolean modifyUserMobileNum(String id, Integer mobile_num) {
+        // 휴대폰 번호 변경 코드 : CHG0004
+        String chg_code = "CHG0004";
+        // 변경 전 휴대폰 번호 저장 위한 변수 선언 및 초기화
+        Integer befMobileNumInfo = null;
+
+        // 휴대폰 번호 변경 성공 여부
+        // 휴대폰 번호 변경 성공 시 true 반환
+        // 휴대폰 번호 변경 실패 시 false 반환
+        boolean mobileNumUpdateSuccess = false;
+
+        // 우선 가입회원인지 확인 후 휴대폰 번호 변경 시도
+        // 가입회원이 아닌 경우 휴대폰 번호 변경 실패
+        try {
+            if (getCustLoginInfo(id) != null) {
+                if (getCustLoginInfo(id).getMobile_num() == null) {
+                    userDao.updateUserMobileNum(id, mobile_num);
+                    mobileNumUpdateSuccess = true;
+                } else {
+                    befMobileNumInfo = getCustLoginInfo(id).getMobile_num();
+                    userDao.updateUserMobileNum(id, mobile_num);
+                    mobileNumUpdateSuccess = true;
+                }
+            } else {
+                mobileNumUpdateSuccess= false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            mobileNumUpdateSuccess = false;
+        }
+
+        // 변경이력 추가 성공 여부
+        // 변경이력 추가 성공 시 true 반환
+        // 변경이력 추가 실패 시 false 반환
+        boolean historyInsertSuccess = false;
+        try {
+            if (mobileNumUpdateSuccess) {
+                // 변경 전 휴대폰 번호
+                String bef_info = (befMobileNumInfo != null) ? "0" + befMobileNumInfo : "NULL";
+                // 변경 후 생년월일
+                String af_info = "0" + getCustLoginInfo(id).getMobile_num();
+                UserInfoHistDto userInfoHistDto = new UserInfoHistDto(id, chg_code, bef_info, af_info, id, id);
+
+                userInfoHistDao.insertUserInfoHist(userInfoHistDto);
+                historyInsertSuccess = true;
+            } else {
+                historyInsertSuccess = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            historyInsertSuccess = false;
+        }
+
+        // 생년월일 변경 성공 및 변경 이력 추가 성공 시 true 반환
+        return mobileNumUpdateSuccess && historyInsertSuccess;
+    }
+
     // 5. 회원탈퇴
     // 5.1. 회원탈퇴 시 가입상태(join_state) Y -> N 으로 업데이트
+    // 5.2. 예외처리
+    // 5.2.1. 가입회원 여부 확인
+    // 5.2.1.1. 가입된 회원이면 탈퇴 처리
+    // 5.2.1.2. 미가입 회원이면 예외 처리
+
+    // 전체 가입고객(탈퇴회원 포함)의 아이디 조회하여 아이디 중복여부 확인
     @Override
-    public int changeToWithdrawalState(String id) throws Exception {
-        return userDao.updateUserState(id);
+    public UserDto checkDuplicatedId(String id) {
+        try {
+            UserDto foundDuplicatedId = userDao.selectAllUserId(id);
+            return foundDuplicatedId;
+        } catch (Exception e) {
+            e.printStackTrace();
+            UserDto foundDuplicatedId = null;
+            return foundDuplicatedId;
+        }
+    }
+
+    @Override
+    public boolean changeWithdrawalState(String id) {
+        try {
+            if (userDao.selectUser(id) != null) {
+                userDao.updateUserState(id);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // *** 암호화 전후 비밀번호 비교
