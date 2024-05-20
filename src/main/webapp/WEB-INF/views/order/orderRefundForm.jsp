@@ -355,24 +355,34 @@
         return true;
     }
 
-    // function checkZpcd(){
-    //     //우편번호 입력값 유효성검증
-    //     // 5자리 숫자만 가능
-    //     let inputField = document.querySelector('input[name="new_zpcd"]');
-    //     let zpcd = inputField.value;
-    //     let pattern = new RegExp('^[0-9]{5}$');
-    //
-    //     if ( !zpcd.match(pattern)) {
-    //         alert("우편번호는 숫자만 입력가능합니다.");
-    //         inputField.value = "";
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    function checkZpcd() {
+        // 우편번호 입력값 유효성 검증
+        // 5자리 숫자만 가능
+        let inputField = document.querySelector('input[name="new_zpcd"]');
+        let zipcode = inputField.value;
+        let pattern = new RegExp('^[0-9]{5}$'); // 5자리 숫자만 매칭
 
-    function checkRcprMobile(){
-        //수거신청 휴대폰번호 입력값 유효성검증
-        //숫자만 가능
+        if (!pattern.test(zipcode)) {
+            alert("우편번호는 5자리 숫자만 입력 가능합니다.");
+            inputField.value = ""; // 입력 필드 초기화
+            return false;
+        }
+        return true;
+    }
+
+    function checkRcprMobile() {
+        var inputField = document.querySelector('input[name="new_rcpr_mobile"]');
+        var mobileNumber = inputField.value;
+        // 정규 표현식을 사용하여 숫자와 하이픈만 포함하고, 올바른 형식인지 검사합니다.
+        // 예: "010-1234-5678" - 여기서는 일반적인 한국의 휴대폰 번호 형식을 사용합니다.
+        var pattern = /^(\d{3}-\d{3,4}-\d{4})$/;
+
+        if (!pattern.test(mobileNumber)) {
+            alert("휴대폰 번호는 010-0000-0000의 형식으로 숫자와 '-'만 사용 가능합니다.");
+            inputField.value = "";
+            return false;
+        }
+        return true;
     }
 
         //반품신청버튼 클릭
@@ -431,6 +441,18 @@
         return true;
     }
 
+    //교환신청버튼 클릭
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("refundBtn").onclick = function() {
+            let form = $('form');
+            let chg_chk = form.find('input[name="chg_chk"]:checked').val();
+            let noReqChecked = document.getElementById("noReq").checked;
+
+            let new_rcpr = form.find('input[name="new_rcpr"]').val().trim();
+            let new_zpcd = form.find('input[name="new_zpcd"]').val().trim();
+            let new_main_addr = form.find('input[name="new_main_addr"]').val().trim();
+            let new_detail_addr = form.find('input[name="new_detail_addr"]').val().trim();
+            let new_rcpr_mobile = form.find('input[name="new_rcpr_mobile"]').val().trim();
     //교환신청버튼 클릭
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("refundBtn").onclick = function() {
