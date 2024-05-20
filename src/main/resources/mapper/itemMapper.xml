@@ -140,6 +140,9 @@
       <when test='option=="T"'>
         AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
       </when>
+      <when test='option=="T"'>
+        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+      </when>
       <otherwise>
         AND i.name LIKE concat('%', #{nameKeyword}, '%')
         AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
