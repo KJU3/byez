@@ -127,4 +127,18 @@
 <script src="/js/nav.js"></script>
 </body>
 
+<%--    function readURL(input) {--%>
+<%--        var file = input.files[0]--%>
+<%--        console.log(file)--%>
+<%--        if (file != '') {--%>
+<%--            var reader = new FileReader();--%>
+<%--            reader.readAsDataURL(file);--%>
+<%--            reader.onload = function (e) {--%>
+<%--                console.log(e.target)--%>
+<%--                console.log(e.target.result)--%>
+<%--                $('#preview').attr('src', e.target.result);--%>
+<%--            }--%>
+<%--        }--%>
+<%--    }--%>
+<%--</script>--%>
 </html>
