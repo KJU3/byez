@@ -341,7 +341,7 @@
                         </td>
                     </tr>
                 </table>
-                <a href="#" class="cancle_btn">취소</a>
+                <a href="myAddrList" class="cancle_btn">취소</a>
                 <input type="submit" value="등록" class="edit_address_btn">
             </form>
         </div>
