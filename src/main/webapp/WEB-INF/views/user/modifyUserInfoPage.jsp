@@ -399,14 +399,14 @@
                     <tr class="hidden no-bottom new-email-show">
                         <td>변경할 이메일 주소</td>
                         <td>
-                            <input type="email" id="newEmail" name="email" oninput="checkEmailFormat(this.value)">
+                            <input type="email" id="newEmail" name="email" maxlength="50" oninput="checkEmailFormat(this.value)">
                             <span id="email-error-msg"></span>
                         </td>
                         <td><button type="button" id="sendEmailBtn">인증번호 전송</button></td>
                     </tr>
                     <tr class="hidden new-email-show">
                         <td>인증번호</td>
-                        <td><input type="text" id="verificationCode" name="mail_key" required></td>
+                        <td><input type="text" id="verificationCode" name="mail_key" maxlength="10" required></td>
                         <td><button type="button" id="verifyCodeBtn">인증</button></td>
                     </tr>
                 </table>

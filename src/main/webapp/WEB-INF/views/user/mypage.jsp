@@ -1,17 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
-<title>[BYEZ] 비밀번호 찾기</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYEZ</title>
 
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/findPwdForm.css">
-<link rel="stylesheet" href="/css/footer.css">
-<link rel="stylesheet" href="/css/quick.css">
-<script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/quick.css">
+    <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+</head>
 <body>
 <nav>
     <div class="wrapper">
@@ -29,27 +32,27 @@
         </ul>
         <ul class="nav_member">
             <li class="hover">
-                <a href="/login/form">
+                <a href="mypage.html">
                     <img src="/img/top_mypage.png">
                 </a>
+                <%--                <ul class="sub_menu">--%>
+                <%--                    <li><a href="/login/form">LOGIN</a>--%>
+                <%--                    </li>--%>
+                <%--                    <li><a href="#">ORDER</a>--%>
+                <%--                    </li>--%>
+                <%--                </ul>--%>
                 <ul class="sub_menu">
-                    <li><a href="/login/form">LOGIN</a>
+                    <li><a href="/login/out">LOGOUT</a>
+                    </li>
+                    <li><a href="/mypage/index">MYPAGE</a>
                     </li>
                     <li><a href="#">ORDER</a>
                     </li>
                 </ul>
-<%--                <ul class="sub_menu">--%>
-<%--                    <li><a href="#">LOGOUT</a>--%>
-<%--                    </li>--%>
-<%--                    <li><a href="/mypage/index">MYPAGE</a>--%>
-<%--                    </li>--%>
-<%--                    <li><a href="/">ORDER</a>--%>
-<%--                    </li>--%>
-<%--                </ul>--%>
             </li>
             <li><a href="#"><img src="/img/top_search.png"></a></li>
-            <li><a href="#"><img src="/img/top_wish.png"></a></li>
-            <li><a href="#" class="cart_cnt">
+            <li><a href="like"><img src="/img/top_wish.png"></a></li>
+            <li><a href="basket" class="cart_cnt">
                 <img src="/img/top_cart_pc.png">
                 <div>
                     <span>0</span>
@@ -122,7 +125,7 @@
         <ul>
             <li>
                 <ul>
-                    <li>남</li>
+                    <li>여성</li>
 
                 </ul>
             </li>
@@ -182,7 +185,7 @@
         <ul>
             <li>
                 <ul>
-                    <li>혼성</li>
+                    <li>여성</li>
 
                 </ul>
             </li>
@@ -256,33 +259,70 @@
 </nav>
 <section>
     <div class="wrapper">
-        <p>
-            <a href="main.html"><span>home</span></a>
-            <span>></span>
-            <a href="best.html"><span>best 50</span></a>
-        </p>
-
-        <div class="find-pwd-input">
-            <h1>비밀번호 찾기</h1>
-            <h3>회원가입 시 입력한 아이디 및 이메일 주소를 입력하십시오.</h3>
-
-            <ul class="submit-email">
-                <li>
-                    아이디: <input type="text" id="findPwd-id" name="id" placeholder="아이디를 입력하십시오." oninput="checkIdFormat()" required>
-                </li>
-                <div id="id-format-error-msg"></div>
-                <li>
-                    이메일: <input type="email" id="findPwd-email" name="email" placeholder="byez@example.com" oninput="checkEmailFormat(this.value)" required>
-                    <button type="submit" id="sendEmailBtn">인증 요청</button>
-                </li>
-                <div id="email-format-error-msg"></div>
-                <ul class="verify-email" id="verificationDiv">
+        <div class="title">
+            <p>
+                <a href="/"><span>home</span></a>
+                <span>></span>
+                <a href="/mypage/index"><span>마이페이지</span></a>
+            </p>
+            <p>마이쿠폰</p>
+        </div>
+        <div class="mside">
+            <div class="mside_wrapper">
+                <p>마이페이지</p>
+                <ul class="mside_content">
                     <li>
-                        인증번호: <input type="text" id="verificationCode" name="mail_key" required>
-                        <button type="button" id="verifyCodeBtn">인증</button>
+                        <ul>
+                            <li>나의 쇼핑정보</li>
+                            <li><a href="#">주문/배송</a></li>
+                            <li><a href="#">취소/반품</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>나의 혜택 정보</li>
+                            <li><a href="#">쿠폰</a></li>
+                            <li><a href="#">혜택 보기</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>나의 활동 정보</li>
+                            <!-- 회원정보 수정 페이지로 이동 -->
+                            <li><a href="/mypage/modifyPage">회원정보 수정</a></li>
+                            <li><a href="#">배송 주소록 관리</a></li>
+                            <li><a href="#">나의 게시물 관리</a></li>
+                            <li><a href="#">나의 문의</a></li>
+                            <li><a href="#">위시리스트</a></li>
+                            <li><a href="#">최근 본 상품</a></li>
+                            <!-- 탈퇴사유 입력 페이지로 이동 -->
+                            <li><a href="/mypage/withdrawal">회원탈퇴</a></li>
+                        </ul>
                     </li>
                 </ul>
-            </ul>
+            </div>
+        </div>
+        <div class="content">
+            <p class="table_title">마이 쿠폰 목록
+                <span>(사용가능 쿠폰 : <span>12</span>장)</span>
+            </p>
+            <table>
+                <tr>
+                    <th scope="col">날짜</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">성별</th>
+                </tr>
+                <tr>
+                    <td>11/15</td>
+                    <td>김우직</td>
+                    <td>남</td>
+                </tr>
+                <tr>
+                    <td>11/14</td>
+                    <td>박수진</td>
+                    <td>여</td>
+                </tr>
+            </table>
         </div>
     </div>
 </section>
@@ -299,175 +339,7 @@
         <img src="/img/quick_down.png" alt="">
     </a>
 </div>
-
-</body>
-
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
-
-<script>
-    function checkIdFormat() {
-        let id = document.getElementById('findPwd-id').value;
-        let pattern = new RegExp('^[A-Za-z0-9]+$')
-        let msg = document.getElementById('id-format-error-msg');
-
-        if (id.length > 0 && id.length < 3 || id.length > 20) {
-            msg.innerHTML = "아이디는 3자 이상, 20자 이하로 입력해주세요.";
-        } else if(id.length > 0 && !id.match(pattern)) {
-            msg.innerHTML = "아이디는 영문자와 숫자만 사용 가능합니다."
-        } else {
-            msg.innerHTML = "";
-        }
-    }
-
-    // 이메일 유효성 검증
-    function checkEmailFormat(inputValue) {
-        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
-        let sendEmailBtn = document.getElementById("sendEmailBtn");
-        let msg = document.getElementById("email-format-error-msg");
-
-        if (inputValue.length > 0 && !emailPattern.test(inputValue)) {
-            msg.innerHTML = "잘못된 이메일 형식입니다.";
-            sendEmailBtn.disabled = true;
-        } else {
-            msg.innerHTML = ""
-            sendEmailBtn.disabled = false;
-        }
-    }
-
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        // 1. '인증번호 전송' 버튼 클릭
-        $("#sendEmailBtn").click(function () {
-            let id = $("#findPwd-id").val();
-            let email = $("#findPwd-email").val();
-
-            $.ajax({
-                url: "/find/verify2",
-                type: "POST",
-                data: {id: id, email: email},
-                success: function (response) {
-                    $("#verificationDiv").show();
-                    alert("인증번호 전송에 성공했습니다.");
-                },
-                error: function (xhr, status, error) {
-                    console.error("메일 전송 실패:", error);
-                    alert(xhr.responseText);
-                }
-            });
-        });
-
-        // 2. '인증하기' 버튼 클릭
-        $("#verifyCodeBtn").click(function() {
-            let id = $("#findPwd-id").val();
-            let verificationCode = $("#verificationCode").val();
-
-            $.ajax({
-                url: "/find/findPwd",
-                type: "POST",
-                data: { id: id, verificationCode: verificationCode },
-                success: function(response) {
-                    alert("본인인증 완료");
-                    window.location.href = "/find/move";
-                },
-                error: function(xhr, status, error) {
-                    console.error("인증 실패:", error);
-                    alert(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
-
+</body>
 </html>
-<%--    <div class="find-title">--%>
-<%--        <h2>비밀번호 찾기</h2>--%>
-<%--    </div>--%>
-
-<%--    <div class="find-notice">--%>
-<%--        <h3>아이디와 이메일을 입력해주세요.</h3>--%>
-<%--    </div>--%>
-
-<%--    <ul class="submit-email">--%>
-<%--        <li>--%>
-<%--            아이디: <input type="text" id="findPwd-id" name="id" placeholder="아이디를 입력하십시오." oninput="checkIdFormat()" required>--%>
-<%--        </li>--%>
-<%--        <li>--%>
-<%--            회원가입 시 입력한 이메일 주소를 입력하십시오.--%>
-<%--            이메일: <input type="email" id="findPwd-email" name="email" placeholder="byez@example.com" required>--%>
-<%--            <button type="submit" id="sendEmailBtn">인증 요청</button>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
-
-<%--    <div id="verificationDiv">--%>
-<%--        인증번호: <input type="text" id="verificationCode" name="mail_key" required>--%>
-<%--        <button type="button" id="verifyCodeBtn">인증</button>--%>
-<%--    </div>--%>
-
-<%--</body>--%>
-<%--<script>--%>
-<%--    function checkIdFormat() {--%>
-<%--        let id = document.getElementById('findPwd-Id').value;--%>
-<%--        let pattern = new RegExp('^[A-Za-z0-9]+$')--%>
-<%--        let msg = document.getElementById('id-error-msg');--%>
-
-<%--        if (id.length > 0 && id.length < 3 || id.length > 20) {--%>
-<%--            msg.innerHTML = "아이디는 3자 이상, 20자 이하로 입력해주세요.";--%>
-<%--        } else if(id.length > 0 && !id.match(pattern)) {--%>
-<%--            msg.innerHTML = "아이디는 영문자와 숫자만 사용 가능합니다."--%>
-<%--        } else {--%>
-<%--            msg.innerHTML = "";--%>
-<%--        }--%>
-<%--    }--%>
-<%--</script>--%>
-
-<%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
-<%--<script type="text/javascript">--%>
-<%--    $(document).ready(function() {--%>
-<%--        // 1. '인증번호 전송' 버튼 클릭--%>
-<%--        $("#sendEmailBtn").click(function () {--%>
-<%--            let id = $("#findPwd-id").val();--%>
-<%--            let email = $("#findPwd-email").val();--%>
-
-<%--            $.ajax({--%>
-<%--                url: "/find/verify2",--%>
-<%--                type: "POST",--%>
-<%--                data: {id: id, email: email},--%>
-<%--                success: function (response) {--%>
-<%--                    $("#verificationDiv").show();--%>
-<%--                    alert("인증번호 전송에 성공했습니다.");--%>
-<%--                },--%>
-<%--                error: function (xhr, status, error) {--%>
-<%--                    console.error("메일 전송 실패:", error);--%>
-<%--                    alert(xhr.responseText);--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-
-<%--        // 2. '인증하기' 버튼 클릭--%>
-<%--        $("#verifyCodeBtn").click(function() {--%>
-<%--            let id = $("#findPwd-id").val();--%>
-<%--            // let email = $("#findPwd-email").val();--%>
-<%--            let verificationCode = $("#verificationCode").val();--%>
-
-<%--            $.ajax({--%>
-<%--                url: "/find/findPwd",--%>
-<%--                type: "POST",--%>
-<%--                data: { id: id, verificationCode: verificationCode },--%>
-<%--                success: function(response) {--%>
-<%--                    alert("본인인증 완료");--%>
-<%--                    window.location.href = "/find/move";--%>
-<%--                },--%>
-<%--                error: function(xhr, status, error) {--%>
-<%--                    console.error("인증 실패:", error);--%>
-<%--                    alert(xhr.responseText);--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
-

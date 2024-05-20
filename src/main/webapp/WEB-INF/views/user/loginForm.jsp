@@ -5,11 +5,11 @@
     <title>login page</title>
 </head>
 
-<link rel="stylesheet" href="/css/loginForm.css">
+<link rel="stylesheet" href="/css/loginForm.css?after">
 
 <body>
     <form action="/login/in?prevPage=${prevPage}" method="POST">
-        <div class = title>Login</div>
+        <div class="title">Login</div>
         <div class="login-msg">
             <c:if test="${not empty memberShipCheckMsg}">
                 ${memberShipCheckMsg}
@@ -44,14 +44,16 @@
         </div>
 
         <div class="simple-sign-up">
-            간편 가입 및 로그인
+            <p>간편 가입 및 로그인</p>
             <%--REST API key (=client_id): 873c82dfa901cd280c11ee222e944826--%>
-            <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoLogin">
-                <img src="/img/kakao_login_logo.png" alt="Kakao 로그인" class="login-logo">
-            </a>
-<%--            <a href="#">--%>
-<%--                <img src="/img/naver_login_logo.png" alt="Naver 로그인" class="login-logo">--%>
-<%--            </a>--%>
+            <div class="sns-button">
+                <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoLogin">
+                    <img src="/img/kakao_login_logo.png" alt="Kakao 로그인" class="login-logo">
+                </a>
+                <a href="#">
+                    <img src="/img/naver_login_logo.png" alt="Naver 로그인" class="login-logo">
+                </a>
+            </div>
         </div>
     </form>
 </body>
