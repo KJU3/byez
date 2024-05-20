@@ -4,6 +4,45 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="TestDto" type="com.neo.byez.domain.TestDto"/>
+        <!-- 고객 관련 : 수인 - 시작 -->
+        <typeAlias alias="UserDto" type="com.neo.byez.domain.UserDto"/>
+        <typeAlias alias="UserInfoHistDto" type="com.neo.byez.domain.UserInfoHistDto"/>
+        <!-- 고객 관련 : 수인 - 끝 -->
+
+        <!-- 상품 관련 : 종헌 - 시작 -->
+        <typeAlias alias="ItemDto" type="com.neo.byez.domain.item.ItemDto"/>
+        <typeAlias alias="Category" type="com.neo.byez.domain.item.Category"/>
+        <typeAlias alias="BasketItemDto" type="com.neo.byez.domain.item.BasketItemDto"/>
+        <typeAlias alias="BasketDto" type="com.neo.byez.domain.item.BasketDto"/>
+        <typeAlias alias="LikeItemDto" type="com.neo.byez.domain.item.LikeItemDto"/>
+        <typeAlias alias="ItemPriceDto" type="com.neo.byez.domain.item.ItemPriceDto"/>
+        <typeAlias alias="ItemStateDto" type="com.neo.byez.domain.item.ItemStateDto"/>
+        <!-- 상품 관련 : 종헌 - 끝 -->
+
+        <!-- 주문 관련 : 진우 - 시작 -->
+        <typeAlias alias="OrderDto" type="com.neo.byez.domain.order.OrderDto"/>
+        <typeAlias alias="OrderDetailDto" type="com.neo.byez.domain.order.OrderDetailDto"/>
+        <typeAlias alias="OrderStateDto" type="com.neo.byez.domain.order.OrderStateDto"/>
+        <typeAlias alias="PayDto" type="com.neo.byez.domain.order.PayDto"/>
+        <typeAlias alias="PayStateDto" type="com.neo.byez.domain.order.PayStateDto"/>
+        <typeAlias alias="PayHistoryDto" type="com.neo.byez.domain.order.PayHistoryDto"/>
+        <typeAlias alias="DeliveryDto" type="com.neo.byez.domain.order.DeliveryDto"/>
+        <typeAlias alias="OrderResultInfo" type="com.neo.byez.domain.order.OrderResultInfo"/>
+        <!-- 주문 관련 : 진우 - 끝 -->
+        <typeAlias alias="OrdEtcReqDto" type="com.neo.byez.domain.order.OrdEtcReqDto"/>
+        <typeAlias alias="ItemOptionDto" type="com.neo.byez.domain.order.ItemOptionDto"/>
+
+        <!-- 쿠폰 배송지 목록 관련 : 제법 - 시작 -->
+        <typeAlias alias="CouponDto" type="com.neo.byez.domain.CouponDto"/>
+        <typeAlias alias="CustCouponsDto" type="com.neo.byez.domain.CustCouponsDto"/>
+        <typeAlias alias="AddressEntryDto" type="com.neo.byez.domain.AddressEntryDto"/>
+        <!-- 쿠폰 배송지 목록 관련 : 제법 - 끝 -->
+
+        <!-- 게시물 관련 : 찬빈 - 시작 -->
+        <typeAlias alias="QnaDto" type="com.neo.byez.domain.QnaDto"/>
+        <typeAlias alias="ReviewDto" type="com.neo.byez.domain.ReviewDto"/>
+        <!-- 게시물 관련 : 찬빈 - 끝 -->
+
+
     </typeAliases>
 </configuration>
