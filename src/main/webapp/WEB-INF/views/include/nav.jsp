@@ -233,8 +233,8 @@
                 고객님<br>무엇을 찾으시나요?
                 <img src="/img/top_search_close.png" alt="">
             </p>
-            <form action="">
-                <input type="text" placeholder="상품을 찾아보세요">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="상품을 찾아보세요">
                 <button type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
