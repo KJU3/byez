@@ -1,8 +1,10 @@
+@charset "utf-8";
+
 * {margin: 0; padding: 0; border: 0;}
 ul {list-style: none;}
 a {text-decoration: none; color:black;}
 section {width: 100%; min-width: 1200px; height: fit-content; padding: 50px 0; box-sizing: border-box; margin-top: 90px;}
-section .wrapper {background-color: rgba(0, 255, 0, 0.1);}
+/*section .wrapper {background-color: rgba(0, 255, 0, 0.1);}*/
 section .wrapper>p:first-of-type {text-align: right; margin-bottom: 50px;}
 
 section .wrapper .input-new-pwd {
@@ -24,7 +26,7 @@ h1 {
 }
 
 h3 {
-    background-color: rgb(255, 0, 10, .2);
+    /*background-color: rgb(255, 0, 10, .2);*/
     height: 50px;
     display: flex;
     flex-direction: column;
@@ -43,6 +45,11 @@ section .wrapper .input-id-pwd {
     font-weight: bold;
 }
 
+section .wrapper .input-id-pwd li:first-of-type {
+    margin-right: 75px;
+    margin-bottom: 10px;
+}
+
 section .wrapper .error-msg {
     font-size: 14px;
     font-weight: normal;
@@ -54,7 +61,7 @@ input[type="text"], input[type="text"]:focus {
     height: 25px;
     border-style: none;
     outline: none;
-    background-color: rgb(255, 255, 255, 0);
+    /*background-color: rgb(255, 255, 255, 0);*/
     padding: 3px;
     font-size: 15px;
     font-weight: bold;
@@ -65,16 +72,20 @@ input[type="password"] {
     height: 25px;
     border: 1px solid grey;
     padding: 3px;
+    margin-left: 10px;
 }
 
 input[type="submit"] {
-    width: 100px;
-    height: 30px;
+    width: 110px;
+    height: 40px;
+    border: 1px solid gray;
     border-radius: 2px;
+    font-size: 15px;
     font-weight: bold;
-    color: whitesmoke;
-    background-color: black;
+    background-color: white;
+    color: black;
     margin: 20px;
+    transition: .3s;
 }
 
-input[type="submit"]:hover { font-size: 15px; font-weight: bold; }
+input[type="submit"]:hover { font-size: 15px; font-weight: bold; color: white; background-color: black }

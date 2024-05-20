@@ -5,12 +5,12 @@ a { text-decoration: none; color: black; }
 
 section {width: 100%; min-width: 1200px; height: fit-content; padding: 50px 0; box-sizing: border-box; margin-top: 90px;}
 
-section .wrapper {background-color: rgba(0, 255, 0, 0.1);}
+/*section .wrapper {background-color: rgba(0, 255, 0, 0.1);}*/
 
 section .wrapper>p:first-of-type {text-align: right; margin-bottom: 50px;}
 
 section .wrapper .find-id-result {
-    background-color: rgb(255, 0, 0, .1);
+    /*background-color: rgb(255, 0, 0, .1);*/
     width: 600px;
     height: 250px;
     border: 3px solid grey;
@@ -29,7 +29,7 @@ h1 {
 }
 
 h3 {
-    background-color: rgb(255, 0, 10, .2);
+    /*background-color: rgb(255, 0, 10, .2);*/
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@ h3 {
 }
 
 section .wrapper .show-cust-id {
-    background-color:cornflowerblue;
+    /*background-color:cornflowerblue;*/
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ section .wrapper .show-cust-id {
 }
 
 section .wrapper .submit-button {
-    background-color: aqua;
+    /*background-color: aqua;*/
     height: 50px;
     display: flex;
     justify-content: center;
@@ -60,12 +60,16 @@ section .wrapper .submit-button {
 input[type="submit"] {
     width: 70px;
     height: 30px;
+    border: 1px solid black;
     border-radius: 2px;
-    color: whitesmoke;
-    background-color: black;
-    margin: 5px 10px ;
+    color: black;
+    background-color: white;
+    margin: 5px 10px 30px 10px ;
+    transition: .3s;
 }
 
 input[type="submit"]:hover {
     font-size: 15px; font-weight: bold;
+    color: white;
+    background-color: black;
 }

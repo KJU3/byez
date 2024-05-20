@@ -4,12 +4,12 @@ a {text-decoration: none; color:black;}
 
 section {width: 100%; min-width: 1200px; height: fit-content; padding: 50px 0; box-sizing: border-box; margin-top: 90px;}
 
-section .wrapper {background-color: rgba(0, 255, 0, 0.1);}
+/*section .wrapper {background-color: rgba(0, 255, 0, 0.1);}*/
 
 section .wrapper>p:first-of-type {text-align: right; margin-bottom: 50px;}
 
 section .wrapper .find-pwd-input {
-    background-color: rgb(255, 0, 0, .1);
+    /*background-color: rgb(255, 0, 0, .1);*/
     width: 600px;
     height: 300px;
     border: 3px solid grey;
@@ -28,7 +28,7 @@ h1 {
 }
 
 h3 {
-    background-color: rgb(255, 0, 10, .2);
+    /*background-color: rgb(255, 0, 10, .2);*/
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -37,7 +37,7 @@ h3 {
 }
 
 section .wrapper .submit-email {
-    background-color: rgba(100, 0, 100, 0.1);
+    /*background-color: rgba(100, 0, 100, 0.1);*/
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ section .wrapper .submit-email {
 }
 
 section .wrapper .verify-email {
-    background-color: rgba(0, 0, 255, 0.1);
+    /*background-color: rgba(0, 0, 255, 0.1);*/
     height: 80px;
     display: flex;
     align-content: center;
@@ -60,6 +60,8 @@ input[type="text"], input[type="email"] {
     height: 25px;
     border: 1px solid grey;
     padding: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 li { margin: 5px; }
@@ -67,20 +69,24 @@ li { margin: 5px; }
 button {
     width: 70px;
     height: 30px;
+    border: 1px solid black;
     border-radius: 2px;
-    color: whitesmoke;
-    background-color: black;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+    transition: .3s;
 }
 
-button:hover { font-size: 15px; font-weight: bold; }
+button:hover { font-weight: bold; color: white; background-color: black}
 
 #verificationDiv {
     display: none;
 }
 
-#id-format-error-msg {
+#id-format-error-msg, #email-format-error-msg {
     color: red;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: normal;
     margin: 5px;
 }

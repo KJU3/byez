@@ -5,12 +5,12 @@ a {text-decoration: none; color:black;}
 
 section {width: 100%; min-width: 1200px; height: fit-content; padding: 50px 0; box-sizing: border-box; margin-top: 90px;}
 
-section .wrapper {background-color: rgba(0, 255, 0, 0.1);}
+/*section .wrapper {background-color: rgba(0, 255, 0, 0.1);}*/
 
 section .wrapper>p:first-of-type {text-align: right; margin-bottom: 50px;}
 
 section .wrapper .find-id-input {
-    background-color: rgb(255, 0, 0, .1);
+    /*background-color: rgb(255, 0, 0, .1);*/
     width: 600px;
     height: 300px;
     border: 3px solid grey;
@@ -29,7 +29,7 @@ h1 {
 }
 
 h3 {
-    background-color: rgb(255, 0, 10, .2);
+    /*background-color: rgb(255, 0, 10, .2);*/
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@ h3 {
 }
 
 section .wrapper .submit-email {
-    background-color: rgba(100, 0, 100, 0.1);
+    /*background-color: rgba(100, 0, 100, 0.1);*/
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ section .wrapper .submit-email {
 }
 
 section .wrapper #verificationDiv {
-    background-color: rgba(0, 0, 255, 0.1);
+    /*background-color: rgba(0, 0, 255, 0.1);*/
     height: 100px;
     visibility: hidden;
     display: flex;
@@ -59,8 +59,9 @@ section .wrapper #verificationDiv {
     font-weight: bold;
 }
 
-section .wrapper #verificationDiv h5 {
+h5 {
     color: midnightblue;
+    font-size: 15px;
 }
 
 
@@ -69,6 +70,7 @@ input[type="text"], input[type="email"] {
     height: 25px;
     border: 1px solid grey;
     padding: 3px;
+    margin-left: 10px;
 }
 
 li { margin: 5px; }
@@ -79,12 +81,17 @@ button {
     border-radius: 2px;
     color: whitesmoke;
     background-color: black;
+    margin-left: 10px;
 }
 
 button:hover { font-size: 15px; font-weight: bold; }
 
-/*section #wrong-email-format-msg {*/
-/*    color: red;*/
-/*    font-size: 13px;*/
-/*    font-weight: normal;*/
-/*}*/
+section .wrapper .submit-email #wrong-email-format-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+    font-weight: normal;
+}
