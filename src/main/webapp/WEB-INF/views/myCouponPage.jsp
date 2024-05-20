@@ -262,9 +262,9 @@
     <div class="wrapper">
         <div class="title">
             <p>
-                <a href="main.html"><span>home</span></a>
+                <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="mypage.html"><span>마이쿠폰</span></a>
+                <a href="myCouponPage"><span>마이쿠폰</span></a>
             </p>
             <p>마이쿠폰</p>
         </div>

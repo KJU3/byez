@@ -261,9 +261,9 @@
     <div class="wrapper">
         <div class="title">
             <p>
-                <a href="main.html"><span>home</span></a>
+                <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="addrList"><span>배송 주소록 관리</span></a>
+                <a href="myAddrList"><span>배송 주소록 관리</span></a>
             </p>
             <p>배송 주소록 관리</p>
         </div>
