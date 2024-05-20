@@ -1,10 +1,10 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
-import com.neo.byez.dao.UserDaoImpl;
-import com.neo.byez.dao.UserInfoHistDaoImpl;
-import com.neo.byez.domain.TempKey;
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.dao.user.UserInfoHistDaoImpl;
+import com.neo.byez.domain.user.TempKey;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,8 @@ import java.util.List;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UserServiceImplTest {
     @Autowired DataSource ds;
-    @Autowired UserServiceImpl userService;
+    @Autowired
+    UserServiceImpl userService;
     @Autowired UserDaoImpl userDao;
     @Autowired UserInfoHistDaoImpl userInfoHistDao;
 

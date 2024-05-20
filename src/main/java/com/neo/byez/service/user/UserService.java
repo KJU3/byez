@@ -1,6 +1,6 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.domain.user.UserDto;
 
 import java.sql.Timestamp;
 

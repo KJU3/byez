@@ -1,12 +1,12 @@
-package com.neo.byez.controller;
+package com.neo.byez.controller.user;
 
-import com.neo.byez.constant.ValidatorMessage;
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.service.MailService;
-import com.neo.byez.service.UserServiceImpl;
+import com.neo.byez.common.validator.DataValidator;
+import com.neo.byez.common.message.ValidatorMessage;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.service.user.MailService;
+import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,13 +35,13 @@ public class FindIdPwdController {
     // 아이디, 비밀번호 찾기 화면으로 이동
     @GetMapping("/authorize")
     public String findIdAndPwd() {
-        return "findIdAndPwdPage";
+        return "/user/findIdAndPwdPage";
     }
 
     // 아이디 찾기 화면으로 이동
     @GetMapping("/findIdForm")
     public String findIdForm() {
-        return "findIdForm";
+        return "/user/findIdForm";
     }
 
     // findIdForm -> 인증번호 입력 화면으로 이동
@@ -98,13 +98,13 @@ public class FindIdPwdController {
     @GetMapping("myId")
     public String findIdResult(Model model) {
         model.addAttribute("id", foundId);
-        return "findIdResult";
+        return "/user/findIdResult";
     }
 
     // 비밀번호 찾기
     @GetMapping("/findPwdForm")
     public String findPwdForm() {
-        return "findPwdForm";
+        return "/user/findPwdForm";
     }
 
     @PostMapping("/verify2")
@@ -180,7 +180,7 @@ public class FindIdPwdController {
     @GetMapping("/move")
     public String moveToModifyPwdPage(Model model) {
         model.addAttribute("id", userId);
-        return "modifyPwdPage";
+        return "/user/modifyPwdPage";
     }
 
     @GetMapping("/modify")
@@ -205,13 +205,13 @@ public class FindIdPwdController {
         if (!dataValidator.validateOfPwd(rawPwd)) {
             model.addAttribute("id", id);
             model.addAttribute("incorrectPwdMsg", dataValidator.getWrongPwdFormat());
-            return "modifyPwdPage";
+            return "/user/modifyPwdPage";
         }
 
         else if (rawPwd.contains(id)) {
             model.addAttribute("id", id);
             model.addAttribute("incorrectPwdMsg", ValidatorMessage.PASSWORD_CONTAINS_ID.getMessage());
-            return "modifyPwdPage";
+            return "/user/modifyPwdPage";
         }
 
         // 2. 비밀번호/비밀번호 재확인
@@ -220,7 +220,7 @@ public class FindIdPwdController {
         else if(!pwd1.equals(pwd2)) {
             model.addAttribute("id", id);
             model.addAttribute("incorrectPwdMsg", "비밀번호가 일치하지 않습니다. 다시 입력하십시오.");
-            return "modifyPwdPage";
+            return "/user/modifyPwdPage";
         }
 
         // 3. 변경 전/후 비밀번호 비교 (암호화된 비밀번호로 비교)
@@ -229,7 +229,7 @@ public class FindIdPwdController {
         else if (authenticatePwd(rawPwd, dbPwd)) {
             model.addAttribute("id", id);
             model.addAttribute("incorrectPwdMsg", "이전 비밀번호와 동일합니다. 다시 입력하십시오.");
-            return "modifyPwdPage";
+            return "/user/modifyPwdPage";
         }
 
         // 4. 비밀번호 업데이트
@@ -239,7 +239,7 @@ public class FindIdPwdController {
         String encodedPwd = passwordEncoder.encode(rawPwd);
         userService.modifyUserPwd(id, encodedPwd);
         model.addAttribute("id", id);
-        return "loginForm";
+        return "/user/loginForm";
     }
 
     // 암호화 전후 비밀번호 비교
