@@ -321,7 +321,16 @@
                     <tr>
                         <td>${address.nick}</td>
                         <td>${address.recipient}</td>
-                        <td>${address.telNum}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${empty address.telNum}">
+                                    -
+                                </c:when>
+                                <c:otherwise>
+                                    ${address.telNum}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                         <td>${address.mobileNum}</td>
                         <td>(${address.zpcd})${address.mainAddr} ${address.detailAddr}</td>
                         <td><a href="#" class="edit_btn" onclick="goAddrEditForm(${address.seq})">수정</a></td>
