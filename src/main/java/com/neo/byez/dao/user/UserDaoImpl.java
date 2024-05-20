@@ -1,6 +1,6 @@
-package com.neo.byez.dao;
+package com.neo.byez.dao.user;
 
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.domain.user.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     // namespace: scope 을 지정해주는 유일한 식별자
     // 같은 namespace 내에서는 SQL 문장들을 공유할 수 있음.
-    private static String namespace = "com.neo.byez.dao.UserDao.";
+    private static String namespace = "com.neo.byez.dao.user.UserDao.";
 
     // 테스트용 delete 문
     @Override

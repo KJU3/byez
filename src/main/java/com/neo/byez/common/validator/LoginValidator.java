@@ -1,6 +1,6 @@
-package com.neo.byez.controller;
+package com.neo.byez.common.validator;
 
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.domain.user.UserDto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;

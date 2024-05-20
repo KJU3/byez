@@ -1,8 +1,9 @@
-package com.neo.byez.controller;
+package com.neo.byez.controller.user;
 
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.service.MailService;
-import com.neo.byez.service.UserServiceImpl;
+import com.neo.byez.common.validator.SignUpValidator;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.service.user.MailService;
+import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class SignUpController {
     // 1. 회원가입 버튼 클릭 시 본 Controller 로 이동
     @GetMapping("/verify")
     public String verify() {
-        return "requestEmailForm";
+        return "/user/requestEmailForm";
     }
 
     String randomMailKey = ""; // 메일로 전송한 인증번호 저장
@@ -90,7 +91,7 @@ public class SignUpController {
 
     @GetMapping("/form")
     public String moveToRegisterForm() {
-        return "register";
+        return "/user/register";
     }
 
     // 2. 고객 기본정보 입력 후 본 Controller 로 form 전송
@@ -100,13 +101,13 @@ public class SignUpController {
         if (result.hasErrors()) {
             List<ObjectError> errorMsgs = result.getAllErrors();
             model.addAttribute("errorMsg", errorMsgs.get(0).getCode());
-            return "register";
+            return "/user/register";
         }
 
         // 입력된 아이디가 이미 DB에 저장된 아이디인 경우, 중복된 아이디임을 메세지로 출력
         if (userService.checkDuplicatedId(userDto.getId()) != null) {
             model.addAttribute("errorMsg", DUPLICATED_ID.getMessage());
-            return "register";
+            return "/user/register";
         }
 
         // 입력란에서 비밀번호 및 비밀번호 확인용으로 2개 받아옴.
@@ -120,7 +121,7 @@ public class SignUpController {
         // PWD : 아이디 값 포함 불가
         if (pwd1.contains(userDto.getId())) {
             model.addAttribute("errorMsg", PASSWORD_CONTAINS_ID.getMessage());
-            return "register";
+            return "/user/register";
         }
 
         String password = passwordEncoder.encode(userDto.getPwd());
@@ -137,7 +138,7 @@ public class SignUpController {
         // 3.3.1. 회원가입 페이지(register)로 이동
         else {
             model.addAttribute("errorMsg", "잘못 입력하셨습니다. 다시 작성해주세요.");
-            return "register";
+            return "/user/register";
         }
     }
 }

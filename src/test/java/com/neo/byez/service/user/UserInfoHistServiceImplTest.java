@@ -1,9 +1,9 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
-import com.neo.byez.dao.UserDaoImpl;
-import com.neo.byez.dao.UserInfoHistDao;
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.dao.user.UserInfoHistDao;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +19,11 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UserInfoHistServiceImplTest {
 
-    @Autowired UserInfoHistServiceImpl userInfoHistService;
+    @Autowired
+    UserInfoHistServiceImpl userInfoHistService;
     @Autowired UserInfoHistDao userInfoHistDao;
-    @Autowired UserServiceImpl userService;
+    @Autowired
+    UserServiceImpl userService;
     @Autowired UserDaoImpl userDao;
 
     @Before

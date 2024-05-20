@@ -1,4 +1,4 @@
-package com.neo.byez.controller;
+package com.neo.byez.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

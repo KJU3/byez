@@ -1,4 +1,4 @@
-package com.neo.byez.domain;
+package com.neo.byez.domain.user;
 
 import java.util.Random;
 

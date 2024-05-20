@@ -1,8 +1,8 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
-import com.neo.byez.dao.UserDaoImpl;
-import com.neo.byez.dao.UserInfoHistDaoImpl;
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.dao.user.UserInfoHistDaoImpl;
+import com.neo.byez.domain.user.UserInfoHistDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

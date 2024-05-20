@@ -1,6 +1,6 @@
-package com.neo.byez.controller;
+package com.neo.byez.controller.user;
 
-import com.neo.byez.service.KakaoService;
+import com.neo.byez.service.user.KakaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +39,6 @@ public class KakaoController {
         HttpSession session = request.getSession();
         session.setAttribute("loginState", "Y");
 
-        return "main";
+        return "/";
     }
 }

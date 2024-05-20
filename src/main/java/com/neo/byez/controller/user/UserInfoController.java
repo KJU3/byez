@@ -1,10 +1,12 @@
-package com.neo.byez.controller;
+package com.neo.byez.controller.user;
 
-import com.neo.byez.constant.ValidatorMessage;
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.service.MailService;
-import com.neo.byez.service.UserInfoHistServiceImpl;
-import com.neo.byez.service.UserServiceImpl;
+import com.neo.byez.common.validator.DataValidator;
+import com.neo.byez.common.validator.LoginValidator;
+import com.neo.byez.common.message.ValidatorMessage;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.service.user.MailService;
+import com.neo.byez.service.user.UserInfoHistServiceImpl;
+import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -44,7 +45,7 @@ public class UserInfoController {
 
     @GetMapping("/index")
     public String moveToMypageIndex() {
-        return "mypage";
+        return "/user/mypage";
     }
 
     @GetMapping("/modifyPage")
@@ -52,7 +53,7 @@ public class UserInfoController {
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("userId");
         model.addAttribute("userDto", userService.getCustLoginInfo(id));
-        return "modifyUserInfoPage";
+        return "/user/modifyUserInfoPage";
     }
 
     // * 비밀번호 변경
@@ -180,7 +181,7 @@ public class UserInfoController {
 
     @GetMapping("/withdrawal")
     public String moveToWithdrawalPage() {
-        return "withdrawalForm";
+        return "/user/withdrawalForm";
     }
 
     @PostMapping("/inactive")
@@ -193,16 +194,16 @@ public class UserInfoController {
         // 비밀번호 불일치 또는 미동의 시 탈퇴 화면으로 이동
         if (!userService.checkPwdMatch(id, pwd)) {
             model.addAttribute("errorMsg", ValidatorMessage.WRONG_PASSWORD.getMessage());
-            return "withdrawalForm";
+            return "/user/withdrawalForm";
         } else if (agree == null) {
             model.addAttribute("errorMsg", "탈퇴 처리 미동의 상태입니다.");
-            return "withdrawalForm";
+            return "/user/withdrawalForm";
         }
 
         // 탈퇴처리 실패 시 탈퇴 화면으로 이동
         // 탈퇴처리 성공 시 메인 화면으로 이동
         if (!userService.changeWithdrawalState(id)) {
-            return "withdrawalForm";
+            return "/user/withdrawalForm";
         } else {
             session.invalidate();
             return "redirect:/";

@@ -1,4 +1,4 @@
-package com.neo.byez.domain;
+package com.neo.byez.domain.user;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;

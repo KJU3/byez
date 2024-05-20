@@ -1,15 +1,12 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
-import com.neo.byez.dao.UserDaoImpl;
-import com.neo.byez.domain.MailHandler;
-import com.neo.byez.domain.TempKey;
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.domain.user.MailHandler;
+import com.neo.byez.domain.user.TempKey;
+import com.neo.byez.domain.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
 
 @Service
 public class MailService {

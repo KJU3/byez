@@ -1,7 +1,8 @@
-package com.neo.byez.controller;
+package com.neo.byez.controller.user;
 
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.service.UserServiceImpl;
+import com.neo.byez.common.validator.LoginValidator;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,7 @@ public class LoginController {
     @GetMapping("/form")
     public String moveToLoginForm(HttpServletRequest request, Model model) {
         model.addAttribute("prevPage", request.getParameter("prevPage"));
-        return "loginForm";
+        return "/user/loginForm";
     }
 
     // 유저가 입력한 데이터가 /login/in 으로 전송됨.

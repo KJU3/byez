@@ -1,4 +1,4 @@
-package com.neo.byez.service;
+package com.neo.byez.service.user;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

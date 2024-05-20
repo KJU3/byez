@@ -1,4 +1,4 @@
-package com.neo.byez.controller;
+package com.neo.byez.common.validator;
 
 
 import static com.neo.byez.common.message.ValidatorMessage.*;

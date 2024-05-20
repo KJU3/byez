@@ -1,7 +1,7 @@
-package com.neo.byez.dao;
+package com.neo.byez.dao.user;
 
 
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.domain.user.UserDto;
 
 import java.sql.Timestamp;
 import java.util.List;

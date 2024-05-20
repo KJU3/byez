@@ -1,6 +1,6 @@
-package com.neo.byez.dao;
+package com.neo.byez.dao.user;
 
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
 
 import java.util.List;
 

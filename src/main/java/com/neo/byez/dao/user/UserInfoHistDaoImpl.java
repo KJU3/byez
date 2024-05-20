@@ -1,6 +1,6 @@
-package com.neo.byez.dao;
+package com.neo.byez.dao.user;
 
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ public class UserInfoHistDaoImpl implements UserInfoHistDao {
 
     @Autowired SqlSession session;
 
-    private static String namespace = "com.neo.byez.dao.UserInfoHistDao.";
+    private static String namespace = "com.neo.byez.dao.user.UserInfoHistDao.";
 
     // 고객 정보 변경이력 전체 삭제
     @Override
