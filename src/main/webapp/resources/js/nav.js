@@ -14,7 +14,15 @@ $(function(){
         $(this).children(".sub_menu").stop().fadeToggle(300);
     });
 
-
+    $('#searchForm').on('submit', function(event) {
+        alert("hi");
+        event.preventDefault(); // 폼의 기본 제출 동작을 막음
+        var query = $('#searchInput').val().trim();
+        if (query) {
+            var currentUrl = window.location.href.split('?')[0]; // 현재 페이지 URL 가져오기
+            window.location.href = currentUrl + '?nameKeyword=' + encodeURIComponent(query);
+        }
+    });
 
     function show(showNav) {
         if (!$('.search_div').is(':visible')) {
@@ -62,7 +70,6 @@ $(function(){
     $('.search_div p img').click(function() {
         $('.search_div, .shadow').hide();
     });
-
 
     $('#searchForm').on('submit', function(event) {
         event.preventDefault(); // 폼의 기본 제출 동작을 막음
