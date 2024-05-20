@@ -9,16 +9,17 @@ public enum ValidatorMessage {
 
     // 비밀번호
     PASSWORD_MISSING("비밀번호를 입력하지 않으셨습니다."),
+    WRONG_PASSWORD("비밀번호가 일치하지 않습니다."),
     MISMATCHED_PASSWORD("동일한 비밀번호를 입력하지 않으셨습니다."),
     PASSWORD_LENGTH_OUT_OF_BOUNDS("비밀번호의 길이는 8이상 20이하로 입력해야 합니다."),
     INVALID_PASSWORD_FORMAT("비밀번호는 영문자, 숫자, 특수문자를 사용한 조합으로 입력해야 합니다."),
     SEQUENTIAL_CHARACTERS("비밀번호에 4개이상 연속된 숫자는 입력할 수 없습니다."),
-    PASSWORD_CONTAINS_ID("비밀번호는 아이디와 동일할 수 없습니다."),
+    PASSWORD_CONTAINS_ID("비밀번호에 아이디를 포함할 수 없습니다."),
 
     // 이메일
     EMAIL_MISSING("이메일을 입력하지 않으셨습니다."),
-    INVALID_EMAIL_FORMAT("이메일에 한글은 입력 불가합니다."),
-    WRONG_EMAIL_FORMAT("잘못된 이메일 형식으로 입력하셨습니다."),
+    DUPLICATED_EMAIL("이미 사용 중인 이메일입니다."),
+    INVALID_EMAIL_FORMAT("잘못된 이메일 형식으로 입력하셨습니다."),
 
     // 이름
     NAME_MISSING("이름을 입력하지 않으셨습니다."),
