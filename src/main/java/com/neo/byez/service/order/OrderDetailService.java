@@ -38,6 +38,7 @@ public interface OrderDetailService {
 
     //옵션 변경 여부 확인 후 업데이트 진행(현재는 변경사항이 없어도 update가능)
     public int updateIfChanged(OrderDetailDto orderDetailDto) throws Exception;
+    public List<OrderDetailDto>  selectAllEtc(String id) throws Exception;
 
     //---------------------------찬빈추가
     public List<OrderDetailDto> searchById(String id);

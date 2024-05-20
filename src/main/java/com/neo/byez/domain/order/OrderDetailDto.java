@@ -241,10 +241,10 @@ public class OrderDetailDto {
 
     @Override
     public String toString() {
-        return "{" +
+        return "OrderDetailDto{" +
                 "ord_num='" + ord_num + '\'' +
                 ", seq=" + seq +
-                ", item_num=" + item_num +
+                ", item_num='" + item_num + '\'' +
                 ", id='" + id + '\'' +
                 ", item_name='" + item_name + '\'' +
                 ", price=" + price +
@@ -257,6 +257,7 @@ public class OrderDetailDto {
                 ", opt3='" + opt3 + '\'' +
                 ", opt4='" + opt4 + '\'' +
                 ", opt5='" + opt5 + '\'' +
+                ", ord_state='" + ord_state + '\'' +
                 ", reg_date='" + reg_date + '\'' +
                 ", reg_id='" + reg_id + '\'' +
                 ", up_date='" + up_date + '\'' +

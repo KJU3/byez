@@ -61,9 +61,15 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
         int rowCnt = 0;
 
         try {
+            String id = "asdf1234";
             // 주문상태, 배송번호 초기화
             setOrderStateSeq(orderStateDto);
-
+            orderStateDto.setReg_id(id);
+            orderStateDto.setUp_id(id);
+            ordEtcReqDto.setReg_id(id);
+            ordEtcReqDto.setUp_id(id);
+            System.out.println(orderDetailDto);
+            System.out.println(orderStateDto);
 
             rowCnt += ordEtcReqDao.insertCancel(ordEtcReqDto);
             rowCnt += orderDao.updateStateCode(orderDto);

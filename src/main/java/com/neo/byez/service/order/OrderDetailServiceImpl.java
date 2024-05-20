@@ -113,4 +113,9 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     public int changeReviewState(ReviewDto reviewDto) {
         return ordDetailDao.updateReviewState(reviewDto);
     }
+
+    @Override
+    public List<OrderDetailDto> selectAllEtc(String id) throws Exception {
+        return ordDetailDao.selectAllEtc(id);
+    }
 }

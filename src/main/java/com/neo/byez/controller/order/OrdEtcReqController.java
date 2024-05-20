@@ -64,6 +64,7 @@ public class OrdEtcReqController {
     @RequestMapping(value = "/cancelOrder")
     public String cancelOrder(Model m, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto, String ord_state) throws Exception {
 
+        System.out.println("/cancelOrder");
         /*
             -확인-
             값이 잘 넘어왔는지 확인할것(ord_num이 빈문자열임..)
@@ -82,7 +83,7 @@ public class OrdEtcReqController {
         //
         //aaa 고객이 주문한 모든 내역을 불러옴
         //실제 구현시에는 로그인한 고객의 아이디를 세션에서 불러와 조회한다.
-        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("aaa");
+        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("asdf1234");
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);
         //주문내역을 불러올때 주문번호가 ordDetailDto에 담기기 때문에
@@ -99,6 +100,8 @@ public class OrdEtcReqController {
         ordEtcReqService.updateOrdState(ordDetailDto);
 
         */
+        System.out.println("ordEtc" + ordEtcReqDto);
+        System.out.println("ordDetail" + orderDetailDto);
             ordEtcReqService.insertCancelInfo(ordEtcReqDto , orderDetailDto, orderDto, orderStateDto);
 
         return "redirect:/order/list";
