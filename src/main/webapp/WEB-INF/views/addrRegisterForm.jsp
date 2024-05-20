@@ -263,7 +263,7 @@
             <p>
                 <a href="main.html"><span>home</span></a>
                 <span>></span>
-                <a href="myAddrList.html"><span>배송 주소록 관리</span></a>
+                <a href="addrList"><span>배송 주소록 관리</span></a>
             </p>
             <p>배송 주소록 관리</p>
         </div>
@@ -281,7 +281,7 @@
                     <li>
                         <ul>
                             <li>나의 혜택 정보</li>
-                            <li><a href="mypage.html">쿠폰</a></li>
+                            <li><a href="couponPage">쿠폰</a></li>
                             <li><a href="#">혜택 보기</a></li>
                         </ul>
                     </li>

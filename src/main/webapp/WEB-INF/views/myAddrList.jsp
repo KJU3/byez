@@ -263,7 +263,7 @@
             <p>
                 <a href="main.html"><span>home</span></a>
                 <span>></span>
-                <a href="myAddrList.html"><span>배송 주소록 관리</span></a>
+                <a href="addrList"><span>배송 주소록 관리</span></a>
             </p>
             <p>배송 주소록 관리</p>
         </div>
@@ -281,7 +281,7 @@
                     <li>
                         <ul>
                             <li>나의 혜택 정보</li>
-                            <li><a href="goMyCouponPage">쿠폰</a></li>
+                            <li><a href="myCouponPage">쿠폰</a></li>
                             <li><a href="#">혜택 보기</a></li>
                         </ul>
                     </li>
@@ -331,7 +331,7 @@
                 </tbody>
             </table>
             <div class="btn_wrapper"> <!-- 버튼을 감싸는 div -->
-                <a href="goAddrRegisterForm" class="add_address_btn">배송지등록</a>
+                <a href="addrRegisterForm" class="add_address_btn">배송지등록</a>
             </div>
         </div>
     </div>
@@ -354,7 +354,7 @@
 <script src="js/nav.js"></script>
 <script>
     function goAddrEditForm(seq) {
-        window.location.href = 'goAddrEditForm?seq=' + seq;
+        window.location.href = 'addrEditForm?seq=' + seq;
     }
 
 
