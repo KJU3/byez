@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/detail.css?after">
+    <link rel="stylesheet" href="/css/detail.css?after?after">
     <link rel="stylesheet" href="/css/footer.css?after">
     <link rel="stylesheet" href="/css/quick.css?after">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -46,13 +46,13 @@
                     <span class="price"><fmt:formatNumber value="${itemDetail.price}" pattern="#,###"/></span>
                     <span class="disc_rate">${itemDetail.disc_rate * 100}%</span>
                 </p>
-                <div class="newbie">
-                    <span>신규가입 혜택</span>
-                    <a href="#">
-                        <span>신규 가입 시 웰컴 쿠폰팩 즉시 지급</span>
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                </div>
+<%--                <div class="newbie">--%>
+<%--                    <span>신규가입 혜택</span>--%>
+<%--                    <a href="#">--%>
+<%--                        <span>신규 가입 시 웰컴 쿠폰팩 즉시 지급</span>--%>
+<%--                        <i class="fa-solid fa-chevron-right"></i>--%>
+<%--                    </a>--%>
+<%--                </div>--%>
                 <div class="optionBox">
                     <p>Color</p>
                     <ul class="col">
@@ -69,15 +69,6 @@
 <%--                    </p>--%>
                     <p>Size</p>
                     <ul class="size">
-<%--                        <li>--%>
-<%--                            <button>S (085)</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>M (090)</button>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <button>L (095)</button>--%>
-<%--                        </li>--%>
                         <input type="hidden" class="opt1" name="opt1">
                         <select class="changeOpt1" onchange="selectOpt1(this.value);">
                             <c:forEach var="size" items="${itemDetail.sizes}">
@@ -103,134 +94,6 @@
 <%--                        <span>[필수] </span>--%>
 <%--                        <span class="qtyOption">수량을 선택해 주세요.</span>--%>
 <%--                    </p>--%>
-<%--                    <ul class="cart">--%>
-<%--                        <!-- 이 부분 동적으로 생성  -->--%>
-<%--                        <li>--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <p class="name">--%>
-<%--                                        PEACH STATE 스웨트셔츠_SPMWE12G52</p>--%>
-<%--                                    <p>--%>
-<%--                                        <span>-</span>--%>
-<%--                                        <span>(19) BLACK</span>--%>
-<%--                                        <span>/</span>--%>
-<%--                                        <span>M (090)</span>--%>
-<%--                                    </p>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <div class="count-wrap _count">--%>
-<%--                                        <button type="button" class="minus">-</button>--%>
-<%--                                        <input type="text" class="inp" value="1" readonly/>--%>
-<%--                                        <button type="button" class="plus">+</button>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <i class="fa-solid fa-xmark xmark"></i>--%>
-<%--                                    <p class="cart_price">10000</p>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <p class="name">--%>
-<%--                                        PEACH STATE 스웨트셔츠_SPMWE12G52</p>--%>
-<%--                                    <p>--%>
-<%--                                        <span>-</span>--%>
-<%--                                        <span>(19) BLACK</span>--%>
-<%--                                        <span>/</span>--%>
-<%--                                        <span>M (090)</span>--%>
-<%--                                    </p>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <div class="count-wrap _count">--%>
-<%--                                        <button type="button" class="minus">-</button>--%>
-<%--                                        <input type="text" class="inp" value="1" readonly/>--%>
-<%--                                        <button type="button" class="plus">+</button>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <i class="fa-solid fa-xmark xmark"></i>--%>
-<%--                                    <p class="cart_price">10000</p>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <p class="name">--%>
-<%--                                        PEACH STATE 스웨트셔츠_SPMWE12G52</p>--%>
-<%--                                    <p>--%>
-<%--                                        <span>-</span>--%>
-<%--                                        <span>(19) BLACK</span>--%>
-<%--                                        <span>/</span>--%>
-<%--                                        <span>M (090)</span>--%>
-<%--                                    </p>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <div class="count-wrap _count">--%>
-<%--                                        <button type="button" class="minus">-</button>--%>
-<%--                                        <input type="text" class="inp" value="1" readonly/>--%>
-<%--                                        <button type="button" class="plus">+</button>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <i class="fa-solid fa-xmark xmark"></i>--%>
-<%--                                    <p class="cart_price">10000</p>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <p class="name">--%>
-<%--                                        PEACH STATE 스웨트셔츠_SPMWE12G52</p>--%>
-<%--                                    <p>--%>
-<%--                                        <span>-</span>--%>
-<%--                                        <span>(19) BLACK</span>--%>
-<%--                                        <span>/</span>--%>
-<%--                                        <span>M (090)</span>--%>
-<%--                                    </p>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <div class="count-wrap _count">--%>
-<%--                                        <button type="button" class="minus">-</button>--%>
-<%--                                        <input type="text" class="inp" value="1" readonly/>--%>
-<%--                                        <button type="button" class="plus">+</button>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <i class="fa-solid fa-xmark xmark"></i>--%>
-<%--                                    <p class="cart_price">10000</p>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <p class="name">--%>
-<%--                                        PEACH STATE 스웨트셔츠_SPMWE12G52</p>--%>
-<%--                                    <p>--%>
-<%--                                        <span>-</span>--%>
-<%--                                        <span>(19) BLACK</span>--%>
-<%--                                        <span>/</span>--%>
-<%--                                        <span>M (090)</span>--%>
-<%--                                    </p>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <div class="count-wrap _count">--%>
-<%--                                        <button type="button" class="minus">-</button>--%>
-<%--                                        <input type="text" class="inp" value="1" readonly/>--%>
-<%--                                        <button type="button" class="plus">+</button>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <i class="fa-solid fa-xmark xmark"></i>--%>
-<%--                                    <p class="cart_price">10000</p>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
                     <div class="work_btn">
                         <!-- 좋아요 상품 정보 담기 : 상품 번호, 아이디 -->
                         <!-- 장바구니 상품 정보 담기 : 상품 번호, 아이디, 사이즈, 색상, 수량 -->
@@ -240,21 +103,16 @@
                             <i class="fa-regular fa-heart"></i>
                             <!-- 추후에 db에서 num만 조회해서 좋아요 상품 등록하게 만들기-->
                             <div class="item-info">
-                                <input class="num" type="hidden" value="1">
-                                <input class="name" type="hidden" value="name">
-                                <input class="main_img" type="hidden" value="...">
-                                <input class="price" type="hidden" value="1000">
-                                <input class="disc_price" type="hidden" value="1">
-                                <input class="review_cnt" type="hidden" value="1">
-                                <input class="like_cnt" type="hidden" value="1">
-                                <input class="state_code" type="hidden" value="1">
-                                <input class="item_type" type="hidden" value="1">
-                                <input class="comt" type="hidden" value="....">
-                                <input class="item_comt" type="hidden" value="...">
+                                <input class="num" type="hidden" value=${itemDetail.num}>
+                                <input class="name" type="hidden" value=${itemDetail.name}>
+                                <input class="price" type="hidden" value=${itemDetail.price}>
+                                <input class="disc_price" type="hidden" value=${itemDetail.disc_price}>
                             </div>
                         </button>
                         <button class="cart-btn">장바구니</button>
                         <button class="order-btn">바로구매</button>
+                        <form class="order-form" action="/goods/${itemDetail.num}" method="post">
+                        </form>
                     </div>
                     <div class="total_price_box">
                         <span>총 상품금액</span>
@@ -483,6 +341,6 @@
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
 <script src="/js/count.js"></script>
-<script src="/js/detail.js"></script>
+<script src="/js/detail.js?after?after"></script>
 </body>
 </html>

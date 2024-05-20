@@ -37,6 +37,18 @@ public class TotalItemDaoTest {
     ItemDaoImpl itemDao;
 
     @Autowired
+    UserDaoImpl userDao;
+
+    @Autowired
+    BasketDaoImpl basketDao;
+
+    @Autowired
+    BasketItemDaoImpl basketItemDao;
+
+    @Autowired
+    LikeItemDaoImpl likeItemDao;
+
+    @Autowired
     ItemStateDaoImpl itemStateDao;
 
     @Autowired
@@ -55,6 +67,8 @@ public class TotalItemDaoTest {
     @Before
     public void 테스트환경() throws Exception {
         assertNotNull(itemDao);
+        assertNotNull(userDao);
+        assertNotNull(basketDao);
         assertNotNull(itemStateDao);
         assertNotNull(itemDetailDao);
         assertNotNull(itemPriceDao);
@@ -69,12 +83,29 @@ public class TotalItemDaoTest {
         itemPriceDao.deleteAll();
         itemDetailDao.deleteAll();
         itemStateDao.deleteAll();
+        BasketItemDto dto = new BasketItemDto();
+        dto.setId("1");
+        basketItemDao.deleteAll(dto);
+        likeItemDao.deleteAll("1");
+        basketDao.deleteAll();
+        userDao.deleteAllTestUser();
         itemDao.deleteAll();
     }
 
     @ParameterizedTest
     @ValueSource(ints = {50})
     public void 데이터_주입(int n) throws Exception {
+        // 유저 장바구니 등록
+        for (int i = 1; i <= 1; i++) {
+            UserDto user = new UserDto("" + i, "password" + i, "name" + i, 999999, 1, "M", 12345678, 1012345678, "test"+i+"@example.com", "user" + i, "user" + i);
+            userDao.insertUser(user);
+
+            BasketDto basket = new BasketDto();
+            basket.setId(user.getId());
+
+            basketDao.insert(basket);
+        }
+
         // 상품 50개 등록
         for (int i=1; i<=n; i++) {
             // 상품

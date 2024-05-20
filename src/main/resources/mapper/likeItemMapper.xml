@@ -75,7 +75,8 @@
     from item_like l
     inner join cust c
     on l.id = c.id
+    where c.id = #{id}
     order by reg_date desc, like_cnt desc, review_cnt desc
-    limit #{offSet}, #{pageSize};
+    limit #{offset}, #{pageSize};
   </select>
 </mapper>

@@ -1,9 +1,15 @@
 package com.neo.byez.controller.item;
 
 import com.neo.byez.common.validator.LikeItemValidator;
+import com.neo.byez.dao.item.BasketItemDaoImpl;
+import com.neo.byez.domain.item.BasketItemDto;
+import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.domain.item.LikeItemDto;
 import com.neo.byez.domain.item.LikeItemDtos;
 import com.neo.byez.domain.item.PageHandler;
+import com.neo.byez.domain.item.SearchCondition;
+import com.neo.byez.service.item.BasketItemServiceImpl;
+import com.neo.byez.service.item.ItemServiceImpl;
 import com.neo.byez.service.item.LikeItemServiceImpl;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -26,8 +32,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/like")
 public class LikeItemController {
 
+
+    private ItemServiceImpl itemService;
+
+    private BasketItemServiceImpl basketItemService;
+
+    private LikeItemServiceImpl likeItemService;
+
     @Autowired
-    private LikeItemServiceImpl service;
+    public LikeItemController(ItemServiceImpl itemService, LikeItemServiceImpl likeItemService, BasketItemServiceImpl basketItemService) {
+        this.itemService = itemService;
+        this.likeItemService = likeItemService;
+        this.basketItemService = basketItemService;
+    }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -40,39 +57,37 @@ public class LikeItemController {
         // 유저의 좋아요 상품 삭제함
         // 유저의 좋아요 상품 변경함
     @GetMapping()
-    public String list(Integer page, Integer pageSize, Model model, HttpSession session, String msg) {
-        // 세션에서 아이디 조회
-        // 로그인
-            // 로그인 되어 있으면
-                // 좋아요 페이지 이동
-            // 로그인 안되있으면
-                // 메인 페이지로 이동
-        String id = (String) session.getAttribute("id");
-        id = "1";
-
-        // page, pageSize 검증
-        if (page == null) page = 1;
-        if (pageSize == null) pageSize = 12;
-
+    public String list(SearchCondition sc, Model model, HttpSession session, String msg) {
+        int cnt = 0; // 장바구니 상품 카운트 기록
 
         try {
+            // 세션 아이디 조회
+            String id = (String) session.getAttribute("id");
+            id = "1";
+            if (id != null) {
+                BasketItemDto dto = new BasketItemDto();
+                dto.setId(id);
+                // 장바구니 수 카운트
+                cnt = basketItemService.getCount(dto);
+            }
 
-            // 총 상품 수량 카운트
-            int totalCnt = service.getCount(id);
-            System.out.println(totalCnt);
+            // 좋아요 상품 조회
+            List<LikeItemDto> list = likeItemService.getSelectedPage(id, (sc.getPage()-1)*sc.getPageSize(), sc.getPageSize());
 
             // ph 생성
-            PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+            int totalCnt = likeItemService.getCount(id);
+            PageHandler ph = new PageHandler(totalCnt, sc);
 
-            // 서비스를 통해 해당 페이지 좋아요 상품 조회
-            Integer offset = (ph.getPage()-1) * ph.getPageSize();
-            List<LikeItemDto> list = service.getSelectedPage(offset, pageSize);
-
+            // 장바구니 수 카운트 저장
+            // ph 저장
+            // 좋아요 상품 리스트 저장
+            model.addAttribute("cnt", cnt);
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
+
         } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("msg", e.getMessage());
+            model.addAttribute("errorMsg", e.getMessage());
+            return "errorPage";
         }
 
         return "like";
@@ -81,18 +96,10 @@ public class LikeItemController {
     @PostMapping("/add")
     @ResponseBody
     public ResponseEntity<String> add(@RequestBody LikeItemDto dto, RedirectAttributes ratt, HttpSession session) {
-        // 세션에서 아이디 조회
-        // 로그인
-            // 로그인 되어 있으면
-                // 좋아요 상품 등록
-                // 좋아요 페이지 이동
-            // 로그인 안되있으면
-                // 메인 페이지로 이동
         String id = (String) session.getAttribute("id");
         id = "1";
         dto.setId(id);
-
-        if (!service.register(dto)) {
+        if (!likeItemService.register(dto)) {
             return new ResponseEntity<>("좋아요 상품을 등록하지 못했습니다.", HttpStatus.BAD_REQUEST);
         }
 
@@ -114,7 +121,7 @@ public class LikeItemController {
         dto.setId(id);
 
 
-        if (!service.remove(dto)) {
+        if (!likeItemService.remove(dto)) {
             ratt.addAttribute("msg", "상품을 정상적으로 삭제하지 못했습니다.");
         }
 
@@ -124,7 +131,7 @@ public class LikeItemController {
     @GetMapping("/remove/several")
     public String removeSeveral(LikeItemDtos dtos, RedirectAttributes ratt, HttpSession session) {
         try {
-            service.removeSeveral(dtos);
+            likeItemService.removeSeveral(dtos);
         } catch (Exception e) {
             e.printStackTrace();
             ratt.addAttribute("msg", "err");
@@ -146,7 +153,7 @@ public class LikeItemController {
         id = "1";
         dto.setId(id);
 
-        if (!service.modify(dto)) {
+        if (!likeItemService.modify(dto)) {
             ratt.addAttribute("msg", "상품을 정상적으로 변경하지 못했습니다.");
         }
 

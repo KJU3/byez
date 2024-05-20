@@ -15,6 +15,7 @@ import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.domain.item.ItemOptDto;
 import com.neo.byez.domain.item.ItemPriceDto;
 import com.neo.byez.domain.item.ItemStateDto;
+import com.neo.byez.domain.item.SearchCondition;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,12 +78,12 @@ public class ItemServiceImpl {
     }
 
     // 상품 모두 조회
-    public List<ItemDto> getAllItem() throws Exception {
+    public List<ItemDto> getAllItem(Integer page, Integer pageSize) throws Exception {
         // dao를 통해 전체 상품 조회
             // 예외 -> E
             // 성공 -> list
 //        List<ItemDto> dtos = itemDao.selectAll();
-        return null;
+        return itemDao.selectAll(page, pageSize);
     }
 
 //    @Transactional(rollbackFor = Exception.class)
@@ -190,7 +191,7 @@ public class ItemServiceImpl {
     }
 
     // 모든 상품을 조회, 임시적으로 구현(사용x)
-    public List<ItemDto> readAll() throws Exception {
+    public List<ItemDto> readAll(Integer page, Integer pageSize) throws Exception {
         /* 처리 작업 */
             // itemDao를 통해 모든 상품을 조회함
             // 그때 전체 상품 개수와 맞는지 확인, 다르면 예외 처리
@@ -201,7 +202,7 @@ public class ItemServiceImpl {
 
         /* 반환 */
             // 조회된 상품 리스트 반환
-        List<ItemDto> itemDtos = null;
+        List<ItemDto> itemDtos = itemDao.selectAll(page, pageSize);
         int totalCnt = itemDao.count();
 
         if (totalCnt != itemDtos.size()) {
@@ -213,23 +214,20 @@ public class ItemServiceImpl {
     }
 
 
-    // ㅅ
-    public List<ItemDto> readByCategory(Category category) throws Exception {
-        /* 처리 작업 */
-        /* 예외 판별 */
-        /* 반환 */
-        return null;
+    public List<ItemDto> readBySearchCondition(SearchCondition sc) throws Exception {
+        return itemDao.selectBySearchCondition(sc);
     }
 
-    public List<ItemDto> readDiscountItem(Category category) throws Exception {
-        return null;
+    public int countSearchCondition(SearchCondition sc) throws Exception {
+        return itemDao.countSearchResult(sc);
     }
 
-    public List<ItemDto> readBestItem() throws Exception {
-        /* 처리 작업 */
-        /* 예외 판별 */
-        /* 반환 */
-        return null;
+    public List<ItemDto> readDiscountItem(SearchCondition sc) throws Exception {
+        return itemDao.selectDiscountItem(sc);
+    }
+
+    public int countDiscountItem(SearchCondition sc) throws Exception {
+        return itemDao.countDiscountItem(sc);
     }
 
     public ItemDetailPageDto readDetailItem(String num) throws Exception {

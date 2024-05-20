@@ -33,18 +33,6 @@ $(document).ready(function(){
         // 상품 정보 조회
             // num, name, type, price, disc_price, review_cnt, like_cnt, state_code
         const num = $('.item-info').find('.num').val();
-        const name = $('.item-info').find('.name').val();
-        const main_img = $('.item-info').find('.main_img').val();
-        const price = parseInt($('.item-info').find('.price').val());
-        const disc_price = parseInt($('.item-info').find('.disc_price').val());
-        const review_cnt = parseInt($('.item-info').find('.review_cnt').val());
-        const like_cnt = parseInt($('.item-info').find('.like_cnt').val());
-        const state_code = $('.item-info').find('.state_code').val();
-        const item_type = $('.item-info').find('.item_type').val();
-        const item_comt = $('.item-info').find('.item_comt').val();
-        const comt = $('.item-info').find('.comt').val();
-
-        alert(num);
 
         // 상품 정보 검증
         if (num === null || num === undefined) {
@@ -55,18 +43,7 @@ $(document).ready(function(){
         // Json 객체 직렬화
         const likeItemDto =
             JSON.stringify({
-                    num : num,
-                    name : name,
-                    main_img : main_img,
-                    price : price,
-                    disc_price : disc_price,
-                    review_cnt : review_cnt,
-                    like_cnt : like_cnt,
-                    state_code : state_code,
-                    type : item_type,
-                    item_comt : item_comt,
-                    comt : comt
-
+                num : num
         });
 
 
@@ -180,7 +157,36 @@ $(document).ready(function(){
 
     // 주문 버튼, post 전송
     $('.order-btn').on('click', function (e) {
-        alert('order-btn');
+        alert("start");
+
+        if (!checkOpt()) {
+            alert('상품의 옵션과 수량을 지정해주세요!');
+            return;
+        }
+
+        // 장바구니 상품 조회
+        // num, name, price(disc_price), qty, opt1(size), opt2(color), opt3(cust_type), opt4(item_type), coupon_chk
+        const num = $('.item-info').find('.num').val();
+        const name = $('.item-info').find('.name').val();
+        const qty = parseInt($('._count>input').val());
+        const price = parseInt($('.item-info').find('.disc_price').val());
+        const opt1 = $('.opt1').val();
+        const opt2 = $('.opt2').val();
+
+
+        // form 동적으로 생성
+        let formText = "";
+        formText += '<input type="hidden" name="num" value="'+ num + '">';
+        formText += '<input type="hidden" name="name" value="'+ name + '">';
+        formText += '<input type="hidden" name="qty" value="'+ qty + '">';
+        formText += '<input type="hidden" name="price" value="'+ price + '">';
+        formText += '<input type="hidden" name="opt1" value="'+ opt1 + '">';
+        formText += '<input type="hidden" name="opt2" value="'+ opt2 + '">';
+
+
+        // 포스트로 전송
+        $('.order-form').html(formText);
+        $('.order-form').submit();
     });
 });
 

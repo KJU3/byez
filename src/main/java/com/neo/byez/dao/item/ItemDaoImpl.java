@@ -36,12 +36,20 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectList(namespace + "selectAll", map);
     }
 
-    public List<ItemDto> selectBySearchCondition(SearchCondition SearchCondition) throws Exception {
-        return session.selectList(namespace + "selectBySearchCondition", SearchCondition);
+    public List<ItemDto> selectBySearchCondition(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectBySearchCondition", sc);
     }
 
-    public List<ItemDto> selectDiscountItem(SearchCondition SearchCondition) throws Exception {
-        return session.selectList(namespace + "selectDiscountItem", SearchCondition);
+    public int countSearchResult(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "countSearchResult", sc);
+    }
+
+    public List<ItemDto> selectDiscountItem(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectDiscountItem", sc);
+    }
+
+    public int countDiscountItem(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "countDiscountItem", sc);
     }
 
     public ItemDetailPageDto selectDetailItem(String num) throws Exception {

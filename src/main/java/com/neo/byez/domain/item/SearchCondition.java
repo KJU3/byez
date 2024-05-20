@@ -27,7 +27,7 @@ public class SearchCondition {
     }
 
     // ?page=1&pageSize=12&option=A&nameKeyword=주앙옴므남자아우터&typeKeyword=0101&custKeyword=M
-    public String getQuery() {
+    public String getQueryString() {
         return UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize", pageSize)
@@ -91,6 +91,17 @@ public class SearchCondition {
         return (page-1)*pageSize;
     }
 
+    public void checkOption() {
+        if (nameKeyword.length() > 0 && typeKeyword.length() > 0 && custKeyword.length() > 0) {
+            option = "A";
+        } else if (nameKeyword.length() > 0 && custKeyword.length() > 0) {
+            option = "NC";
+        } else if (typeKeyword.length() > 0 && custKeyword.length() > 0) {
+            option = "TC";
+        } else {
+            option = "NT";
+        }
+    }
     @Override
     public String toString() {
         return "SearchCondition{" +

@@ -7,8 +7,8 @@
             </a>
         </div>
         <ul class="nav_menu">
-            <li><a href="/item/categories/discount">할인 상품</a></li>
-            <li><a href="/item/categories/best">베스트</a></li>
+            <li><a href="/item/discount">할인 상품</a></li>
+            <li><a href="/item/best">베스트</a></li>
             <li><a href="/item/categories/02">여성</a></li>
             <li><a href="/item/categories/01">남성</a></li>
             <li><a href="/item/categories/03">혼성</a></li>
@@ -231,8 +231,8 @@
                 고객님<br>무엇을 찾으시나요?
                 <img src="/img/top_search_close.png" alt="">
             </p>
-            <form action="">
-                <input type="text" placeholder="상품을 찾아보세요">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="상품을 찾아보세요">
                 <button type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>

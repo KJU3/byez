@@ -4,6 +4,7 @@ package com.neo.byez.dao.item;
 import com.neo.byez.domain.item.LikeItemDto;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,11 +54,7 @@ public class LikeItemDaoImpl {
     }
 
     // 07. 유저 좋아요 상품 페이지로 조회
-    public List<LikeItemDto> selectPage(Integer offSet, Integer pageSize) throws Exception {
-        HashMap map = new HashMap();
-        map.put("offSet", offSet);
-        map.put("pageSize", pageSize);
-
+    public List<LikeItemDto> selectPage(Map map) throws Exception {
         return session.selectList(namespace + "selectPage", map);
     }
 

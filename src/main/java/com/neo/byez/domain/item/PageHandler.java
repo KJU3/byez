@@ -3,10 +3,6 @@ package com.neo.byez.domain.item;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageHandler {
-
-    //    private int page;
-//    private int pageSize;
-
     private SearchCondition sc;
     private int totalCnt;
     private int naviSize = 10;
@@ -33,7 +29,7 @@ public class PageHandler {
 
     private void calculate(Integer totalCnt, SearchCondition sc) {
         // 계산
-        this.totalPage = (int) Math.ceil(totalCnt / sc.getPageSize());
+        this.totalPage = totalCnt / sc.getPageSize() + (totalCnt % sc.getPageSize() == 0 ? 0 : 1);
         this.sc.setPage(Math.min(sc.getPage(), totalPage));
         this.beginPage = (sc.getPage()-1)/ naviSize * naviSize + 1;
         this.endPage = Math.min(beginPage+(naviSize-1), totalPage);
@@ -42,11 +38,11 @@ public class PageHandler {
     }
 
     // ?page=1&pageSize=12&option=A&nameKeyword=주앙옴므남자아우터&typeKeyword=0101&custKeyword=M
-    public String getQuery() {
-        return getQuery(this.sc.getPage());
+    public String getQueryString() {
+        return getQueryString(this.sc.getPage());
     }
 
-    public String getQuery(int page) {
+    public String getQueryString(int page) {
         return UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize", sc.getPageSize())
