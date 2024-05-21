@@ -51,12 +51,13 @@ public class QnaController {
                 }
             }
         }
+        String userId = (String) httpSession.getAttribute("userId");
         // 검색 기능에 따른 목록들을 찾아내어 page계산하는 과정
-        List<QnaDto> listOrigin = qnaDao.searchAllCondition("asdf", cate_num, title, content, resState);
+        List<QnaDto> listOrigin = qnaDao.searchAllCondition(userId, cate_num, title, content, resState);
         Integer totalCnt = listOrigin.size();
         PageHandlerBin pageHandler = new PageHandlerBin(totalCnt);
         pageHandler.pageHandle(page);
-        model.addAttribute("totalPage",pageHandler.getTotalPage());
+        model.addAttribute("totalPage", pageHandler.getTotalPage());
         model.addAttribute("startPage", pageHandler.getStartPage());
         model.addAttribute("endPage", pageHandler.getEndPage());
         // 받은 검색기능들을 모아서 검색기능들을 계속해서 유지할 수 있도록 하는 과정
@@ -64,7 +65,7 @@ public class QnaController {
         model.addAttribute("search", request.getParameter("search"));
         model.addAttribute("searchContent", request.getParameter("searchContent"));
         model.addAttribute("res_state", request.getParameter("res_state"));
-        List<QnaCateJoinDto> list = qnaDao.getSearchAllOpt("asdf", cate_num, title, content, resState, page, 10);
+        List<QnaCateJoinDto> list = qnaDao.getSearchAllOpt(userId, cate_num, title, content, resState, page, 10);
         model.addAttribute("list", list);
         return "qnaList";
     }
@@ -76,9 +77,11 @@ public class QnaController {
     }
 
     @PostMapping("/write")
-    public String write(QnaDto qnaDto) {
-        qnaDto.setQna_writer("임찬빈"); // sql 쪽에서 값을 가져와야할것
-        qnaDto.setCust_id("asdf");
+    public String write(QnaDto qnaDto,HttpSession httpSession) {
+        String userId = (String) httpSession.getAttribute("userId");
+        String userName=(String) httpSession.getAttribute("userName");
+        qnaDto.setQna_writer(userName); // sql 쪽에서 값을 가져와야할것
+        qnaDto.setCust_id(userId);
         qnaDao.insert(qnaDto);
         return "redirect:/qna/list";
 //        return "redirect:/qna/read?seq_num="+"";
@@ -115,8 +118,10 @@ public class QnaController {
         //String cust_id = (String) httpSession.getAttribute("cust_id");
         Integer seq_num = Integer.valueOf(httpServletRequest.getParameter("seq_num")); // 가져온 Dto의 seq_num을 사용하도록 한다.
         //session 값으로 있는 cust_id를 가져오도록 한다.
-        qnaDto.setCust_id("asdf"); //위에서 설정한 값이 들어가야함
-        qnaDto.setQna_writer("임찬빈"); // 위에서 설정한 값이 들어가야함
+        String userId = (String) httpSession.getAttribute("userId");
+        String userName=(String) httpSession.getAttribute("userName");
+        qnaDto.setCust_id(userId); //위에서 설정한 값이 들어가야함
+        qnaDto.setQna_writer(userName); // 위에서 설정한 값이 들어가야함
         qnaDao.update(qnaDto);
         model.addAttribute("qnaDto", qnaDto);
         return "qnaRead";
