@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/review_write.css?after">
+    <link rel="stylesheet" href="/css/review_write.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -46,8 +46,8 @@
                             </div>
                         </th>
                         <td class="item_info">
-                            <p class="item_name">상품명 :${ordDetailDto.item_name}</p>
-                            <p class="item_opt">옵션명 :${ordDetailDto.opt1},${ordDetailDto.opt2}</p>
+                            <p class="item_name">상품명 : ${ordDetailDto.item_name}</p>
+                            <p class="item_opt">옵션 : ${ordDetailDto.opt1}  ${ordDetailDto.opt2}  ${ordDetailDto.opt3}</p>
                         </td>
                     </tr>
                     <tr>
