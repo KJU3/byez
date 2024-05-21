@@ -47,24 +47,20 @@
                 <span>후드/집업</span>
                 <i class="fa-solid fa-angle-right"></i>
             </a></li>
-            <li><a href="#sweater">
-                <span>니트/스웨터</span>
-                <i class="fa-solid fa-angle-right"></i>
-            </a></li>
             <li><a href="#fleese">
                 <span>폴리스/덤블</span>
                 <i class="fa-solid fa-angle-right"></i>
             </a></li>
-            <li><a href="#cardigan">
-                <span>가디건</span>
-                <i class="fa-solid fa-angle-right"></i>
-            </a></li>
-            <li><a href="#shirt">
-                <span>셔츠/블라우스</span>
+            <li><a href="#blazer">
+                <span>블레이저</span>
                 <i class="fa-solid fa-angle-right"></i>
             </a></li>
             <li><a href="#slacks">
                 <span>슬랙스</span>
+                <i class="fa-solid fa-angle-right"></i>
+            </a></li>
+            <li><a href="#pants">
+                <span>팬츠</span>
                 <i class="fa-solid fa-angle-right"></i>
             </a></li>
         </ul>
@@ -130,8 +126,8 @@
                 </c:forEach>
             </ul>
         </div>
-        <div class="items" id="sweater">
-            <p>니트/스웨터</p>
+        <div class="items" id="fleese">
+            <p>폴리스/덤블</p>
             <ul class="weekly_best">
                 <c:forEach var="itemDto" items="${list3}">
                     <li>
@@ -161,72 +157,10 @@
                 </c:forEach>
             </ul>
         </div>
-        <div class="items" id="fleese">
-            <p>폴리스/덤블</p>
+        <div class="items" id="blazer">
+            <p>블레이저</p>
             <ul class="weekly_best">
                 <c:forEach var="itemDto" items="${list4}">
-                    <li>
-                        <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
-                        </a>
-                        <p class="item_name">
-                            <span>${itemDto.name}</span>
-                        </p>
-                        <p class="sales_price"><fmt:formatNumber value="${itemDto.price}" pattern="#,###"/></p>
-                        <p class="discounted_price"><fmt:formatNumber value="${itemDto.disc_price}" pattern="#,###"/></p>
-                            <ul class="col">
-                                <c:forEach var="color" items="${itemDto.colors}">
-                                    <li style="background-color: ${color}; display: inline"></li>
-                                </c:forEach>
-                            </ul>
-                        <div class="wrap-star">
-                            <div class='star-rating'>
-                                <span style="width: ${20 * itemDto.review_rate}%"></span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-heart" style="color: red;"></i>
-                        <span class="like_cnt">${itemDto.like_cnt}</span>
-                        <p class="review_cnt">리뷰수 <span>${itemDto.review_cnt}</span></p>
-                        <div class="sex">${itemDto.cust_type}</div>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div>
-        <div class="items" id="cardigan">
-            <p>가디건</p>
-            <ul class="weekly_best">
-                <c:forEach var="itemDto" items="${list5}">
-                    <li>
-                        <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
-                        </a>
-                        <p class="item_name">
-                            <span>${itemDto.name}</span>
-                        </p>
-                        <p class="sales_price"><fmt:formatNumber value="${itemDto.price}" pattern="#,###"/></p>
-                        <p class="discounted_price"><fmt:formatNumber value="${itemDto.disc_price}" pattern="#,###"/></p>
-                            <ul class="col">
-                                <c:forEach var="color" items="${itemDto.colors}">
-                                    <li style="background-color: ${color}; display: inline"></li>
-                                </c:forEach>
-                            </ul>
-                        <div class="wrap-star">
-                            <div class='star-rating'>
-                                <span style="width: ${20 * itemDto.review_rate}%"></span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-heart" style="color: red;"></i>
-                        <span class="like_cnt">${itemDto.like_cnt}</span>
-                        <p class="review_cnt">리뷰수 <span>${itemDto.review_cnt}</span></p>
-                        <div class="sex">${itemDto.cust_type}</div>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div>
-        <div class="items" id="shirt">
-            <p>셔츠/블라우스</p>
-            <ul class="weekly_best">
-                <c:forEach var="itemDto" items="${list6}">
                     <li>
                         <a href="/goods/${itemDto.num}">
                             <img src="${itemDto.main_img}" alt="">
@@ -257,7 +191,38 @@
         <div class="items" id="slacks">
             <p>슬랙스</p>
             <ul class="weekly_best">
-                <c:forEach var="itemDto" items="${list7}">
+                <c:forEach var="itemDto" items="${list5}">
+                    <li>
+                        <a href="/goods/${itemDto.num}">
+                            <img src="${itemDto.main_img}" alt="">
+                        </a>
+                        <p class="item_name">
+                            <span>${itemDto.name}</span>
+                        </p>
+                        <p class="sales_price"><fmt:formatNumber value="${itemDto.price}" pattern="#,###"/></p>
+                        <p class="discounted_price"><fmt:formatNumber value="${itemDto.disc_price}" pattern="#,###"/></p>
+                            <ul class="col">
+                                <c:forEach var="color" items="${itemDto.colors}">
+                                    <li style="background-color: ${color}; display: inline"></li>
+                                </c:forEach>
+                            </ul>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-heart" style="color: red;"></i>
+                        <span class="like_cnt">${itemDto.like_cnt}</span>
+                        <p class="review_cnt">리뷰수 <span>${itemDto.review_cnt}</span></p>
+                        <div class="sex">${itemDto.cust_type}</div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+        <div class="items" id="pants">
+            <p>팬츠</p>
+            <ul class="weekly_best">
+                <c:forEach var="itemDto" items="${list6}">
                     <li>
                         <a href="/goods/${itemDto.num}">
                             <img src="${itemDto.main_img}" alt="">

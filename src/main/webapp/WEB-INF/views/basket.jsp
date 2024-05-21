@@ -23,7 +23,7 @@
     <div class="wrapper">
         <!-- 2-1. 타이틀 : 장바구니 -->
         <p>
-            <a href="main.html"><span>HOME></span></a>
+            <a href="/"><span>HOME></span></a>
             <span></span>
             <a href="/basket"><span> 장바구니</span></a>
         </p>
@@ -94,10 +94,10 @@
                                         <strong>${basketItemDto.name}</strong>
                                     </p>
                                     <p>
-                                        [사이즈 : ${basketItemDto.opt1}/ 컬러 : ${basketItemDto.opt2}]
+                                        [사이즈 : ${basketItemDto.opt1} / 컬러 : ${basketItemDto.opt2}]
                                     </p>
                                     <div>
-                                        [성별 : ${basketItemDto.opt3}]
+                                        ${basketItemDto.opt3}
                                     </div>
                                 </div>
                             </td>

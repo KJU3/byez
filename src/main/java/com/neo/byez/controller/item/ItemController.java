@@ -160,20 +160,18 @@ public class ItemController {
             sc.setTypeKeyword("0102");
             List<ItemDto> list2 = itemService.readDiscountItem(sc);
 
-            sc.setTypeKeyword("0103");
+            sc.setTypeKeyword("0202");
             List<ItemDto> list3 = itemService.readDiscountItem(sc);
 
-            sc.setTypeKeyword("0202");
+            sc.setTypeKeyword("0204");
             List<ItemDto> list4 = itemService.readDiscountItem(sc);
 
-            sc.setTypeKeyword("0205");
+            sc.setTypeKeyword("0301");
             List<ItemDto> list5 = itemService.readDiscountItem(sc);
 
-            sc.setTypeKeyword("0104");
+            sc.setTypeKeyword("0303");
             List<ItemDto> list6 = itemService.readDiscountItem(sc);
 
-            sc.setTypeKeyword("0301");
-            List<ItemDto> list7 = itemService.readDiscountItem(sc);
 
             // 모델 저장 및 페이지 이동
             model.addAttribute("cnt", cnt);
@@ -183,7 +181,6 @@ public class ItemController {
             model.addAttribute("list4", list4);
             model.addAttribute("list5", list5);
             model.addAttribute("list6", list6);
-            model.addAttribute("list7", list7);
 
         } catch (Exception e) {
             model.addAttribute("errorMsg", e.getMessage());
