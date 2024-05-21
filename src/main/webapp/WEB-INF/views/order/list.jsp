@@ -279,11 +279,11 @@
         }else return false;
     }
 </script>
-    <script>
-        document.getElementById('tab1-2').addEventListener('click', function() {
-            window.location.href = '/etcList';
-        });
-    </script>
+<%--    <script>--%>
+<%--        document.getElementById('tab1-2').addEventListener('click', function() {--%>
+<%--            window.location.href = '/etcList';--%>
+<%--        });--%>
+<%--    </script>--%>
 </script>
 </body>
 </html>
