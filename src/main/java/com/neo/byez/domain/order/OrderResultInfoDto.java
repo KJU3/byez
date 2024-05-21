@@ -59,6 +59,10 @@ public class OrderResultInfoDto {
 
     // 주문내역 조회
 
+
+    public OrderResultInfoDto() {
+    }
+
     // 주문번호, 주문일자, 주문금액, 배송비, 배송정보, 배송지 정보(ALL), 최종 결제 정보(ALL)
     public OrderResultInfoDto(String ord_num, Integer total_price, Integer total_dlv_price, Integer total_disc_price,
                               Integer total_pay_price, String ord_date, Integer waybill_num, String dlv_corp, String dlv_state,
