@@ -39,6 +39,6 @@ public class KakaoController {
         HttpSession session = request.getSession();
         session.setAttribute("loginState", "Y");
 
-        return "/";
+        return "index2";
     }
 }

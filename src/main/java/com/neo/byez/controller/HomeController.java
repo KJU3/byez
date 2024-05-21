@@ -33,8 +33,6 @@ public class HomeController {
             model.addAttribute("boardList", boardList);
             model.addAttribute("boardList2", boardList2);
             model.addAttribute("boardList3", boardList3);
-
-            System.out.println(boardList2);
         } catch (Exception e) {
             // 예외 처리
             e.printStackTrace();
