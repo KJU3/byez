@@ -52,12 +52,11 @@
     let id = $(this).parents("div.modalBody").find("input.id").val();
     let name = $(this).parents("div.modalBody").find("input.name").val();
     let num = $(this).parents("div.modalBody").find("input.num").val();
-    alert($(this).parents("div.modalBody").find("input.qty").val());
     let qty = parseInt($(this).parents("div.modalBody").find("input.qty").val());
     let price = parseInt($(this).parents("div.modalBody").find("input.price").val());
     let opt1 = $(this).parents("div.modalBody").find("input.opt1").val();
     let opt2 = $(this).parents("div.modalBody").find("input.opt2").val();
-
+    let opt3 = $(this).parents('div.modalBody').find('input.opt3').val();
 
     // 검증 로직 추가
     if (seq <= 0) {
@@ -109,6 +108,7 @@
   $(".updatePrice").val(price);
   $(".updateOpt1").val(opt1);
   $(".updateOpt2").val(opt2);
+  $(".updateOpt3").val(opt3);
 
   $(".updateBasketItem").submit();
 });

@@ -241,6 +241,10 @@ public class ItemController {
             id = "user1";
             // 장바구니 상품 등록
             dto.setId(id);
+            // 해당 상품 이미지 조회
+            ItemDto selectedDto = itemService.getItem(dto.getNum());
+            dto.setMain_img(selectedDto.getMain_img());
+
             basketItemService.register(dto);
             BasketItemDto target = basketItemService.readByContent(dto);
             BasketItemDtos dtos = new BasketItemDtos();

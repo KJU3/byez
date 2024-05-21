@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/discount.css">
+    <link rel="stylesheet" href="/css/discount.css?after">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -74,7 +74,7 @@
                     <c:forEach var="itemDto" items="${list1}">
                         <li>
                             <a href="/goods/${itemDto.num}">
-                                <img src="/img/1.jpeg" alt="">
+                                <img src="${itemDto.main_img}" alt="">
                             </a>
                             <p class="item_name">
                                 <span>${itemDto.name}</span>
@@ -108,7 +108,7 @@
                 <c:forEach var="itemDto" items="${list2}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -142,7 +142,7 @@
                 <c:forEach var="itemDto" items="${list3}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -154,13 +154,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
@@ -176,7 +173,7 @@
                 <c:forEach var="itemDto" items="${list4}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -188,13 +185,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
@@ -210,7 +204,7 @@
                 <c:forEach var="itemDto" items="${list5}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -222,13 +216,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
@@ -244,7 +235,7 @@
                 <c:forEach var="itemDto" items="${list6}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -256,13 +247,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
@@ -278,7 +266,7 @@
                 <c:forEach var="itemDto" items="${list7}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="/img/1.jpeg" alt="">
+                            <img src="${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -290,13 +278,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
