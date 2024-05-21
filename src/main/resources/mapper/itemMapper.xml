@@ -129,32 +129,7 @@
     on i.num = s.num
     inner join item_detail d
     on i.num = d.num
-    where true
-    <choose>
-      <when test='option=="NT"'>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.item_type LIKE concat('%', #{typeKeyword}, '%')
-      </when>
-      <when test='option=="NC"'>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </when>
-      <when test='option=="TC"'>
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </when>
-      <when test='option=="T"'>
-        AND i.item_type LIKE concat(#{typeKeyword}, '%')
-      </when>
-      <when test='option=="T"'>
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
-      </when>
-      <otherwise>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </otherwise>
-    </choose>
+    where i.item_type LIKE concat('__', #{typeKeyword}, '%')
     and i.price > i.disc_price
     order by d.rel_date desc, s.sales_qty desc, i.review_cnt desc, i.like_cnt desc
     limit #{offset}, #{pageSize}
@@ -165,29 +140,7 @@
     select
     count(*)
     from item i
-    where true
-    <choose>
-      <when test='option=="NT"'>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.item_type LIKE concat('%', #{typeKeyword}, '%')
-      </when>
-      <when test='option=="NC"'>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </when>
-      <when test='option=="TC"'>
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </when>
-      <when test='option=="T"'>
-        AND i.item_type LIKE concat(#{typeKeyword}, '____')
-      </when>
-      <otherwise>
-        AND i.name LIKE concat('%', #{nameKeyword}, '%')
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
-        AND i.cust_type =  #{custKeyword}
-      </otherwise>
-    </choose>
+    where i.item_type LIKE concat('__', #{typeKeyword}, '%')
     and i.price > i.disc_price
   </select>
 

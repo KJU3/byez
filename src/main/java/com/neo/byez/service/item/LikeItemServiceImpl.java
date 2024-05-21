@@ -162,10 +162,4 @@ public class LikeItemServiceImpl {
     public int getCount(String id) throws Exception {
         return likeDao.count(id);
     }
-
-    // 06. 유저의 상품 수량
-    public int getCount(String id) throws Exception {
-        return likeDao.count(id);
-    }
-
 }
