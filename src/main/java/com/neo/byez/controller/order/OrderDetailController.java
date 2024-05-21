@@ -50,10 +50,10 @@ public class OrderDetailController {
         아이디별 주문내역 조회하기 메서드로 받은 값을 list에 담아 모델에 저장하여 view로 옮겨준다
          */
 
-//        String id = "asdf1234";
-        session.setAttribute("id", "asdf1234");
-        String id = (String) session.getAttribute("id");
-        System.out.println("아이디:" +id);
+        String id = "user1";
+//        session.setAttribute("id", "user1");
+//        String id = (String) session.getAttribute("id");
+//        System.out.println("아이디:" +id);
 
         try {
             List<OrderDetailDto> list = orderDetailService.getOrderDetailsList(id);
@@ -77,7 +77,13 @@ public class OrderDetailController {
 
             List<OrderDetailDto> limitList = orderDetailService.getPage(map);
             // System.out.println(limitList.size() == 10);
+
+            //페이징된것
             m.addAttribute("limitList", limitList);
+
+            //페이징상관없이 selectAll한다.
+            m.addAttribute("list", list);
+
             m.addAttribute("ph", ph);
             m.addAttribute("curPage", curPage);
             m.addAttribute("pageSize", pageSize);

@@ -365,7 +365,7 @@
                             </thead>
 
                             <tbody>
-                            <c:forEach var="orderDetailDto" items="${limitList}">
+                            <c:forEach var="orderDetailDto" items="${list}">
                             <tr>
                                 <td class="number order_actions">
                                         ${orderDetailDto.ord_date}
