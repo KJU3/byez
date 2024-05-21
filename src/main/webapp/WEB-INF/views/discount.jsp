@@ -310,7 +310,7 @@
 </section>
 <%@include file="../views/include/quick.jsp"%>
 <%@include file="../views/include/footer.jsp"%>
-<script src="js/jquery-3.6.4.min.js"></script>
+<script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js?after"></script>
 </body>
 </html>

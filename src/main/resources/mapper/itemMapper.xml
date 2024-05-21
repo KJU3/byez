@@ -69,6 +69,9 @@
           AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
           AND i.cust_type =  #{custKeyword}
         </when>
+        <when test='option=="T"'>
+          AND i.item_type LIKE concat(#{typeKeyword}, '%')
+        </when>
         <otherwise>
           AND i.name LIKE concat('%', #{nameKeyword}, '%')
           AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
@@ -96,6 +99,9 @@
       <when test='option=="TC"'>
         AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
         AND i.cust_type =  #{custKeyword}
+      </when>
+      <when test='option=="T"'>
+        AND i.item_type LIKE concat(#{typeKeyword}, '%')
       </when>
       <otherwise>
         AND i.name LIKE concat('%', #{nameKeyword}, '%')
@@ -138,7 +144,7 @@
         AND i.cust_type =  #{custKeyword}
       </when>
       <when test='option=="T"'>
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+        AND i.item_type LIKE concat(#{typeKeyword}, '%')
       </when>
       <when test='option=="T"'>
         AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
@@ -174,7 +180,7 @@
         AND i.cust_type =  #{custKeyword}
       </when>
       <when test='option=="T"'>
-        AND i.item_type LIKE concat('__', #{typeKeyword}, '%')
+        AND i.item_type LIKE concat(#{typeKeyword}, '____')
       </when>
       <otherwise>
         AND i.name LIKE concat('%', #{nameKeyword}, '%')
@@ -291,11 +297,10 @@
 
   <select id="selectWTop8" resultType="ItemDto">
     select
-    i.*,
-    row_number() over (order by s.sales_qty desc) as rankk
+    i.*, row_number() over (order by s.sales_qty desc) as rankk
     from item i, item_state s
     where i.num = s.num
-    and i.item_type=#{item_type}
+    and i.item_type like concat(#{item_type}, '%')
     limit 8;
   </select>
 <!--  &lt;!&ndash;  상품 상태  &ndash;&gt;-->
@@ -306,11 +311,10 @@
 
   <select id="selectMTop8" resultType="ItemDto">
     select
-    i.*,
-    row_number() over (order by s.sales_qty desc) as rankk
+    i.*, row_number() over (order by s.sales_qty desc) as rankk
     from item i, item_state s
     where i.num = s.num
-    and i.item_type=#{item_type}
+    and i.item_type like concat(#{item_type}, '%')
     limit 8;
   </select>
 <!--  <select id="selectItemState" parameterType="string" resultType="ItemStateDto">-->
@@ -321,11 +325,10 @@
 
   <select id="selectUTop8" resultType="ItemDto">
     select
-    i.*,
-    row_number() over (order by s.sales_qty desc) as rankk
+    i.*, row_number() over (order by s.sales_qty desc) as rankk
     from item i, item_state s
     where i.num = s.num
-    and i.item_type=#{item_type}
+    and i.item_type like concat(#{item_type}, '%')
     limit 8;
   </select>
 <!--  <select id="selectAllItemState" resultType="ItemStateDto">-->

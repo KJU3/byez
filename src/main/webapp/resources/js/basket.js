@@ -190,13 +190,31 @@
   let orderNumber = 0;
 
   $('.basketItemInfo').each(function(i, e) {
+      alert("dede");
       if ($(e).find(".basketItemCheckBox").is(":checked") === true) {
           // 값 조회
           const seq = parseInt($(e).find(".eachBasketItemSeq").val());
+          const id = $(e).find('.eachBasketItemId').val();
+          const num = $(e).find('.eachBasketItemNum').val();
+          const name = $(e).find('.eachBasketItemName').val();
+          const price = parseInt($(e).find('.eachBasketItemPrice').val());
+          const qty = parseInt($(e).find('.eachBasketItemQty').val());
+          const opt1 = $(e).find('.eachBasketItemOpt1').val();
+          const opt2 = $(e).find('.eachBasketItemOpt2').val();
+
+
 
           // input 태그 생성
           // form에 추가
           formContents += "<input name='orders[" + orderNumber + "].seq' type='hidden' value='" + seq + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].id' type='hidden' value='" + id + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].num' type='hidden' value='" + num + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].name' type='hidden' value='" + name + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].price' type='hidden' value='" + price + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].qty' type='hidden' value='" + qty + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].opt1' type='hidden' value='" + opt1 + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].opt2' type='hidden' value='" + opt2 + "'>";
+
 
           // 주문 번호 증가
           orderNumber += 1;

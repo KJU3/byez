@@ -35,7 +35,7 @@
                     <ul class="weekly_best">
                         <c:forEach  var="board" items="${boardList}">
                             <li><a href="#">
-                                <img src="/img/${board.main_img}" alt="">
+                                <img src="/img/1.jpeg" alt="">
                             </a>
                                 <p class="item_name">
                                     <span>${board.name}</span>
@@ -57,7 +57,6 @@
                                 <span class="like_cnt">${board.like_cnt}</span>
                                 <p class="review_cnt">리뷰수 <span>${board.review_cnt}</span></p>
                                 <div class="sex">${board.type}</div>
-                                <div class="rank">${board.rankk}</div>
                             </li>
                         </c:forEach>
                     </ul>
@@ -90,7 +89,6 @@
                                 <span class="like_cnt">${board.like_cnt}</span>
                                 <p class="review_cnt">리뷰수 <span>${board.review_cnt}</span></p>
                                 <div class="sex">${board.type}</div>
-                                <div class="rank">${board.rankk}</div>
                             </li>
                         </c:forEach>
                     </ul>
@@ -123,7 +121,6 @@
                                 <span class="like_cnt">${board.like_cnt}</span>
                                 <p class="review_cnt">리뷰수 <span>${board.review_cnt}</span></p>
                                 <div class="sex">${board.type}</div>
-                                <div class="rank">${board.rankk}</div>
                             </li>
                         </c:forEach>
                     </ul>

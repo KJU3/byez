@@ -104,7 +104,7 @@
                             <!-- 추후에 db에서 num만 조회해서 좋아요 상품 등록하게 만들기-->
                             <div class="item-info">
                                 <input class="num" type="hidden" value=${itemDetail.num}>
-                                <input class="name" type="hidden" value=${itemDetail.name}>
+                                <input class="name" type="hidden" value="${itemDetail.detail_name}">
                                 <input class="price" type="hidden" value=${itemDetail.price}>
                                 <input class="disc_price" type="hidden" value=${itemDetail.disc_price}>
                             </div>

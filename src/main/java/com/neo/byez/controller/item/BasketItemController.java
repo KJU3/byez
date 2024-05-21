@@ -2,6 +2,7 @@ package com.neo.byez.controller.item;
 
 
 import com.neo.byez.common.validator.BasketItemValidator;
+import com.neo.byez.domain.item.BasketDto;
 import com.neo.byez.domain.item.BasketItemDto;
 import com.neo.byez.domain.item.BasketItemDtos;
 import com.neo.byez.domain.item.OrderItemDto;
@@ -33,7 +34,7 @@ public class BasketItemController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.setValidator(new BasketItemValidator());
+//        binder.setValidator(new BasketItemValidator());
     }
 
     // 장바구니 기능
@@ -46,7 +47,7 @@ public class BasketItemController {
     @GetMapping("/basket")
     public String list(BasketItemDto dto, Model model, String msg, HttpSession session) {
         String id = (String) session.getAttribute("id");
-        id = "1";
+        id = "user1";
         dto.setId(id);
         try {
             // 해당 유저의 장바구니 상품 목록 조회
@@ -75,7 +76,7 @@ public class BasketItemController {
     @ResponseBody
     public ResponseEntity<String> add(@RequestBody BasketItemDto dto, RedirectAttributes ratt, HttpSession session) {
         String id = (String) session.getAttribute("id");
-        id = "1";
+        id = "user1";
         dto.setId(id);
         System.out.println(dto);
         if (!service.register(dto)) {
@@ -133,7 +134,7 @@ public class BasketItemController {
     @PostMapping("/basket/update")
     public String modify(@Valid BasketItemDto dto, RedirectAttributes ratt, HttpSession session) {
         String id = (String) session.getAttribute("id");
-        id = "1";
+        id = "user1";
         dto.setId(id);
         System.out.println(dto);
 
@@ -151,16 +152,17 @@ public class BasketItemController {
         return "redirect:/basket";
     }
 
-//    @PostMapping("/order")
-//    public String order(OrderItemDtos opd, Model model) {
-//        List<OrderItemDto> list = opd.getOrders();
-//        for (OrderItemDto dto : list) {
-//            System.out.println(dto);
-//        }
-//
-//        model.addAttribute("list", list);
-//        return "order";
-//    }
+    @PostMapping("/order")
+    public String order(BasketItemDtos dtos, Model model) {
+        List<BasketItemDto> list = dtos.getOrders();
+        for (BasketItemDto dto : list) {
+            System.out.println(dto);
+        }
+
+        System.out.println("dede");
+        model.addAttribute("list", list);
+        return "order";
+    }
 
 
 }

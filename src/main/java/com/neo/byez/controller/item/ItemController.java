@@ -2,6 +2,7 @@ package com.neo.byez.controller.item;
 
 
 import com.neo.byez.domain.item.BasketItemDto;
+import com.neo.byez.domain.item.BasketItemDtos;
 import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
 import com.neo.byez.domain.item.PageHandler;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ItemController {
@@ -41,7 +43,7 @@ public class ItemController {
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
-            id = "1";
+            id = "user1";
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -52,6 +54,7 @@ public class ItemController {
             // 카테고리 상품 조회
             sc.setTypeKeyword(type);
             sc.checkOption();
+            System.out.println(sc.getOption());
             List<ItemDto> list = itemService.readBySearchCondition(sc);
 
             // 페이징 처리
@@ -132,7 +135,7 @@ public class ItemController {
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
-            id = "1";
+            id = "user1";
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -196,7 +199,7 @@ public class ItemController {
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
-            id = "1";
+            id = "user1";
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -220,26 +223,32 @@ public class ItemController {
     }
 
     @PostMapping("/goods/{itemNum}")
-    public String order(@PathVariable String itemNum, BasketItemDto dto, HttpSession session, Model model) {
+    public String order(@PathVariable String itemNum, BasketItemDto dto, RedirectAttributes ratt, HttpSession session, Model model) {
         // 로그인 확인
             // o, 장바구니 상품 등록
             // x, 주문 페이지 보내기
         // 추가적으로 페이징 핸들러 처리
+
+
         try {
             dto.setNum(itemNum);
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
-            if (id == null) {
-                return "forward:/order";
-            }
+//            if (id == null) {
+//                return "forward:/order";
+//            }
 
+            id = "user1";
             // 장바구니 상품 등록
             dto.setId(id);
-            if (!basketItemService.register(dto)) {
-                throw new Exception("장바구니에 상품을 등록하지 못했습니다.");
-            }
+            basketItemService.register(dto);
+            BasketItemDto target = basketItemService.readByContent(dto);
+            BasketItemDtos dtos = new BasketItemDtos();
+            dtos.addBasketItemDto(target);
 
-            return "forward:/order";
+
+            ratt.addFlashAttribute("dtos", dtos);
+            return "redirect:/order";
         } catch (Exception e) {
             model.addAttribute("errorMsg", e.getMessage());
             return "errorPage";
