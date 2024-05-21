@@ -22,9 +22,9 @@
 <section>
     <div class="wrapper">
         <p>
-            <a href="main.html"><span>home</span></a>
+            <a href="/"><span>home</span></a>
             <span>></span>
-            <a href="discount.html"><span>할인 상품</span></a>
+            <a href="/item/discount"><span>할인 상품</span></a>
         </p>
         <div>
             <p>할인 상품</p>
@@ -86,13 +86,10 @@
                                         <li style="background-color: ${color}; display: inline"></li>
                                     </c:forEach>
                                 </ul>
-                            <div class="stars">
-                                    ${itemDto.review_rate}
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
+                            <div class="wrap-star">
+                                <div class='star-rating'>
+                                    <span style="width: ${20 * itemDto.review_rate}%"></span>
+                                </div>
                             </div>
                             <i class="fa-solid fa-heart" style="color: red;"></i>
                             <span class="like_cnt">${itemDto.like_cnt}</span>
@@ -120,13 +117,10 @@
                                     <li style="background-color: ${color}; display: inline"></li>
                                 </c:forEach>
                             </ul>
-                        <div class="stars">
-                                ${itemDto.review_rate}
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style="width: ${20 * itemDto.review_rate}%"></span>
+                            </div>
                         </div>
                         <i class="fa-solid fa-heart" style="color: red;"></i>
                         <span class="like_cnt">${itemDto.like_cnt}</span>
