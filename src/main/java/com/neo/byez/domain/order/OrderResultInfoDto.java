@@ -1,4 +1,3 @@
-
 package com.neo.byez.domain.order;
 
 import com.neo.byez.domain.order.OrderDetailDto;
@@ -31,6 +30,7 @@ public class OrderResultInfoDto {
     private Integer total_disc_price;   // 총 할인금액
     private Integer total_pay_price;    // 총 결제금액
     private String ord_date;            // 주문 일시
+    private String ord_state;           // 주문 상태
 
     // ord_detail 테이블 컬럼
     private String item_name;           // 상품명
@@ -38,7 +38,7 @@ public class OrderResultInfoDto {
     private String opt2;                // 색상
     private Integer item_qty;           // 상품수량
     private Integer item_price;         // 주문상품 가격
-    private String ord_state;           // 주문진행상태
+//    private String ord_state;           // 주문진행상태
 
     // dlv 테이블 컬럼
     private Integer waybill_num;        // 운송장번호
@@ -58,10 +58,6 @@ public class OrderResultInfoDto {
     private String mtd_code;            // 결제수단 코드
 
     // 주문내역 조회
-
-
-    public OrderResultInfoDto() {
-    }
 
     // 주문번호, 주문일자, 주문금액, 배송비, 배송정보, 배송지 정보(ALL), 최종 결제 정보(ALL)
     public OrderResultInfoDto(String ord_num, Integer total_price, Integer total_dlv_price, Integer total_disc_price,
@@ -89,15 +85,15 @@ public class OrderResultInfoDto {
         this.mtd_code = mtd_code;
     }
 
-    public OrderResultInfoDto(String ord_num, String ord_date, String item_name, String opt1, String opt2, Integer item_qty, Integer item_price, String ord_state) {
+    public OrderResultInfoDto(String ord_num, String ord_date, String ord_state, String item_name, String opt1, String opt2, Integer item_qty, Integer item_price) {
         this.ord_num = ord_num;
         this.ord_date = ord_date;
+        this.ord_state = ord_state;
         this.item_name = item_name;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.item_qty = item_qty;
         this.item_price = item_price;
-        this.ord_state = ord_state;
     }
 
     public String getOrd_num() {

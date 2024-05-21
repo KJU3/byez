@@ -1,5 +1,8 @@
+[orderHist.jsp]
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,11 +46,11 @@
                     </li>
                 </ul> -->
                 <ul class="sub_menu">
-                    <li><a href="#">LOGOUT</a>
+                    <li><a href="/login/out">LOGOUT</a>
                     </li>
-                    <li><a href="mypage.html">MYPAGE</a>
+                    <li><a href="/mypage/index">MYPAGE</a>
                     </li>
-                    <li><a href="#">ORDER</a>
+                    <li><a href="/order">ORDER</a>
                     </li>
                 </ul>
             </li>
@@ -299,8 +302,8 @@
             </div>
         </div>
         <div class="content">
-            <p>주문번호 <span>${ord_num}</span></p>
-            <p>주문일자 <span>2024.05.18 10:53</span></p>
+            <p>주문번호 <span>${orderResultInfoDto.ord_num}</span></p>
+            <p>주문일자 <span>${orderResultInfoDto.ord_date}</span></p>
             <table class="product">
                 <tr>
                     <th scope="col">상품정보</th>
@@ -310,113 +313,71 @@
                     <th scope="col">배송정보</th>
                     <th scope="col">주문상태</th>
                 </tr>
-                <tr>
-                    <td class="productTitle">
-                        <p>가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사</p>
-                        <p>옵션 :
-                            <span>L</span>
-                            /
-                            <span>lightgray</span>
-                        </p>
-                    </td>
-                    <td>1000</td>
-                    <td class="price">123456789012345</td>
-                    <td>1234</td>
-                    <td class="delivery">
-                        <p>가나다라마</p>
-                        <p>123456789012345</p>
-                    </td>
-                    <td class="orderState">
-                        <p>주문 완료</p>
-                        <button>주문 취소</button>
-                        <button>배송지 변경</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="productTitle">
-                        <p>가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사</p>
-                        <p>옵션 :
-                            <span>L</span>
-                            /
-                            <span>lightgray</span>
-                        </p>
-                    </td>
-                    <td>1000</td>
-                    <td class="price">123456789012345</td>
-                    <td>1234</td>
-                    <td class="delivery">
-                        <p>가나다라마</p>
-                        <p>123456789012345</p>
-                    </td>
-                    <td class="orderState">
-                        <p>주문 완료</p>
-                        <button>주문 취소</button>
-                        <button>배송지 변경</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="productTitle">
-                        <p>가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사</p>
-                        <p>옵션 :
-                            <span>L</span>
-                            /
-                            <span>lightgray</span>
-                        </p>
-                    </td>
-                    <td>1000</td>
-                    <td class="price">123456789012345</td>
-                    <td>1234</td>
-                    <td class="delivery">
-                        <p>가나다라마</p>
-                        <p>123456789012345</p>
-                    </td>
-                    <td class="orderState">
-                        <p>주문 완료</p>
-                        <button>주문 취소</button>
-                        <button>배송지 변경</button>
-                    </td>
-                </tr>
+                <c:forEach var="orderedItem" items="${orderResultInfoDtoList}">
+                    <tr>
+                        <td class="productTitle">
+                            <p>${orderedItem.item_name}</p>
+                            <p>옵션 :
+                                <span>${orderedItem.opt1}</span>
+                                /
+                                <span>${orderedItem.opt2}</span>
+                            </p>
+                        </td>
+                        <td>${orderedItem.item_qty}</td>
+                        <td class="price">${orderedItem.item_price}</td>
+                        <td>0</td>
+                        <td class="delivery">
+                            <p>${orderResultInfoDto.dlv_corp}</p>
+                            <p>${orderResultInfoDto.waybill_num}</p>
+                        </td>
+                        <td class="orderState">
+                            <p>${orderedItem.ord_state}</p>
+                            <button>주문 취소</button>
+                            <button>배송지 변경</button>
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
             <p class="titleBold">배송지 정보</p>
             <table class="dlvInfo">
                 <tr>
                     <td class="dlvTitle">이름</td>
-                    <td>김우직</td>
+                    <td>${orderResultInfoDto.rcpr}</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">연락처</td>
-                    <td>김우직</td>
+                    <td>${orderResultInfoDto.rcpr_mobile}</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">배송지 주소</td>
-                    <td>가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사</td>
+                    <td>${orderResultInfoDto.main_addr} ${orderResultInfoDto.detail_addr}</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">배송 메시지</td>
-                    <td>가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사</td>
+                    <td>${orderResultInfoDto.msg}</td>
                 </tr>
             </table>
             <p class="titleBold">최종 결제 정보</p>
             <table class="dlvInfo">
                 <tr>
                     <td class="dlvTitle">상품 합계</td>
-                    <td><span></span>원</td>
+                    <td><span></span>${orderResultInfoDto.total_price}원</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">배송비 합계</td>
-                    <td>김우직</td>
+                    <td>${orderResultInfoDto.total_dlv_price}원</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">할인 합계</td>
-                    <td class="blue"><span></span>원</td>
+                    <td class="blue"><span>${orderResultInfoDto.total_disc_price}</span>원</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">최종 결제 금액</td>
-                    <td class="dlvTitleSize">sdf</td>
+                    <td class="dlvTitleSize">${orderResultInfoDto.total_pay_price}원</td>
                 </tr>
                 <tr>
                     <td class="dlvTitle">결제 수단</td>
-                    <td></td>
+                    <td>${orderResultInfoDto.mtd_code}</td>
                 </tr>
             </table>
         </div>
