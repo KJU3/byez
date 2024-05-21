@@ -35,6 +35,7 @@
         <!-- 주문 관련 : 진우 - 끝 -->
         <typeAlias alias="OrdEtcReqDto" type="com.neo.byez.domain.order.OrdEtcReqDto"/>
         <typeAlias alias="ItemOptionDto" type="com.neo.byez.domain.order.ItemOptionDto"/>
+        <typeAlias alias="OrderResultInfoDto" type="com.neo.byez.domain.order.OrderResultInfoDto"/>
 
         <!-- 쿠폰 배송지 목록 관련 : 제법 - 시작 -->
         <typeAlias alias="CouponDto" type="com.neo.byez.domain.CouponDto"/>
