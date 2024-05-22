@@ -1,8 +1,7 @@
 package com.neo.byez.controller.order;
 
 import com.neo.byez.domain.UserCouponDetails;
-import com.neo.byez.domain.item.BasketItemDto;
-import com.neo.byez.domain.item.BasketItemDtos;
+import com.neo.byez.domain.item.*;
 import com.neo.byez.domain.order.OrderDto;
 import com.neo.byez.domain.order.OrderReadyInfo;
 import com.neo.byez.domain.order.OrderResultInfoDto;
@@ -150,7 +149,7 @@ public class OrderController {
     }
 
     // 주문 폼 요청
-    @PostMapping("/orderForm")
+    @RequestMapping("/orderForm")
     public String index(HttpSession session, BasketItemDtos basketItemDtos, Model m) throws Exception {
         String userId = (String)session.getAttribute("userId");
 

@@ -239,8 +239,8 @@ public class ItemController {
             dtos.addBasketItemDto(target);
 
 
-            ratt.addFlashAttribute("dtos", dtos);
-            return "redirect:/order";
+            ratt.addFlashAttribute("basketItemDtos", dtos);
+            return "redirect:/order/orderForm";
         } catch (Exception e) {
             model.addAttribute("errorMsg", e.getMessage());
             return "errorPage";
