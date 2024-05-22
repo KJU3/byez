@@ -137,28 +137,30 @@
         if (title.trim() === "" || content.trim() === "") {
             alert("제목과 내용을 작성해주세요");
             return false;
-        } else {
-            return true;
         }
+        if(title.length>100||content.length>1000){
+            alert("글자수 선넘지 마세요");
+            return false;
+        }
+        <c:if test="${mode eq 'write'}">
+        alert("등록되었습니다.");
+        </c:if>
+        <c:if test="${mode ne 'write'}">
+        alert("수정되었습니다.");
+        </c:if>
+        return true;
     }
     $(document).ready(function () {
         $("#writebtn").on("click", function () {
             let form = $("#form");
             form.attr("action", "write");
             form.attr("method", "post");
-            alert("등록되었습니다1.");
             form.submit();
         })
         $("#updatebtn").on("click", function () {
             let form = $("#form");
             form.attr("action", "modify?seq_num=${ReviewDto.review_num}");
             form.attr("method", "post");
-            var title = document.getElementById("title").value;
-            var content = document.getElementById("content").value;
-            if (title.trim() === "" || content.trim() === "") {
-            } else {
-                alert("수정되었습니다.");
-            }
             form.submit();
         })
     });
