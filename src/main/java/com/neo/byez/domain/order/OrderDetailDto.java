@@ -19,12 +19,11 @@ public class OrderDetailDto {
     private String opt4;
     private String opt5;
     private String ord_state;       // 주문상태
+    private String review;
     private String reg_date;
     private String reg_id;
     private String up_date;
     private String up_id;
-    // 찬빈 추가 : 리뷰 가능/완료 상태를 파악하기 위한 칼럼
-    private String review;
 
     public OrderDetailDto(){}
 
@@ -169,6 +168,14 @@ public class OrderDetailDto {
         this.ord_state = ord_state;
     }
 
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     public String getReg_date() {
         return reg_date;
     }
@@ -205,6 +212,7 @@ public class OrderDetailDto {
         this.setOrd_num(ord_num);
         this.setId(id);
         this.setOrd_state(ord_state);
+        this.setReview("N");
         this.setReg_id(id);
         this.setUp_id(id);
     }
@@ -241,6 +249,7 @@ public class OrderDetailDto {
                 ", opt4='" + opt4 + '\'' +
                 ", opt5='" + opt5 + '\'' +
                 ", ord_state='" + ord_state + '\'' +
+                ", review='" + review + '\'' +
                 ", reg_date='" + reg_date + '\'' +
                 ", reg_id='" + reg_id + '\'' +
                 ", up_date='" + up_date + '\'' +

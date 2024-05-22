@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-//@RequestMapping(value = {"/order"})
+@RequestMapping(value = {"/order"})
 public class OrderController {
     @Autowired
     OrderServiceImpl orderService;
@@ -150,26 +150,17 @@ public class OrderController {
     }
 
     // 주문 폼 요청
-    @GetMapping("/orderForm")
-//    public String index(HttpServletRequest request, HttpSession session, BasketItemDtos basketItemDtos, Model m) throws Exception {
-    public String orderForm(HttpSession session, Model m) throws Exception {
+    @PostMapping("/orderForm")
+    public String index(HttpSession session, BasketItemDtos basketItemDtos, Model m) throws Exception {
         String userId = (String)session.getAttribute("userId");
 
         // 더미데이터 생성
         String id = "user1";
-        List<BasketItemDto> tmp = new ArrayList<>();
-        BasketItemDto basketItemDto1 = new BasketItemDto(1, "user1", "12345", "여름반팔", 10000, 2, "L", "white", "", "", "" , "" , new Date(), "asdf", new Date(), "asdf");
-        BasketItemDto basketItemDto2 = new BasketItemDto(2, "user1", "54321", "가을자켓", 50000, 1, "L", "white", "", "", "" , "" , new Date(), "asdf", new Date(), "asdf");
-        tmp.add(basketItemDto1);
-        tmp.add(basketItemDto2);
-        BasketItemDtos basketItemDtos = new BasketItemDtos();
-        basketItemDtos.setOrders(tmp);
 
         List<BasketItemDto> basketItemDtoList = basketItemDtos.getOrders();
         HashMap<String,Object> map = orderService.orderForm(id, basketItemDtoList);
         List<UserCouponDetails> coupons = custCouponsService.getUserCouponDetailsByUserId(id);
 
-        System.out.println();
         m.addAttribute("coupons", coupons);
         m.addAttribute("orderDto", map.get("orderDto"));
         m.addAttribute("basketItemDtoList", basketItemDtoList);
@@ -193,5 +184,10 @@ public class OrderController {
         m.addAttribute("orderResultInfoDtoList", orderResultInfoDtoList);
 
         return "/order/orderHist";
+    }
+
+    @GetMapping("/orderComplete")
+    public String orderComplete(){
+        return "/order/orderComplete";
     }
 }

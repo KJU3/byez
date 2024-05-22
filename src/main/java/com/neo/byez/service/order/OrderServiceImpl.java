@@ -77,6 +77,8 @@ public class OrderServiceImpl implements OrderService {
         }
         orderDto.setTotal_item_qty(totalQty);
         orderDto.setTotal_price(totalPrice);
+        // 추후 할인금액 계산해서 넘길지 고려
+        orderDto.setTotal_pay_price(totalPrice);
 
         return orderDto;
     }
@@ -118,7 +120,6 @@ public class OrderServiceImpl implements OrderService {
 
         // 주문 정보 초기화
         orderReadyInfo.initOrderReadyInfo(id, "주문대기", "결제대기");
-        System.out.println(orderReadyInfo);
 
         // 성공 결과를 판단하기 위한 변수
         int result = 0;
