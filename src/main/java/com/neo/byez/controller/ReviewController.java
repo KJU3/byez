@@ -42,6 +42,10 @@ public class ReviewController {
         String ord_num = httpServletRequest.getParameter("ord_num");
         String item_num = httpServletRequest.getParameter("item_num");
         String userId = (String) httpSession.getAttribute("userId");
+        // url을 통한 validate
+        if( !ordDetailServiceImpl.validateSearchOrdItem(ord_num,item_num,userId)){
+            return "redirect:/review/list";
+        }
         OrderDetailDto ordDetailDto = ordDetailServiceImpl.searchOrdItem(ord_num, item_num, userId);
         //값이 잘못들어가서 위에 nullpointException 경우 생각해서 test 코드 작성 및 예외처리 해주기
         model.addAttribute("ordDetailDto", ordDetailDto);
@@ -67,7 +71,16 @@ public class ReviewController {
         String ord_num = httpServletRequest.getParameter("ord_num");
         String item_num = httpServletRequest.getParameter("item_num");
         String userId = (String) httpSession.getAttribute("userId");
-        Integer review_num = Integer.valueOf(httpServletRequest.getParameter("review_num"));
+        Integer review_num;
+        // Integer 값 받을 때, NumberFormatException 체크
+        try{review_num=Integer.valueOf(httpServletRequest.getParameter("review_num"));}
+        catch (NumberFormatException e){
+            return "redirect:/review/list";
+        }
+        // url을 통한 validate
+        if( !ordDetailServiceImpl.validateSearchOrdItem(ord_num,item_num,userId)){
+            return "redirect:/review/list";
+        }
         //ordDetailDto를 통해서 주문번호와 상품번호를 통해서 고객이 선택한 opt를 가져오도록 한다. (리뷰 테이블에 옵션 컬럼 추가방안고민)
         OrderDetailDto ordDetailDto = ordDetailServiceImpl.searchOrdItem(ord_num, item_num, userId);
         // reviewDto에서 seq_num을 통해 고객이 입력했던 제목과 내용값을 가져와야 한다.

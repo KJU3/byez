@@ -90,8 +90,18 @@ public class QnaController {
 
     @GetMapping("/read")
     public String read(HttpServletRequest httpServletRequest, Model model) {
-        Integer seq_num = Integer.valueOf(httpServletRequest.getParameter("seq_num"));
+        Integer seq_num;
+        // Integer NumberFormatException 예외처리
+        try {
+            seq_num = Integer.valueOf(httpServletRequest.getParameter("seq_num"));
+        }catch (NumberFormatException e){
+            return "redirect:/qna/list";
+        }
         QnaDto qnaDto = qnaDao.select(seq_num);
+        //URL을 통해 들어온 값 VALIDATE
+        if(qnaDto==null){
+            return "redirect:/qna/list";
+        }
         model.addAttribute("qnaDto", qnaDto);
         return "qnaRead";
     }
@@ -105,7 +115,17 @@ public class QnaController {
 
     @GetMapping("/update")
     public String update1(HttpServletRequest httpServletRequest, Model model) {
-        Integer seq_num = Integer.valueOf(httpServletRequest.getParameter("seq_num"));
+        Integer seq_num;
+        // Integer NumberFormatException 예외처리
+        try {
+            seq_num = Integer.valueOf(httpServletRequest.getParameter("seq_num"));
+        }catch (NumberFormatException e){
+            return "redirect:/qna/list";
+        }
+        //URL을 통해 들어온 값 VALIDATE
+        if(qnaDao.select(seq_num)==null){
+            return "redirect:/qna/list";
+        }
         QnaDto qnaDto = qnaDao.select(seq_num);
         model.addAttribute("mode", "update");
         model.addAttribute("qnaDto", qnaDto);
