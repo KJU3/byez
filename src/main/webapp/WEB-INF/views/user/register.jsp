@@ -130,7 +130,7 @@
           </tr>
         </table>
         <div class="button_wrapper">
-          <button onclick="location.href='index2'">가입취소</button>
+          <button onclick="location.href='/'">가입취소</button>
           <input type="submit" id="sendUserInfoBtn" value="제출">
         </div>
       </form>

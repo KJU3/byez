@@ -1,5 +1,6 @@
 package com.neo.byez.controller.user;
 
+import com.neo.byez.common.validator.DataValidator;
 import com.neo.byez.common.validator.SignUpValidator;
 import com.neo.byez.domain.user.UserDto;
 import com.neo.byez.service.user.MailService;
@@ -28,12 +29,14 @@ public class SignUpController {
     private UserServiceImpl userService;
     private MailService mailService;
     private BCryptPasswordEncoder passwordEncoder; // for PWD 암호화
+    private DataValidator dataValidator;
 
     @Autowired // 애너테이션 생략 가능
-    public SignUpController(UserServiceImpl userService, MailService mailService, BCryptPasswordEncoder passwordEncoder) {
+    public SignUpController(UserServiceImpl userService, MailService mailService, BCryptPasswordEncoder passwordEncoder, DataValidator dataValidator) {
         this.userService = userService;
         this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
+        this.dataValidator = dataValidator;
     }
 
     @InitBinder
@@ -97,15 +100,17 @@ public class SignUpController {
     // ID 중복확인
     @PostMapping("/checkDuplicatedId")
     @ResponseBody
-    public ResponseEntity<String> checkDuplicatedUser (String id) {
+    public ResponseEntity<String> checkDuplicatedId (String id) {
         try {
-            if (userService.checkDuplicatedId(id) != null) {
+            if (!dataValidator.validateOfID(id)) {
+                return new ResponseEntity<>(dataValidator.getWrongIdFormat(), HttpStatus.BAD_REQUEST);
+            } else if (userService.checkDuplicatedId(id) != null) {
                 return new ResponseEntity<>(DUPLICATED_ID.getMessage(), HttpStatus.BAD_REQUEST);
             } else {
                 return new ResponseEntity<>("사용가능한 아이디입니다.", HttpStatus.OK);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("오류 발생", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("오류 발생!", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
