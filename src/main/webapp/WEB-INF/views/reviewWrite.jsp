@@ -139,7 +139,7 @@
             return false;
         }
         if(title.length>100||content.length>1000){
-            alert("글자수 선넘지 마세요");
+            alert("글자수 확인하고 작성해주세요");
             return false;
         }
         <c:if test="${mode eq 'write'}">
