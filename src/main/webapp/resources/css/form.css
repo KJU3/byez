@@ -1,0 +1,29 @@
+
+.datatable-dropdown label {font-size: 1px; color: white;}
+
+.datatable-info {display: none;}
+
+.mt-4 span {color: gray; font-size: 30px;}
+.datatable-top,.datatable-bottom {display: none;}
+
+.card-body {width: 100%; height: fit-content; background-color: rgba(255, 0, 0, .1);}
+.registerForm {width: 70%; height: fit-content; background-color: rgba(255, 0, 0, .1); margin: auto;}
+.registerForm table {border-collapse: collapse;
+	border-top: 1px solid black;
+	border-left: 1px solid black;}
+
+.registerForm th, .registerForm td {
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+}
+
+
+
+
+
+
+
+
+.register {
+    padding: 5px 8px; border: lightgray 1px solid; border-radius: 7px; background-color: white; transition: 0.3s; float: right;}
+.register:hover {background-color: lightgray;}

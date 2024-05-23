@@ -118,7 +118,7 @@ public class ItemServiceImpl {
     }
 
     @Transactional(rollbackFor = Exception.class) // 상품 정보 등록, TX 처리(중복 등록 방지)
-    public void add(ItemDto itemDto, ItemDetailDto itemDetailDto, ItemStateDto itemStateDto,
+    public boolean add(ItemDto itemDto, ItemDetailDto itemDetailDto, ItemStateDto itemStateDto,
             List<ItemOptDto> itemSizeDtos, List<ItemOptDto> itemColorDtos, ItemPriceDto itemPriceDto) throws Exception {
         /* 처리 작업 */
             // 상품 등록 => 1, ItemDto
@@ -188,6 +188,8 @@ public class ItemServiceImpl {
         if (rowCnt != 5 + n1 + n2) {
             throw new Exception("적용되지 못한 쿼리문이 존재합니다.");
         }
+
+        return rowCnt != 5 + n1 + n2;
     }
 
     // 모든 상품을 조회, 임시적으로 구현(사용x)

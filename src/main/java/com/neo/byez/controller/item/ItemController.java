@@ -3,6 +3,7 @@ package com.neo.byez.controller.item;
 
 import com.neo.byez.domain.item.*;
 import com.neo.byez.service.item.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ItemController {
 
     private ItemServiceImpl itemService;
-
     private BasketItemServiceImpl basketItemService;
 
 
@@ -246,6 +246,48 @@ public class ItemController {
             return "errorPage";
         }
     }
+
+    @GetMapping("/admin/item")
+    public String getItemForm() {
+        return "itemRegister";
+    }
+
+    @PostMapping("/admin/item")
+    public String addItemForm(ItemRegisterInfo info) {
+        System.out.println(info);
+        // 필요한 DTO 생성
+        ItemDto itemDto = info.getItemDto();
+        System.out.println(itemDto);
+
+        ItemDetailDto itemDetailDto = info.getItemDetailDto();
+        System.out.println(itemDetailDto);
+
+        ItemStateDto itemStateDto = info.getItemStateDto();
+        System.out.println(itemStateDto);
+
+        List<ItemOptDto> sizeList = info.getSizeList();
+        sizeList.stream().forEach(e -> System.out.print(e.getCode()));
+
+        List<ItemOptDto> colorList = info.getColorList();
+        colorList.stream().forEach(e -> System.out.print(e.getCode()));
+
+        ItemPriceDto itemPriceDto = info.getItemPriceDto();
+        System.out.println(itemPriceDto);
+
+
+        try {
+            // 서비스 호출, 상품 등록
+            itemService.add(itemDto, itemDetailDto, itemStateDto, sizeList, colorList, itemPriceDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return "itemRegister";
+    }
+
+
 
 
 }
