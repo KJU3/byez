@@ -113,9 +113,21 @@
             return false;
         }
 
+        // 배송지명의 길이 확인
+        if (nick.trim().length > 50) {
+            alert("배송지명은 최대 50자까지 입력 가능합니다.");
+            return false;
+        }
+
         // 성명 필드가 최소 2글자 이상의 문자열인지 확인
         if (recipient.trim().length < 2) {
             alert("성명을 최소 2글자 이상 입력하세요.");
+            return false;
+        }
+
+        // 성명의 길이 확인
+        if (recipient.trim().length > 10) {
+            alert("성명은 최대 10자까지 입력 가능합니다.");
             return false;
         }
 
