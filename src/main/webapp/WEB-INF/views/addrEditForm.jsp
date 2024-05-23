@@ -36,19 +36,19 @@
                 <input type="hidden" id="seq" name="seq" value="${address.seq}">
                 <table class="editTable">
                     <tr>
-                        <th scope="row">배송지명</th>
+                        <th scope="row">*배송지명</th>
                         <td>
                             <input type="text" id="nick" name="nick" class="addrNameInput" value="${address.nick}">
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">성명</th>
+                        <th scope="row">*성명</th>
                         <td>
                             <input type="text" id="recipient" name="recipient" class="userNameInput" value="${address.recipient}">
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">주소</th>
+                        <th scope="row">*주소</th>
                         <td>
                             <input type="text" id="sample6_postcode" name="zpcd" class="zpcdInput" value="${address.zpcd}" readonly>
                             <a href="#" class="addr_search_btn" onclick="sample6_execDaumPostcode()">주소찾기</a><br>
@@ -64,7 +64,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">휴대전화</th>
+                        <th scope="row">*휴대전화</th>
                         <td>
                             <input type="text" id="mobileNum" name="mobileNum" class="mobileNumInput" value="${address.mobileNum}">
                         </td>

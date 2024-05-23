@@ -35,19 +35,19 @@
             <form action="registerAddress" method="post" onsubmit="return validateForm()">
                 <table class="regTable">
                     <tr>
-                        <th scope="row">배송지명</th>
+                        <th scope="row">*배송지명</th>
                         <td>
                             <input type="text" id="nick" name="nick" class="addrNameInput">
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">성명</th>
+                        <th scope="row">*성명</th>
                         <td>
                             <input type="text" id="recipient" name="recipient" class="userNameInput">
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">주소</th>
+                        <th scope="row">*주소</th>
                         <td>
                             <input type="text" id="sample6_postcode" name="zpcd" class="zpcdInput" readonly>
                             <a href="#" class="addr_search_btn" onclick="sample6_execDaumPostcode()">주소찾기</a><br>
@@ -63,7 +63,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">휴대전화</th>
+                        <th scope="row">*휴대전화</th>
                         <td>
                             <input type="text" id="mobileNum" name="mobileNum" class="mobileNumInput">
                         </td>
