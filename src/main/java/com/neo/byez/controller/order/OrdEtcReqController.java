@@ -63,7 +63,6 @@ public class OrdEtcReqController {
     @RequestMapping(value = "/cancelOrder")
     public String cancelOrder(Model m, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto, String ord_state) throws Exception {
 
-        System.out.println("/cancelOrder");
         /*
             -확인-
             값이 잘 넘어왔는지 확인할것(ord_num이 빈문자열임..)
@@ -97,10 +96,8 @@ public class OrdEtcReqController {
         ordEtcReqService.insertOrderState(orderStateDto);
         ordEtcReqService.updateStateCode(orderDto);
         ordEtcReqService.updateOrdState(ordDetailDto);
-
         */
-        System.out.println("ordEtc" + ordEtcReqDto);
-        System.out.println("ordDetail" + orderDetailDto);
+
             ordEtcReqService.insertCancelInfo(ordEtcReqDto , orderDetailDto, orderDto, orderStateDto);
 
         return "redirect:/order/list";
@@ -194,6 +191,7 @@ public class OrdEtcReqController {
     @RequestMapping(value = "/refundOrder")
     public String refundOrder(Model m, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto,DeliveryDto deliveryDto) throws Exception {
 
+        System.out.println(deliveryDto);
         List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("aaa");
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);
@@ -278,10 +276,9 @@ public class OrdEtcReqController {
     @RequestMapping(value = "/exchangeOrder")
     public String exchangeOrder(Model m,  String num, OrdEtcReqDto ordEtcReqDto, OrderStateDto orderStateDto, OrderDetailDto orderDetailDto, OrderDto orderDto, DeliveryDto deliveryDto, ItemOptionDto itemOptionDto) throws Exception {
 
-        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("asdf1234");
+        List<OrderDetailDto> list = orderDetailService.getOrderDetailsList("ugyung1");
         List<ItemOptionDto> colorList = orderDetailService.selectColorOption(num);
         List<ItemOptionDto> sizeList = orderDetailService.selectSizeOption(num);
-
 
         //주문내역(list)을 모델에 담아 view로 보내준다
         m.addAttribute("list", list);

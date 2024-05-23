@@ -443,6 +443,7 @@
     <input type="hidden" name="rcpr_mobile" value="${deliveryDto.rcpr_mobile}">
     <input type="hidden" name="ord_num" value="${ord_num}">
     <input type="hidden" name="seq" value="${orderDetailDto.seq}">
+        <input type="hidden" name="pickup_chk" value="${}">
     <input type="hidden" name="type_code" value="E">
     <input type="hidden" name="state_code" value="EXC1">
     <input type="hidden" name="ord_state" value="교환신청">
@@ -825,6 +826,30 @@
             let refundConfirm = confirm("교환신청 하시겠습니까?");
             if (refundConfirm) {
                 updateHiddenFields();
+                document.getElementById('refund').addEventListener('submit', function(event) {
+                    let rcpr = document.getElementById("rcpr");
+                    let zpde = document.getElementById("zpcd");
+                    let main_addr = document.getElementById('main_addr');
+                    let detail_addr = document.getElementById('detail_addr');
+                    let rcpr_mobile = document.getElementById('rcpr_mobile');
+
+                    if (rcpr.value === "") {
+                        rcpr.value = '${deliveryDto.rcpr}';
+                    }
+
+                    if (zpcd.value === "") {
+                        zpcd.value = '${deliveryDto.zpcd}';
+                    }
+                    if (main_addr.value === "") {
+                        main_addr.value = '${deliveryDto.main_addr}';
+                    }
+                    if (detail_addr.value === "") {
+                        detail_addr.value = '${deliveryDto.detail_addr}';
+                    }
+                    if (rcpr_mobile.value === "") {
+                        rcpr_mobile.value = '${deliveryDto.rcpr_mobile}';
+                    }
+                    handleShippingOptionChange();
                 alert("교환 신청되었습니다.");
             } else {
                 return false;

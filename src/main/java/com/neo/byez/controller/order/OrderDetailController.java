@@ -46,7 +46,7 @@ public class OrderDetailController {
             --> selectAllEtc
 
         고객아이디는 세션에서 받아와서 조회가능
-        임의로 cust DB에 저장된 aaa라는 고객아이디를 사용
+        임의로 cust DB에 저장된 user1이라는 고객아이디를 사용
         아이디별 주문내역 조회하기 메서드로 받은 값을 list에 담아 모델에 저장하여 view로 옮겨준다
          */
 
@@ -55,24 +55,24 @@ public class OrderDetailController {
         try {
             List<OrderDetailDto> list = orderDetailService.getOrderDetailsList(id);
             List<OrderDetailDto> etcList = orderDetailService.selectAllEtc(id);
-            if(list.isEmpty() ){
-                m.addAttribute("message", "조회결과가 없습니다.");
-            }
             if (curPage == null) {
                 curPage = 1;
             }
             if (pageSize == null) {
                 pageSize = 10;
             }
-            int totalCnt = orderDetailService.getCount();
-            PageHandler ph = new PageHandler(totalCnt, curPage, pageSize);
-            // System.out.println("ph : " +ph);
-            Map map = new HashMap();
-            map.put("offset", (curPage - 1) * 10);
-            map.put("pageSize",  pageSize);
+            int totalCnt = orderDetailService.getCount(userId);
+            PageHandler ph = new PageHandler(totalCnt, curPage, 10);
 
-            List<OrderDetailDto> limitList = orderDetailService.getPage(map);
-            // System.out.println(limitList.size() == 10);
+            List<OrderDetailDto> limitList = orderDetailService.getPage(curPage, pageSize, userId);
+
+            if(limitList.isEmpty() ){
+                m.addAttribute("listMessage", "조회결과가 없습니다.");
+            }
+
+                if(etcList.isEmpty()){
+                    m.addAttribute("etcMessage", "조회결과가 없습니다.");
+            }
 
             //페이징된것
             m.addAttribute("limitList", limitList);

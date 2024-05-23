@@ -33,13 +33,13 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
 
     @Override
-    public List<OrderDetailDto> getPage(Map map) throws Exception {
-        return ordDetailDao.selectPage(map);
+    public List<OrderDetailDto> getPage( Integer curPage, Integer pageSize, String userId) throws Exception {
+        return ordDetailDao.selectPage(curPage, pageSize, userId);
     }
 
     @Override
-    public int getCount() throws Exception {
-        return ordDetailDao.getCount();
+    public int getCount(String userId) throws Exception {
+        return ordDetailDao.getCount(userId);
     }
 
     @Override

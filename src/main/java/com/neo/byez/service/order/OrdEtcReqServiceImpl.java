@@ -61,7 +61,7 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
         int rowCnt = 0;
 
         try {
-            String id = "asdf1234";
+            String id = "user1";
             // 주문상태, 배송번호 초기화
             setOrderStateSeq(orderStateDto);
             orderStateDto.setReg_id(id);
@@ -114,13 +114,14 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
 
         try {
 
-            String id = "asdf1234";
+            String id = "user1";
             String ord_num = orderDto.getOrd_num();
             orderStateDto.setSaveReadyInfo(id,0, ord_num,orderStateDto.getState_code() );
             deliveryDto.setSaveReadyInfo(ord_num,  id);
             // 주문상태, 배송번호 초기화
             setOrderStateSeq(orderStateDto);
             setDlvNum(deliveryDto);
+            setOrdEtcReqSeq(ordEtcReqDto);
 
             rowCnt += ordEtcReqDao.insertRefund(ordEtcReqDto);
             rowCnt += orderDao.updateStateCode(orderDto);
@@ -149,7 +150,7 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
 
         try {
 
-            String id = "asdf1234";
+            String id = "user1";
             String ord_num = orderDto.getOrd_num();
             orderStateDto.setSaveReadyInfo(id,0, ord_num,orderStateDto.getState_code() );
             // 주문상태, 배송번호 초기화
@@ -206,13 +207,15 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
         int rowCnt = 0;
 
         try {
-            String id = "asdf1234";
+            String id = "user1";
             String ord_num = orderDto.getOrd_num();
             orderStateDto.setSaveReadyInfo(id,0, ord_num,orderStateDto.getState_code() );
             deliveryDto.setSaveReadyInfo(ord_num,  id);
             // 주문상태, 배송번호 초기화
             setOrderStateSeq(orderStateDto);
             setDlvNum(deliveryDto);
+            setOrdEtcReqSeq(ordEtcReqDto);
+
 
             // 데이터 추가 및 수정
             rowCnt += ordEtcReqDao.insertRefund(ordEtcReqDto);
@@ -279,6 +282,15 @@ public class OrdEtcReqServiceImpl implements OrdEtcReqService {
         int count = orderStateDao.count(ord_num);
         // count + 1 해서 Seq 저장
         orderStateDto.setSeq(count+1);
+    }
+
+    public void setOrdEtcReqSeq(OrdEtcReqDto ordEtcReqDto) throws Exception {
+        // 주문번호 조회
+        String ord_num = ordEtcReqDto.getOrd_num();
+        // 해당 주문번호의 취소교환반품데이터가 몇개인가
+        int count = ordEtcReqDao.getCountOrdNum(ord_num);
+        // count + 1 해서 Seq 저장
+        ordEtcReqDto.setSeq(count+1);
     }
 
     //배송(deliveryDto) Dto Set dlv_num
