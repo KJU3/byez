@@ -71,7 +71,7 @@ input[type="image"] {
     font-size: 13px; }
 
 .product-title p{
-    font-weight: bold; margin-top:30px; margin-left:10px; margin-bottom: 10px;}
+    font-weight: bold; margin-top:90px; margin-left:10px; margin-bottom: 10px;}
 
 
 .table_title {
@@ -154,6 +154,7 @@ input[type="submit"]:hover {
     /*position : absolute;*/
     /*display : flex;*/
     /*align-content: center;*/
+    margin-top: 23px;
 }
 
 /* <form> 태그 내의 버튼 스타일 */
@@ -169,4 +170,7 @@ input[type="submit"]:hover {
 }
 
 .noneOrderMsg {text-align: center; font-size: 15px; font-weight: bold;}
-.ord_num .option{color: #999999}
+.ord_num{color: #999999}
+.option {color: #999999}
+.paging {text-align: center;}
+.thead {border-bottom: 1px solid lightgray}

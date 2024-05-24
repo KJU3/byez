@@ -94,7 +94,7 @@
                             <p>주문상품내역</p>
                         </div>
                         <table class="product">
-                            <thead>
+                            <thead class="thead">
                             <tr>
                                 <th scope="col">주문일자</th>
                                 <th scope="col">상품명</th>
@@ -141,7 +141,7 @@
                                             </form>
                                 </td>
                                 <td>${orderDetailDto.item_name}
-                                    <p>
+                                    <p class="option">
                                         옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}
                                     </p>
                                 </td>
@@ -170,6 +170,7 @@
                         </c:if>
                         <br>
 
+                        <div class="paging">
                         <c:if test="${ph.showPrev}">
                             <a href = "list?curPage=${ph.naviStart-1}"><<</a> &nbsp;
                             <a href = "list?curPage=${ph.curPage-1}"><</a>
@@ -183,7 +184,7 @@
                             <a href = "list?curPage=${ph.curPage+1}">></a> &nbsp;
                             <a href = "list?curPage=${ph.naviEnd+1}">>></a>
                         </c:if>
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,7 +229,7 @@
                         <p>취소/교환/반품</p>
                     </div>
                     <table class="product">
-                        <thead>
+                        <thead class="thead">
                         <tr>
                             <th scope="col">주문일자</th>
                             <th scope="col">상품명</th>
@@ -242,14 +243,17 @@
                         <tr>
                             <c:forEach var="orderDetailDto" items="${etcList}">
                         <tr>
+                            <div class="ord_num_ord_date">
                             <td class="number">
-                                    ${orderDetailDto.ord_date}
+                                <p style="margin-top: 20px"> ${orderDetailDto.ord_date}
                                 <input type="hidden" name="ord_date" value="${orderDetailDto.ord_date}">
-                                <p>
+                                </p>
+                                <p class="ord_num">
 <%--                                    <a href="#">${orderDetailDto.ord_num}</a>--%>
                                     ${orderDetailDto.ord_num}
                                 </p>
                             </td>
+                            </div>
                             <td>${orderDetailDto.item_name}
                                 <p class="option">
                                     옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}
