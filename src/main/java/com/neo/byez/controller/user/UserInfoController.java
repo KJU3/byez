@@ -141,21 +141,21 @@ public class UserInfoController {
         }
     }
 
-    // 생년월일 변경
-    @PostMapping("/modifyBefBirth")
-    @ResponseBody
-    public ResponseEntity<String> modifyBefBirth(String id, Integer bef_birth) {
-        try {
-            if (userService.modifyUserBefBirth(id, bef_birth)) {
-                return new ResponseEntity<>("생년월일 변경 성공!", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("생년월일 변경 시 오류 발생", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("생년월일 변경 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    // 생년월일 변경
+//    @PostMapping("/modifyBefBirth")
+//    @ResponseBody
+//    public ResponseEntity<String> modifyBefBirth(String id, Integer bef_birth) {
+//        try {
+//            if (userService.modifyUserBefBirth(id, bef_birth)) {
+//                return new ResponseEntity<>("생년월일 변경 성공!", HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>("생년월일 변경 시 오류 발생", HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>("생년월일 변경 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     // 전화번호 변경
     @PostMapping("/modifyMobileNum")
@@ -178,6 +178,11 @@ public class UserInfoController {
     // 1.3. 탈퇴 처리
     // 1.3.1. 탈퇴처리 성공 시 메인 화면으로 이동
     // 1.3.2. 탈퇴처리 실패 시 다시 탈퇴 요청 화면으로 이동
+
+    @GetMapping("/withdrawalReason")
+    public String moveToWithdrawalReasonPage() {
+        return "/user/withdrawalReason";
+    }
 
     @GetMapping("/withdrawal")
     public String moveToWithdrawalPage() {

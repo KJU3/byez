@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/review_write.css?after">
+    <link rel="stylesheet" href="/css/review_write.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -46,8 +46,8 @@
                             </div>
                         </th>
                         <td class="item_info">
-                            <p class="item_name">상품명 :${ordDetailDto.item_name}</p>
-                            <p class="item_opt">옵션명 :${ordDetailDto.opt1},${ordDetailDto.opt2}</p>
+                            <p class="item_name">상품명 : ${ordDetailDto.item_name}</p>
+                            <p class="item_opt">옵션 : ${ordDetailDto.opt1}  ${ordDetailDto.opt2}  ${ordDetailDto.opt3}</p>
                         </td>
                     </tr>
                     <tr>
@@ -56,11 +56,11 @@
                         </th>
                         <td>
                             <select name="score">
-                                <option value=5>5점</option>
-                                <option value=4>4점</option>
-                                <option value=3>3점</option>
-                                <option value=2>2점</option>
-                                <option value=1>1점</option>
+                                <option value=5 ${reviewDto.score == 5 ? 'selected' : ''}>5점</option>
+                                <option value=4 ${reviewDto.score == 4 ? 'selected' : ''}>4점</option>
+                                <option value=3 ${reviewDto.score == 3 ? 'selected' : ''}>3점</option>
+                                <option value=2 ${reviewDto.score == 2 ? 'selected' : ''}>2점</option>
+                                <option value=1 ${reviewDto.score == 1 ? 'selected' : ''}>1점</option>
                             </select>
                         </td>
                     </tr>
@@ -69,12 +69,12 @@
                             한줄평
                         </th>
                         <td>
-                            <input id="title" name="title" type="text" placeholder="한줄평" value="${reviewDto.title}">
+                            <input id="title" name="title" type="text" placeholder="한줄평 (100자 제한)" value="${reviewDto.title}">
                         </td>
                     </tr>
                     <tr>
                         <th colspan="3">
-                            <textarea  id="content" name="content"placeholder="자세한리뷰" class="put_large_content" contenteditable="true">${reviewDto.content}</textarea>
+                            <textarea  id="content" name="content"placeholder="자세한리뷰 (100자 제한)" class="put_large_content" contenteditable="true">${reviewDto.content}</textarea>
                         </th>
                     </tr>
 
@@ -137,28 +137,30 @@
         if (title.trim() === "" || content.trim() === "") {
             alert("제목과 내용을 작성해주세요");
             return false;
-        } else {
-            return true;
         }
+        if(title.length>100||content.length>1000){
+            alert("글자수 확인하고 작성해주세요");
+            return false;
+        }
+        <c:if test="${mode eq 'write'}">
+        alert("등록되었습니다.");
+        </c:if>
+        <c:if test="${mode ne 'write'}">
+        alert("수정되었습니다.");
+        </c:if>
+        return true;
     }
     $(document).ready(function () {
         $("#writebtn").on("click", function () {
             let form = $("#form");
             form.attr("action", "write");
             form.attr("method", "post");
-            alert("등록되었습니다1.");
             form.submit();
         })
         $("#updatebtn").on("click", function () {
             let form = $("#form");
             form.attr("action", "modify?seq_num=${ReviewDto.review_num}");
             form.attr("method", "post");
-            var title = document.getElementById("title").value;
-            var content = document.getElementById("content").value;
-            if (title.trim() === "" || content.trim() === "") {
-            } else {
-                alert("수정되었습니다.");
-            }
             form.submit();
         })
     });
@@ -171,3 +173,4 @@
 </script>
 </body>
 </html>
+

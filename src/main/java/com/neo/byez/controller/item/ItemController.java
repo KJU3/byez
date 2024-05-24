@@ -1,15 +1,8 @@
 package com.neo.byez.controller.item;
 
 
-import com.neo.byez.domain.item.BasketItemDto;
-import com.neo.byez.domain.item.BasketItemDtos;
-import com.neo.byez.domain.item.ItemDetailPageDto;
-import com.neo.byez.domain.item.ItemDto;
-import com.neo.byez.domain.item.ItemRegisterInfo;
-import com.neo.byez.domain.item.PageHandler;
-import com.neo.byez.domain.item.SearchCondition;
-import com.neo.byez.service.item.BasketItemServiceImpl;
-import com.neo.byez.service.item.ItemServiceImpl;
+import com.neo.byez.domain.item.*;
+import com.neo.byez.service.item.*;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -43,8 +36,7 @@ public class ItemController {
         int cnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -88,7 +80,7 @@ public class ItemController {
         int cnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -132,8 +124,7 @@ public class ItemController {
         int cnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -193,8 +184,7 @@ public class ItemController {
         int cnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -228,12 +218,11 @@ public class ItemController {
         try {
             dto.setNum(itemNum);
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
+            String id = (String) session.getAttribute("userId");
 //            if (id == null) {
 //                return "forward:/order";
 //            }
 
-            id = "user1";
             // 장바구니 상품 등록
             dto.setId(id);
             // 해당 상품 이미지 조회

@@ -1,7 +1,10 @@
 package com.neo.byez.controller.user;
 
+import com.neo.byez.common.validator.DataValidator;
 import com.neo.byez.common.validator.SignUpValidator;
+import com.neo.byez.dao.item.BasketDaoImpl;
 import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.service.CustCouponsServiceImpl;
 import com.neo.byez.service.user.MailService;
 import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,16 @@ public class SignUpController {
     private UserServiceImpl userService;
     private MailService mailService;
     private BCryptPasswordEncoder passwordEncoder; // for PWD 암호화
+    private DataValidator dataValidator;
+    private CustCouponsServiceImpl custCouponsService;
 
     @Autowired // 애너테이션 생략 가능
-    public SignUpController(UserServiceImpl userService, MailService mailService, BCryptPasswordEncoder passwordEncoder) {
+    public SignUpController(UserServiceImpl userService, MailService mailService, BCryptPasswordEncoder passwordEncoder, DataValidator dataValidator, CustCouponsServiceImpl custCouponsService) {
         this.userService = userService;
         this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
+        this.dataValidator = dataValidator;
+        this.custCouponsService = custCouponsService;
     }
 
     @InitBinder
@@ -94,21 +101,39 @@ public class SignUpController {
         return "/user/register";
     }
 
+    // ID 중복확인
+    @PostMapping("/checkDuplicatedId")
+    @ResponseBody
+    public ResponseEntity<String> checkDuplicatedId (String id) {
+        try {
+            if (!dataValidator.validateOfID(id)) {
+                return new ResponseEntity<>(dataValidator.getWrongIdFormat(), HttpStatus.BAD_REQUEST);
+            } else if (userService.checkDuplicatedId(id) != null) {
+                return new ResponseEntity<>(DUPLICATED_ID.getMessage(), HttpStatus.BAD_REQUEST);
+            } else {
+                return new ResponseEntity<>("사용가능한 아이디입니다.", HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("오류 발생!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     // 2. 고객 기본정보 입력 후 본 Controller 로 form 전송
     // 2.1. 고객이 입력한 데이터 유효성 검증 (SignUpValidator)
     @PostMapping("/save")
-    public String saveCustInfo(@Valid UserDto userDto, BindingResult result, Model model) {
+    public String saveCustInfo(@Valid UserDto userDto, BindingResult result, Model model) throws Exception {
         if (result.hasErrors()) {
             List<ObjectError> errorMsgs = result.getAllErrors();
             model.addAttribute("errorMsg", errorMsgs.get(0).getCode());
             return "/user/register";
         }
 
-        // 입력된 아이디가 이미 DB에 저장된 아이디인 경우, 중복된 아이디임을 메세지로 출력
-        if (userService.checkDuplicatedId(userDto.getId()) != null) {
-            model.addAttribute("errorMsg", DUPLICATED_ID.getMessage());
-            return "/user/register";
-        }
+          // ajax 로 처리 완료
+          // 입력된 아이디가 이미 DB에 저장된 아이디인 경우, 중복된 아이디임을 메세지로 출력
+//        if (userService.checkDuplicatedId(userDto.getId()) != null) {
+//            model.addAttribute("errorMsg", DUPLICATED_ID.getMessage());
+//            return "/user/register";
+//        }
 
         // 입력란에서 비밀번호 및 비밀번호 확인용으로 2개 받아옴.
         // split() 메서드로 , 기준으로 나눠서 저장
@@ -132,6 +157,8 @@ public class SignUpController {
         // 3.2. 회원가입 성공 시
         // 3.2.1. 로그인 화면(/login/form)으로 이동
         if (userService.saveCustJoinInfo(userDto) == 1) {
+            // 신규 고객 쿠폰 임시로 추가 - 진우 (+ 예외 선언)
+            custCouponsService.grantCouponToUser(userDto.getId(),"신규 고객 쿠폰");
             return "redirect:/login/form";
         }
         // 3.3. 회원가입 실패 시

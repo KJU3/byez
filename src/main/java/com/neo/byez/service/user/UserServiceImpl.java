@@ -1,7 +1,9 @@
 package com.neo.byez.service.user;
 
+import com.neo.byez.dao.item.BasketDaoImpl;
 import com.neo.byez.dao.user.UserDaoImpl;
 import com.neo.byez.dao.user.UserInfoHistDaoImpl;
+import com.neo.byez.domain.item.BasketDto;
 import com.neo.byez.domain.user.UserDto;
 import com.neo.byez.domain.user.UserInfoHistDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,16 @@ public class UserServiceImpl implements UserService {
     private MailService mailService;
     private BCryptPasswordEncoder passwordEncoder;
     private UserInfoHistDaoImpl userInfoHistDao;
+    private BasketDaoImpl basketDao;
 
     @Autowired
     public UserServiceImpl(UserDaoImpl userDao, MailService mailService, BCryptPasswordEncoder passwordEncoder,
-                           UserInfoHistDaoImpl userInfoHistDao) {
+                           UserInfoHistDaoImpl userInfoHistDao, BasketDaoImpl basketDao) {
         this.userDao = userDao;
         this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
         this.userInfoHistDao = userInfoHistDao;
+        this.basketDao = basketDao;
     }
 
     // 현재 시간을 반환하는 getCurrentTime() 메서드
@@ -171,6 +175,10 @@ public class UserServiceImpl implements UserService {
         try {
             if (userDao.selectUser(userDto.getId()) == null){
                 userDao.insertUser(userDto);
+                // 나중에 수정하기
+                BasketDto dto = new BasketDto();
+                dto.setId(userDto.getId());
+                basketDao.insert(dto);
                 return 1;
             } else {
                 return 0;
@@ -241,73 +249,73 @@ public class UserServiceImpl implements UserService {
         return emailUpdateSuccess && historyInsertSuccess;
     }
 
-    // 4.2. 생년월일 변경
-    // 4.2.1. 생년월일 변경이력 저장
-    @Override
-    public boolean modifyUserBefBirth(String id, Integer bef_birth) {
-
-        // 생년월일 변경 코드 : CHG0003
-        String chg_code = "CHG0003";
-        // 변경 전 생년월일 저장 위한 변수 선언 및 초기화
-        Integer befBirthInfo = null;
-
-        // 생년월일 변경 성공 여부
-        // 생년월일 변경 성공 시 true 반환
-        // 생년월일 변경 실패 시 false 반환
-        boolean befBirthUpdateSuccess = false;
-
-        // 우선 가입회원인지 확인 후 생년월일 변경 시도
-        // 가입회원이 아닌 경우 생년월일 변경 실패
-        try {
-             if (getCustLoginInfo(id) != null) {
-                 if (getCustLoginInfo(id).getBef_birth() == null) {
-                     userDao.updateUserBefBirth(id, bef_birth);
-                     befBirthUpdateSuccess = true;
-                 } else {
-                     befBirthInfo = getCustLoginInfo(id).getBef_birth();
-                     userDao.updateUserBefBirth(id, bef_birth);
-                     befBirthUpdateSuccess = true;
-                 }
-            } else {
-                befBirthUpdateSuccess = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            befBirthUpdateSuccess = false;
-        }
-
-        // 변경이력 추가 성공 여부
-        // 변경이력 추가 성공 시 true 반환
-        // 변경이력 추가 실패 시 false 반환
-        boolean historyInsertSuccess = false;
-        try {
-            if (befBirthUpdateSuccess) {
-                // 변경 전 생년월일
-                String bef_info = (befBirthInfo != null) ? befBirthInfo.toString() : "NULL";
-                // 변경 후 생년월일
-                String af_info = String.valueOf(getCustLoginInfo(id).getBef_birth());
-                UserInfoHistDto userInfoHistDto = new UserInfoHistDto(id, chg_code, bef_info, af_info, id, id);
-
-                userInfoHistDao.insertUserInfoHist(userInfoHistDto);
-                historyInsertSuccess = true;
-            } else {
-                historyInsertSuccess = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            historyInsertSuccess = false;
-        }
-
-        // 생년월일 변경 성공 및 변경 이력 추가 성공 시 true 반환
-        return befBirthUpdateSuccess && historyInsertSuccess;
-    }
+//    // 4.2. 생년월일 변경
+//    // 4.2.1. 생년월일 변경이력 저장
+//    @Override
+//    public boolean modifyUserBefBirth(String id, Integer bef_birth) {
+//
+//        // 생년월일 변경 코드 : CHG0003
+//        String chg_code = "CHG0003";
+//        // 변경 전 생년월일 저장 위한 변수 선언 및 초기화
+//        Integer befBirthInfo = null;
+//
+//        // 생년월일 변경 성공 여부
+//        // 생년월일 변경 성공 시 true 반환
+//        // 생년월일 변경 실패 시 false 반환
+//        boolean befBirthUpdateSuccess = false;
+//
+//        // 우선 가입회원인지 확인 후 생년월일 변경 시도
+//        // 가입회원이 아닌 경우 생년월일 변경 실패
+//        try {
+//             if (getCustLoginInfo(id) != null) {
+//                 if (getCustLoginInfo(id).getBef_birth() == null) {
+//                     userDao.updateUserBefBirth(id, bef_birth);
+//                     befBirthUpdateSuccess = true;
+//                 } else {
+//                     befBirthInfo = getCustLoginInfo(id).getBef_birth();
+//                     userDao.updateUserBefBirth(id, bef_birth);
+//                     befBirthUpdateSuccess = true;
+//                 }
+//            } else {
+//                befBirthUpdateSuccess = false;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            befBirthUpdateSuccess = false;
+//        }
+//
+//        // 변경이력 추가 성공 여부
+//        // 변경이력 추가 성공 시 true 반환
+//        // 변경이력 추가 실패 시 false 반환
+//        boolean historyInsertSuccess = false;
+//        try {
+//            if (befBirthUpdateSuccess) {
+//                // 변경 전 생년월일
+//                String bef_info = (befBirthInfo != null) ? befBirthInfo.toString() : "NULL";
+//                // 변경 후 생년월일
+//                String af_info = String.valueOf(getCustLoginInfo(id).getBef_birth());
+//                UserInfoHistDto userInfoHistDto = new UserInfoHistDto(id, chg_code, bef_info, af_info, id, id);
+//
+//                userInfoHistDao.insertUserInfoHist(userInfoHistDto);
+//                historyInsertSuccess = true;
+//            } else {
+//                historyInsertSuccess = false;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            historyInsertSuccess = false;
+//        }
+//
+//        // 생년월일 변경 성공 및 변경 이력 추가 성공 시 true 반환
+//        return befBirthUpdateSuccess && historyInsertSuccess;
+//    }
 
     // 4.3. 휴대폰 번호 변경
     // 4.2.1. 휴대폰 번호 변경이력 저장
     @Override
     public boolean modifyUserMobileNum(String id, Integer mobile_num) {
         // 휴대폰 번호 변경 코드 : CHG0004
-        String chg_code = "CHG0004";
+        String chg_code = "CHG0003";
         // 변경 전 휴대폰 번호 저장 위한 변수 선언 및 초기화
         Integer befMobileNumInfo = null;
 
@@ -344,7 +352,7 @@ public class UserServiceImpl implements UserService {
             if (mobileNumUpdateSuccess) {
                 // 변경 전 휴대폰 번호
                 String bef_info = (befMobileNumInfo != null) ? "0" + befMobileNumInfo : "NULL";
-                // 변경 후 생년월일
+                // 변경 후 휴대폰 번호
                 String af_info = "0" + getCustLoginInfo(id).getMobile_num();
                 UserInfoHistDto userInfoHistDto = new UserInfoHistDto(id, chg_code, bef_info, af_info, id, id);
 

@@ -32,7 +32,7 @@ public class DataValidator {
         } else if (id.contains(" ") || !id.matches("^[a-zA-Z0-9]*")) {
             wrongIdFormat = INVALID_ID_FORMAT.getMessage();
             return false;
-        } else if (id.length() < 1 || id.length() > 20) {
+        } else if (id.length() < 3 || id.length() > 20) {
             wrongIdFormat = ID_LENGTH_OUT_OF_BOUNDS.getMessage();
             return false;
         }
@@ -59,7 +59,7 @@ public class DataValidator {
             return false;
         }
         // PWD : 영문, 숫자, 특수문자 조합 (cf. 특수문자 종류 제한 없음)
-        else if (!pwd.matches("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W)).{8,20}+$")) {
+        else if (!pwd.matches("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$")) {
             wrongPwdFormat = INVALID_PASSWORD_FORMAT.getMessage();
             return false;
         }

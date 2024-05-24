@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/qna_write.css?after">
+    <link rel="stylesheet" href="../css/qna_write.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@
         <jsp:include page="/WEB-INF/views/include/aside.jsp"/>
         <form id="form" action="" method="" onsubmit="return validateQna()">
             <div class="content">
-                <table>
+                <table class="marginOpt">
                     <th>
                         title
                     </th>
@@ -52,11 +52,11 @@
                             <option value="900">기타</option>
                             <option value="1000">신고</option>
                         </select>
-                        <input id="qna_title" name="qna_title" type="text" placeholder="제목을 작성해 주세요" value="${qnaDto.qna_title}">
+                        <input id="qna_title" name="qna_title" type="text" placeholder="제목을 작성해 주세요 (100자 제한)" value="${qnaDto.qna_title}">
                     </td>
                     <tr>
                         <th colspan="3">
-                            <textarea class="put_large_content" id="qna_content" name="qna_content" placeholder="글을 작성해 주세요" contenteditable="true">${qnaDto.qna_content}</textarea>
+                            <textarea class="put_large_content" id="qna_content" name="qna_content" placeholder="글을 작성해 주세요 (1000자 제한)" contenteditable="true">${qnaDto.qna_content}</textarea>
                         </th>
                     </tr>
                 </table>
@@ -109,6 +109,23 @@
         }
     }
 </script>
+<script src="../js/jquery-3.6.4.min.js"></script>
+<script src="../js/nav.js"></script>
+<script type="text/javascript">
+    function readURL(input) {
+        var file = input.files[0]
+        console.log(file)
+        if (file != '') {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                console.log(e.target)
+                console.log(e.target.result)
+                $('#preview').attr('src', e.target.result);
+            }
+        }
+    }
+</script>
 <script>
     function validateQna() {
         var title = document.getElementById("qna_title").value;
@@ -116,9 +133,18 @@
         if (title.trim() === "" || content.trim() === "") {
             alert("제목과 내용을 작성해주세요");
             return false;
-        } else {
-            return true;
         }
+        if(title.length>100||content.length>1000){
+            alert("글자수 확인하고 작성해 주세요");
+            return false;
+        }
+        <c:if test="${mode eq 'write'}">
+        alert("등록되었습니다.");
+        </c:if>
+        <c:if test="${mode ne 'write'}">
+        alert("수정되었습니다.");
+        </c:if>
+        return true;
     }
 
     $(document).ready(function () {
@@ -126,24 +152,13 @@
             let form = $("#form");
             form.attr("action", "/qna/update?seq_num=${qnaDto.seq_num}");
             form.attr("method", "post")
-            var title = document.getElementById("qna_title").value;
-            var content = document.getElementById("qna_content").value;
-            if (title.trim() === "" || content.trim() === "") {
-            } else {
-                alert("수정되었습니다.");
-            }
+
             form.submit();
         })
         $("#writebtn").on("click", function () {
             let form = $("#form");
             form.attr("action", "/qna/write");
             form.attr("method", "post")
-            var title = document.getElementById("qna_title").value;
-            var content = document.getElementById("qna_content").value;
-            if (title.trim() === "" || content.trim() === "") {
-            } else {
-                alert("작성되었습니다.");
-            }
             form.submit();
         })
     });
@@ -152,3 +167,4 @@
 </body>
 
 </html>
+
