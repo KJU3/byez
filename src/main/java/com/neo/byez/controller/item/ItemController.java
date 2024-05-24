@@ -3,8 +3,6 @@ package com.neo.byez.controller.item;
 
 import com.neo.byez.domain.item.*;
 import com.neo.byez.service.item.*;
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -39,8 +37,7 @@ public class ItemController {
         int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -84,7 +81,7 @@ public class ItemController {
         int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -128,8 +125,7 @@ public class ItemController {
         int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -189,8 +185,7 @@ public class ItemController {
         int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
-            id = "user1";
+            String id = (String) session.getAttribute("userId");
             if (id != null) {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
@@ -224,7 +219,7 @@ public class ItemController {
         try {
             dto.setNum(itemNum);
             // 세션에서 아이디 조회
-            String id = (String) session.getAttribute("id");
+            String id = (String) session.getAttribute("userId");
 //            if (id == null) {
 //                return "forward:/order";
 //            }

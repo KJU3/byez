@@ -28,17 +28,15 @@ import java.util.List;
 @Controller
 @RequestMapping(value = {"/order"})
 public class OrderController {
+    private OrderServiceImpl orderService;
+    private CustCouponsServiceImpl custCouponsService;
+    private OrderResultInfoServiceImpl orderResultInfoService;
     @Autowired
-    OrderServiceImpl orderService;
-
-    @Autowired
-    PayServiceImpl payService;
-
-    @Autowired
-    CustCouponsServiceImpl custCouponsService;
-
-    @Autowired
-    OrderResultInfoServiceImpl orderResultInfoService;
+    public OrderController(OrderServiceImpl orderService, CustCouponsServiceImpl custCouponsService, OrderResultInfoServiceImpl orderResultInfoService) {
+        this.orderService = orderService;
+        this.custCouponsService = custCouponsService;
+        this.orderResultInfoService = orderResultInfoService;
+    }
 
     /*
         주문 요청 - 주문 프로세스
@@ -126,11 +124,9 @@ public class OrderController {
     @PostMapping("/orderReady")
     public ResponseEntity<Object> orderReady(@RequestBody OrderReadyInfo orderReadyInfo, HttpSession session){
         String userId = (String)session.getAttribute("userId");
-        String userName = (String)session.getAttribute("userId");
+        String userName = (String)session.getAttribute("userName");
         PaymentInfo paymentInfo = null;
         try {
-            // 테스트 ID
-            userId = "user1";
             // 주문 정보 검증 및 저장 시도
             // 예외 발생하면 검증 or 저장 실패
             orderService.saveOrderInfo(orderReadyInfo, userId);
@@ -151,10 +147,7 @@ public class OrderController {
     // 주문 폼 요청
     @RequestMapping("/orderForm")
     public String index(HttpSession session, BasketItemDtos basketItemDtos, Model m) throws Exception {
-        String userId = (String)session.getAttribute("userId");
-
-        // 더미데이터 생성
-        String id = "user1";
+        String id = (String)session.getAttribute("userId");
 
         List<BasketItemDto> basketItemDtoList = basketItemDtos.getOrders();
         HashMap<String,Object> map = orderService.orderForm(id, basketItemDtoList);

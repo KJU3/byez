@@ -33,13 +33,13 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
 
     @Override
-    public List<OrderDetailDto> getPage(Map map) throws Exception {
-        return ordDetailDao.selectPage(map);
+    public List<OrderDetailDto> getPage( Integer curPage, Integer pageSize, String userId) throws Exception {
+        return ordDetailDao.selectPage(curPage, pageSize, userId);
     }
 
     @Override
-    public int getCount() throws Exception {
-        return ordDetailDao.getCount();
+    public int getCount(String userId) throws Exception {
+        return ordDetailDao.getCount(userId);
     }
 
     @Override
@@ -117,5 +117,14 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     @Override
     public List<OrderDetailDto> selectAllEtc(String id) throws Exception {
         return ordDetailDao.selectAllEtc(id);
+    }
+    @Override
+    public boolean validateSearchOrdItem(String ord_num, String item_num, String id) {
+        OrderDetailDto ordDetailDto = ordDetailDao.selectOrdItem(ord_num, item_num, id);
+        if (ordDetailDto==null||ordDetailDto.getItem_num()==null || ordDetailDto.getOrd_num()==null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

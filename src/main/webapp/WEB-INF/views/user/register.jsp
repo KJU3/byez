@@ -49,8 +49,10 @@
                   *아이디
               </span>
             </td>
-            <td><input type="text" id="id" name="id" maxlength="20" placeholder="3자리 이상 입력하세요." oninput="checkIdFormat()" required>
-              <p id="id-error-msg"></p>
+            <td>
+              <input type="text" id="id" name="id" maxlength="20" placeholder="3자리 이상 입력하세요." oninput="checkIdFormat()" required>
+              <button id="checkDuplicateBtn">중복확인</button>
+              <p id="id-msg"></p>
             </td>
           </tr>
           <tr>
@@ -128,8 +130,8 @@
           </tr>
         </table>
         <div class="button_wrapper">
-          <button><a href="/">가입취소</a></button>
-          <input type="submit" value="제출">
+          <button onclick="location.href='/'">가입취소</button>
+          <input type="submit" id="sendUserInfoBtn" value="제출">
         </div>
       </form>
     </div>
@@ -252,6 +254,32 @@
       msg.innerHTML = "";
     }
   }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#checkDuplicateBtn").click(function () {
+
+      let id = $("#id").val();
+
+      $.ajax({
+        url: "/register/checkDuplicatedId",
+        type: "POST",
+        data: { id: id },
+        success: function (response) {
+          $("#id-msg").text(response); // 성공 메시지를 id-msg에 표시
+          $("#id-msg").removeClass('duplicate-msg').addClass('success-msg'); // 성공 시 success-msg 클래스를 추가
+          $("#sendUserInfoBtn").prop("disabled", false); // 성공 시 제출 버튼 활성화
+        },
+        error: function (xhr, status, error) {
+          $("#id-msg").text(xhr.responseText); // 오류 메시지를 id-msg에 표시
+          $("#id-msg").removeClass('success-msg').addClass('duplicate-msg'); // 오류 시 error-msg 클래스를 추가
+          $("#sendUserInfoBtn").prop("disabled", true); // 실패 시 제출 버튼 비활성화
+        }
+      });
+    });
+  });
 </script>
 
 </html>

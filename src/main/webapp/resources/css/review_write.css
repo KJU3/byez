@@ -103,6 +103,7 @@ section {
     height: 100px;
     border-top: 2px solid black;
     border-collapse: collapse;
+    margin-top: 44px;
 }
 
 /*추가 사항*/
@@ -181,4 +182,7 @@ section {
 .item_name{
     font-size: 24px; /* 원하는 글자 크기로 변경하세요 */
     font-weight: bold; /* 텍스트를 굵게 만듭니다 */
+}
+.second button{
+    background-color: #6b7684;
 }
