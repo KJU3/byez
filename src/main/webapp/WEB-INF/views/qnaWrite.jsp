@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/qna_write.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/qna_write.css?after">
+    <link rel="stylesheet" href="../css/footer.css?after">
+    <link rel="stylesheet" href="/css/aside.css">
     <link rel="stylesheet" href="../css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,13 +87,14 @@
 </footer>
 <div class="quick">
     <a href="#none" onclick="jQuery('html,body').animate({scrollTop:0},'slow')">
-        <img src="../img/quick_up.png" alt="">
+        <img src="/img/quick_up.png" alt="">
     </a>
     <a href="#none" onclick="jQuery('html,body').animate({scrollTop:$(document).height()},'slow');">
-        <img src="../img/quick_down.png" alt="">
+        <img src="/img/quick_down.png" alt="">
     </a>
 </div>
 <script src="../js/jquery-3.6.4.min.js"></script>
+<script src="../js/aside.js"></script>
 <script src="../js/nav.js"></script>
 <script type="text/javascript">
     function readURL(input) {

@@ -9,7 +9,7 @@
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/discount.css?after">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/footer.css?after?after">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@
                     <c:forEach var="itemDto" items="${list1}">
                         <li>
                             <a href="/goods/${itemDto.num}">
-                                <img src="${itemDto.main_img}" alt="">
+                                <img src="/img/${itemDto.main_img}" alt="">
                             </a>
                             <p class="item_name">
                                 <span>${itemDto.name}</span>
@@ -101,7 +101,7 @@
                 <c:forEach var="itemDto" items="${list2}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
+                            <img src="/img/${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -132,7 +132,7 @@
                 <c:forEach var="itemDto" items="${list3}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
+                            <img src="/img/${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -163,7 +163,7 @@
                 <c:forEach var="itemDto" items="${list4}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
+                            <img src="/img/${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -194,7 +194,7 @@
                 <c:forEach var="itemDto" items="${list5}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
+                            <img src="/img/${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -225,7 +225,7 @@
                 <c:forEach var="itemDto" items="${list6}">
                     <li>
                         <a href="/goods/${itemDto.num}">
-                            <img src="${itemDto.main_img}" alt="">
+                            <img src="/img/${itemDto.main_img}" alt="">
                         </a>
                         <p class="item_name">
                             <span>${itemDto.name}</span>
@@ -255,6 +255,6 @@
 <%@include file="../views/include/quick.jsp"%>
 <%@include file="../views/include/footer.jsp"%>
 <script src="/js/jquery-3.6.4.min.js"></script>
-<script src="/js/nav.js?after"></script>
+<script src="/js/nav.js?after?after"></script>
 </body>
 </html>
