@@ -108,9 +108,9 @@
                             <c:forEach var="orderDetailDto" items="${limitList}">
                             <tr>
                                 <td class="number order_actions">
-                                        ${orderDetailDto.ord_date}
+                                    ${orderDetailDto.ord_date}
                                             <input type="hidden" name="ord_date" value="${orderDetailDto.ord_date}">
-                                    <p>
+                                    <p class="ord_num">
 <%--                                        <a href="#">${orderDetailDto.ord_num}</a>--%>
                                         ${orderDetailDto.ord_num}
                                     </p>
@@ -148,7 +148,7 @@
                                 <td>${orderDetailDto.item_qty}</td>
                                 <td>${orderDetailDto.item_price}</td>
                                 <td class="order_actions">
-                                    <div>${orderDetailDto.ord_state}</div>
+                                    <div class="confirmDiv">${orderDetailDto.ord_state}</div>
                                     <form action = "/confirmPurchase" method = "post" class="form_center">
                                             <%--           hidden타입의 주문상태를 담아둔다--%>
                                         <input type="hidden" name="ord_num" value="${orderDetailDto.ord_num}">
@@ -251,7 +251,7 @@
                                 </p>
                             </td>
                             <td>${orderDetailDto.item_name}
-                                <p>
+                                <p class="option">
                                     옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}
                                 </p>
                             </td>

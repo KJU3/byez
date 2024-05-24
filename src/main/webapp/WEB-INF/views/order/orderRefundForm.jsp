@@ -20,7 +20,6 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <section>
     <form id="refund" action="<c:url value="/refundOrder"/>" method="post">
-
         <div class="wrapper">
             <div class="title">
                 <p>
@@ -92,7 +91,6 @@
                             <input type="radio" id="req" name="req_chk" value="Y" checked="checked" onclick="updateHiddenInput(this.value)">수거신청
                             <input type="radio" id="noReq" name="req_chk" value="N" onclick="updateHiddenInput(this.value)">직접발송
                             <input type="hidden" id="pickup_chk" name="pickup_chk" value="Y"> <!-- 초기값 설정 -->
-
                             <p>수거신청 선택시 택배사에 연락하지 않으셔도 직접 수거요청을 드립니다.</p>
                         </td>
                     </tr>
@@ -504,7 +502,7 @@
                 updateHiddenFields();
                 document.getElementById('refund').addEventListener('submit', function(event) {
                     let rcpr = document.getElementById("rcpr");
-                    let zpde = document.getElementById("zpcd");
+                    let zpcd = document.getElementById("zpcd");
                     let main_addr = document.getElementById('main_addr');
                     let detail_addr = document.getElementById('detail_addr');
                     let rcpr_mobile = document.getElementById('rcpr_mobile');
