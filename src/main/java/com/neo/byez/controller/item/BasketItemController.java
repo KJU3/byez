@@ -54,11 +54,10 @@ public class BasketItemController {
         try {
             // 해당 유저의 장바구니 상품 목록 조회
             List<BasketItemDto> list = basketService.getBasketItem(dto);
-            int cnt = basketService.getCount(dto);
+            int basketCnt = basketService.getCount(dto);
 
             // 모델에 저장
-            session.setAttribute("cnt", cnt);
-            model.addAttribute("cnt", cnt);
+            session.setAttribute("basketCnt", basketCnt);
             model.addAttribute("list", list);
             model.addAttribute("msg", msg);
 
