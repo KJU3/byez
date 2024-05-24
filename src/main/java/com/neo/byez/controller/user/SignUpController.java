@@ -2,6 +2,7 @@ package com.neo.byez.controller.user;
 
 import com.neo.byez.common.validator.DataValidator;
 import com.neo.byez.common.validator.SignUpValidator;
+import com.neo.byez.dao.item.BasketDaoImpl;
 import com.neo.byez.domain.user.UserDto;
 import com.neo.byez.service.user.MailService;
 import com.neo.byez.service.user.UserServiceImpl;
