@@ -8,7 +8,7 @@
     <title>BYEZ</title>
     <link rel="stylesheet" href="css/nav.css?after">
     <link rel="stylesheet" href="css/basket.css?after?after?after?after?after">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/css/footer.css?after?after">
     <link rel="stylesheet" href="css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +86,7 @@
                             <td class="tb1" style="text-align: center;">
                                 <div class="basketImgWrap">
                                     <a href="/goods/${basketItemDto.num}">
-                                        <img src="${basketItemDto.main_img}">
+                                        <img src="/img/${basketItemDto.main_img}">
                                     </a>
                                 </div>
                                 <div class="eachBasketInfo">
@@ -124,7 +124,7 @@
                                                         <input class="opt3" type="hidden" name="opt3" value="${basketItemDto.opt3}">
                                                         <div class="modalImgWrap">
                                                             <a href="/goods/${basketItemDto.num}">
-                                                                <img src="${basketItemDto.main_img}">
+                                                                <img src="/img/${basketItemDto.main_img}">
                                                             </a>
                                                         </div>
 
@@ -257,7 +257,7 @@
 <%@include file="../views/include/footer.jsp"%>
 <!-- 4. 자스 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="/js/nav.js?after"></script>
-<script src="/js/basket.js?after"></script>
+<script src="/js/nav.js?after?after?after"></script>
+<script src="/js/basket.js?after?after?after"></script>
 </body>
 </html>
