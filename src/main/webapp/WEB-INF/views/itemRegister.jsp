@@ -156,7 +156,8 @@
                   </tr>
                   <tr>
                     <td>main_img</td>
-                    <td><input name="main_img" type="text" placeholder="main_img"></td>
+                    <td>
+                    </td>
                   </tr>
                   <tr>
                     <td>item_type</td>

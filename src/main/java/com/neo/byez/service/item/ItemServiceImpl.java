@@ -104,6 +104,7 @@ public class ItemServiceImpl {
 
             // 널이 아님
                 // 조회된 dto 반환
+        System.out.println(num);
         try {
             ItemDto dto = itemDao.select(num);
             if (dto == null) {
@@ -163,7 +164,7 @@ public class ItemServiceImpl {
         sb.setLength(0);
         for (ItemOptDto color : itemColorDtos) {
             rowCnt += itemColorDao.insert(color);
-            sb.append(color.getCode()).append(",");
+            sb.append(color.getCode()).append("/");
         }
 
 
@@ -239,12 +240,12 @@ public class ItemServiceImpl {
         // 옵션값 추가
         sb.setLength(0);
         List<ItemOptDto> sizes = itemSizeDao.select(num);
-        sizes.stream().forEach(size -> sb.append(size.getCode()).append(","));
+        sizes.stream().forEach(size -> sb.append(size.getCode()).append("/"));
         itemDetailPageDto.setSize(sb.toString());
 
         sb.setLength(0);
         List<ItemOptDto> colors = itemColorDao.select(num);
-        colors.stream().forEach(color -> sb.append(color.getCode()).append(","));
+        colors.stream().forEach(color -> sb.append(color.getCode()).append("/"));
         itemDetailPageDto.setCol(sb.toString());
 
 

@@ -6,25 +6,24 @@
             <li>
                 <ul>
                     <li>나의 쇼핑정보</li>
-                    <li><a href="/order/list">주문/배송</a></li>
-                    <li><a href="/order/list">취소/반품</a></li>
+                    <li><a href="/order/list" data-id="/order/list" class="gray">주문/배송/취소/반품</a></li>
                 </ul>
             </li>
             <li>
                 <ul>
                     <li>나의 혜택 정보</li>
-                    <li><a href="/myCouponPage">쿠폰</a></li>
+                    <li><a href="/myCouponPage" data-id="/myCouponPage" class="gray">쿠폰</a></li>
                 </ul>
             </li>
             <li>
                 <ul>
                     <li>나의 활동 정보</li>
-                    <li><a href="/mypage/modifyPage">회원정보 수정</a></li>
-                    <li><a href="/myAddrList">배송 주소록 관리</a></li>
-                    <li><a href="/review/list">나의 게시물 관리</a></li>
-                    <li><a href="/qna/list">나의 문의</a></li>
-                    <li><a href="/like">위시리스트</a></li>
-                    <li><a href="/mypage/withdrawal">회원탈퇴</a></li>
+                    <li><a href="/mypage/modifyPage" data-id="/mypage/modifyPage" class="gray">회원정보 수정</a></li>
+                    <li><a href="/myAddrList" data-id="/myAddrList" class="gray">배송 주소록 관리</a></li>
+                    <li><a href="/review/list" data-id="/review/list" class="gray">나의 게시물 관리</a></li>
+                    <li><a href="/qna/list" data-id="/qna/list" class="gray">나의 문의</a></li>
+                    <li><a href="/like" data-id="/like" class="gray">위시리스트</a></li>
+                    <li><a href="/mypage/withdrawal" data-id="/mypage/withdrawal" class="gray">회원탈퇴</a></li>
                 </ul>
             </li>
         </ul>

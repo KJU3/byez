@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/category.css?after?after">
+    <link rel="stylesheet" href="/css/search_result.css?after">
     <link rel="stylesheet" href="/css/footer.css?after?after">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -20,10 +20,34 @@
 <%@include file="../views/include/nav.jsp"%>
 <section>
     <div class="wrapper">
+        <div class="searchDiv">
+            <p>
+                <a href="/"><span>home</span></a>
+                <span>></span>
+                <span>상품검색</span>
+            </p>
+                <c:if test="${nameKeyword == null}" >
+                    <div>
+                        <p>
+                            고객님<br>무엇을 찾으시나요?
+                            <!-- <img src="img/top_search_close.png" alt=""> -->
+                        </p>
+                    </div>
+                </c:if>
+
+                <c:if test="${nameKeyword != null}" >
+                    <div>
+                        <p>
+                            "${nameKeyword}" 에 대한 검색 결과입니다!
+                            <!-- <img src="img/top_search_close.png" alt=""> -->
+                        </p>
+                    </div>
+                </c:if>
+        </div>
         <div class="filter">
             <div class="filter_wrapper">
                 <p>FILTER</p>
-                <!-- <button class="accordion">
+                <button class="accordion">
                     <span>구분</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </button>
@@ -33,7 +57,7 @@
                         <button class="type">여성</button>
                         <button class="type">혼성</button>
                     </div>
-                </div> -->
+                </div>
                 <button class="accordion">
                     <span>가격</span>
                     <i class="fa-solid fa-chevron-down"></i>
@@ -132,32 +156,12 @@
                 </div>
             </div>
         </div>
-
         <div class="content">
-            <p>
-                <a href="/"><span>home</span></a>
-                <span>></span>
-                <a href="/item/categories/03"><span>혼성</span></a>
-                <!-- <span>></span>
-                <a href="category.html"><span>상의</span></a>
-                <span>></span>
-                <a href="category.html"><span>맨투맨/스웨트셔츠</span></a> -->
-            </p>
-            <p>혼성</p>
             <div class="category">
                 <ul>
-                    <li><a href="/item/categories/0301">상의</a></li>
-                    <li><a href="/item/categories/0302">아우터</a></li>
-                    <li><a href="/item/categories/0303">하의</a></li>
-                    <li><a href="/item/categories/0304">신발</a></li>
-                    <li><a href="/item/categories/0305">기타</a></li>
+                    <li><span>${searchCnt}</span> 개 의 상품이 검색되었습니다.</li>
                 </ul>
                 <div>
-                    <div class="item_num">
-                        <p>
-                            <span>${searchCnt}</span> 개
-                        </p>
-                    </div>
                     <div class="sort">
                         <p><span>신상품</span> <i class="fa-solid fa-angle-down"></i></p>
                         <ul class="order">
@@ -277,27 +281,26 @@
             <div class="paging">
                 <!-- 이전 페이지 버튼 -->
                 <c:if test="${ph.showPrev}">
-                    <a href="<c:url value='/item/categories/${type}${ph.getQueryString(ph.beginPage-1)}' />">&lt;</a>
+                    <a href="<c:url value='/item/search${ph.getQueryString(ph.beginPage-1)}' />">&lt;</a>
                 </c:if>
 
                 <!-- 네비 숫자 -->
                 <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/item/categories/${type}${ph.getQueryString(i)}"/>">${i}</a>
+                    <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/item/search${ph.getQueryString(i)}"/>">${i}</a>
                 </c:forEach>
 
                 <!-- 이후 페이지 버튼 -->
                 <c:if test="${ph.showNext}">
-                    <a href="<c:url value='/item/categories/${type}${ph.getQueryString(ph.endPage+1)}' />">&gt;</a>
+                    <a href="<c:url value='/item/search${ph.getQueryString(ph.endPage+1)}' />">&gt;</a>
                 </c:if>
             </div>
         </div>
     </div>
 </section>
-
 <%@include file="../views/include/quick.jsp"%>
 <%@include file="../views/include/footer.jsp"%>
 <script src="/js/jquery-3.6.4.min.js"></script>
-<script src="/js/nav.js?after?after?after?after?after"></script>
+<script src="/js/nav.js?after?after?after"></script>
 <script src="/js/sort.js"></script>
 <script src="/js/accordion.js"></script>
 </body>

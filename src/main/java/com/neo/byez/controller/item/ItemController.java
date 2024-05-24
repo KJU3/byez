@@ -3,6 +3,7 @@ package com.neo.byez.controller.item;
 
 import com.neo.byez.domain.item.*;
 import com.neo.byez.service.item.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -33,7 +36,7 @@ public class ItemController {
     @GetMapping("/item/categories/{type}")
     public String categoryList(@PathVariable String type, SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -42,7 +45,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 카테고리 상품 조회
@@ -55,7 +58,7 @@ public class ItemController {
             PageHandler ph = new PageHandler(searchCnt, sc);
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("searchCnt", searchCnt);
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
@@ -78,7 +81,7 @@ public class ItemController {
     @GetMapping("/item")
     public String itemList(SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -86,7 +89,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 카테고리 상품 조회
@@ -98,7 +101,7 @@ public class ItemController {
             PageHandler ph = new PageHandler(searchCnt, sc);
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("searchCnt", searchCnt);
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
@@ -122,7 +125,7 @@ public class ItemController {
     @GetMapping("/item/discount")
     public String discList(SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -131,7 +134,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 할인 상품 조회, 상위 8개만 보여주기, 이 로직 서비스에서 따로 관리
@@ -165,7 +168,7 @@ public class ItemController {
 
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);
             model.addAttribute("list3", list3);
@@ -183,7 +186,7 @@ public class ItemController {
 
     @GetMapping("/goods/{num}")
     public String detail(@PathVariable String num, Model model, HttpSession session) {
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -192,7 +195,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             ItemDetailPageDto itemDetail = itemService.readDetailItem(num);
@@ -200,7 +203,7 @@ public class ItemController {
                 throw new Exception("상세 상품 정보를 정상적으로 조회하지 못했습니다. 존재하지 않는 상품일 확률이 높습니다.");
             }
 
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("itemDetail", itemDetail);
 
         } catch (Exception e) {
@@ -226,13 +229,14 @@ public class ItemController {
 //                return "forward:/order";
 //            }
 
+            System.out.println(dto);
+
             id = "user1";
             // 장바구니 상품 등록
             dto.setId(id);
             // 해당 상품 이미지 조회
             ItemDto selectedDto = itemService.getItem(dto.getNum());
             dto.setMain_img(selectedDto.getMain_img());
-
             basketItemService.register(dto);
             BasketItemDto target = basketItemService.readByContent(dto);
             BasketItemDtos dtos = new BasketItemDtos();
@@ -247,36 +251,55 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/admin/item")
+//    @GetMapping("/admin/item")
     public String getItemForm() {
         return "itemRegister";
     }
 
-    @PostMapping("/admin/item")
-    public String addItemForm(ItemRegisterInfo info) {
+//    @PostMapping("/admin/item")
+    public String addItemForm(ItemRegisterInfo info, MultipartHttpServletRequest mh) {
         System.out.println(info);
         // 필요한 DTO 생성
         ItemDto itemDto = info.getItemDto();
-        System.out.println(itemDto);
+//        System.out.println(itemDto);
 
         ItemDetailDto itemDetailDto = info.getItemDetailDto();
-        System.out.println(itemDetailDto);
+//        System.out.println(itemDetailDto);
 
         ItemStateDto itemStateDto = info.getItemStateDto();
-        System.out.println(itemStateDto);
+//        System.out.println(itemStateDto);
 
         List<ItemOptDto> sizeList = info.getSizeList();
-        sizeList.stream().forEach(e -> System.out.print(e.getCode()));
+//        sizeList.stream().forEach(e -> System.out.print(e.getCode()));
 
         List<ItemOptDto> colorList = info.getColorList();
-        colorList.stream().forEach(e -> System.out.print(e.getCode()));
+//        colorList.stream().forEach(e -> System.out.print(e.getCode()));
 
         ItemPriceDto itemPriceDto = info.getItemPriceDto();
-        System.out.println(itemPriceDto);
+//        System.out.println(itemPriceDto);
 
+
+
+//        // 이미지 파일 업로드 로직
+//        MultipartFile mf = mh.getFile("main_img");
+//        String fileName = mf.getOriginalFilename();
+//
+//        String path = "/img/";
+//        File uploadFile = new File( path+fileName);
+//
+//        MultipartFile mf2 = mh.getFile("detail_img");
+//        String fileName2 = mf.getOriginalFilename();
+//
+//        File uploadFile2 = new File( path+fileName2);
 
         try {
             // 서비스 호출, 상품 등록
+//            mf.transferTo(uploadFile);
+//            mf.transferTo(uploadFile2);
+//
+//            itemDto.setMain_img(path+fileName);
+//            itemDetailDto.setDetail_img(path+fileName2);
+
             itemService.add(itemDto, itemDetailDto, itemStateDto, sizeList, colorList, itemPriceDto);
 
         } catch (Exception e) {
@@ -285,9 +308,51 @@ public class ItemController {
 
 
         return "itemRegister";
+
+
     }
 
+    @GetMapping("/item/search")
+    public String getResult(SearchCondition sc, Model model, HttpSession session) {
+        sc.checkOption();
+        System.out.println(sc.getOption());
 
+        try {
+            // 장바구니 수량 조회
+            String userId = (String) session.getAttribute("userId");
+            BasketItemDto basketItemDto = new BasketItemDto();
+            basketItemDto.setId(userId);
+            int basketCnt = basketItemService.getCount(basketItemDto);
+
+            // 해당 결과 조회
+            List<ItemDto> list = itemService.readBySearchCondition(sc);
+            int searchCnt = itemService.countSearchCondition(sc);
+
+            if (list.size() != searchCnt) {
+                throw new Exception("검색 결과를 정상적으로 수행하지 못했습니다.");
+            }
+
+            // 페이지 핸들러 생성
+            PageHandler ph = new PageHandler(searchCnt, sc);
+
+            // 조회된 결과 모델 저장
+            model.addAttribute("nameKeyword", sc.getNameKeyword());
+            model.addAttribute("basketCnt", basketCnt);
+            model.addAttribute("searchCnt", searchCnt);
+            model.addAttribute("list", list);
+            model.addAttribute("ph", ph);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "errorPage";
+        }
+
+        // 모델 저장
+
+        // 뷰 보이기
+        return "searchResult";
+    }
 
 
 }

@@ -47,7 +47,7 @@
             <li><a href="/basket" class="cart_cnt">
                 <img src="/img/top_cart_pc.png">
                 <div>
-                    <span>${cnt}</span>
+                    <span>${basketCnt}</span>
                 </div>
             </a></li>
 
