@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,7 +47,8 @@
                         <td class="qna_title"><a
                                 href="/qna/read?seq_num=${CateJoinDto.seq_num}">${CateJoinDto.qna_title}</a></td>
                         <td class="res_state">${CateJoinDto.res_state}</td>
-                        <td class="reg_date">${CateJoinDto.reg_date}</td>
+                        <td class="reg_date"> <c:out value="${fn:substring(CateJoinDto.reg_date, 0, 10)}" /></td>
+
                     </tr>
                 </c:forEach>
             </table>
@@ -99,10 +102,10 @@
 </footer>
 <div class="quick">
     <a href="#none" onclick="jQuery('html,body').animate({scrollTop:0},'slow')">
-        <img src="../img/quick_up.png" alt="">
+        <img src="/img/quick_up.png" alt="">
     </a>
     <a href="#none" onclick="jQuery('html,body').animate({scrollTop:$(document).height()},'slow');">
-        <img src="../img/quick_down.png" alt="">
+        <img src="/img/quick_down.png" alt="">
     </a>
 </div>
 <script src="../js/jquery-3.6.4.min.js"></script>

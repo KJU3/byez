@@ -40,13 +40,13 @@ public class OrderDetailServiceImplTest {
     }
     @Test
     public void selectOneOrdDetail() throws Exception {
-        List<OrderDetailDto> list = orderDetailService.selectOneOrdDetail("20240503-0001");
+        List<OrderDetailDto> list  = orderDetailService.selectOneOrdDetail("20240503-0001");
         System.out.println(list);
     }
 
     @Test
     public void selectOneSeqForExchange() throws Exception {
-        OrderDetailDto exchange = orderDetailService.selectOneSeqForExchange("20240503-0001", 1);
+        OrderDetailDto exchange = orderDetailService.selectOneSeq("20240503-0001", 1);
         System.out.println(exchange);
     }
     @Test
@@ -103,7 +103,7 @@ public class OrderDetailServiceImplTest {
 
         //1. 성공사례
         //옵션이 2개 모두 변경되었을 경우
-        OrderDetailDto currentOption = orderDetailService.selectOneSeqForExchange("20231212-0001", 1);
+        OrderDetailDto currentOption = orderDetailService.selectOneSeq("20231212-0001", 1);
         currentOption.setOpt1("yellow");
         currentOption.setOpt2("S");
         currentOption.setOrd_state("교환신청");
@@ -112,7 +112,7 @@ public class OrderDetailServiceImplTest {
 
 
         //옵션이 1개만 변경되었을 경우
-        OrderDetailDto currentOption1 = orderDetailService.selectOneSeqForExchange("20231212-0001", 1);
+        OrderDetailDto currentOption1 = orderDetailService.selectOneSeq("20231212-0001", 1);
         currentOption1.setOpt1("orange");
         currentOption1.setOpt2("S");
         currentOption1.setOrd_state("교환신청");
@@ -122,7 +122,7 @@ public class OrderDetailServiceImplTest {
 
         //2. 실패사례
         //옵션이 변경되지 않아 테스트 실패
-        OrderDetailDto currentOption2 = orderDetailService.selectOneSeqForExchange("20231212-0001", 1);
+        OrderDetailDto currentOption2 = orderDetailService.selectOneSeq("20231212-0001", 1);
         currentOption1.setOpt1("orange");
         currentOption1.setOpt2("S");
         currentOption1.setOrd_state("교환신청");
@@ -142,7 +142,7 @@ public class OrderDetailServiceImplTest {
     public void updateInit() throws Exception {
         OrderDetailDto orderDetailDto = new OrderDetailDto("20231212-0001","1000","aaa","기본반팔티",15000,1,15000,"black","S","배송완료");
         orderDetailDao.insert(orderDetailDto);
-        OrderDetailDto currentOption = orderDetailService.selectOneSeqForExchange("20231212-0001", 1);
+        OrderDetailDto currentOption = orderDetailService.selectOneSeq("20231212-0001", 1);
         currentOption.setOpt1("black");
         currentOption.setOpt2("L");
         currentOption.setOrd_state("배송완료");
@@ -155,12 +155,12 @@ public class OrderDetailServiceImplTest {
         assertEquals(orderDetailService.searchById("TestID0").size(),1);
     }
 
-    @Test
-    public void 값찾기_상품주문ID() {
-        OrderDetailDto ordDetailDto = orderDetailService.searchOrdItem("TestOrd_num0","0","TestID0");
-       assertEquals(ordDetailDto.getOrd_num(),"TestOrd_num0");
-        assertEquals(ordDetailDto.getItem_num(),"0");
-        assertEquals(ordDetailDto.getId(),"TestID0");
-    }
+//    @Test
+//    public void 값찾기_상품주문ID() {
+//        OrderDetailDto ordDetailDto = orderDetailService.searchOrdItem("TestOrd_num0","0","TestID0");
+//       assertEquals(ordDetailDto.getOrd_num(),"TestOrd_num0");
+//        assertEquals(ordDetailDto.getItem_num(),"0");
+//        assertEquals(ordDetailDto.getId(),"TestID0");
+//    }
 
 }

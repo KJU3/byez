@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -39,7 +41,7 @@ public class ItemController {
     @GetMapping("/item/categories/{type}")
     public String categoryList(@PathVariable String type, SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -48,7 +50,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 카테고리 상품 조회
@@ -61,7 +63,7 @@ public class ItemController {
             PageHandler ph = new PageHandler(searchCnt, sc);
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("searchCnt", searchCnt);
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
@@ -128,7 +130,7 @@ public class ItemController {
     @GetMapping("/item/discount")
     public String discList(SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -137,7 +139,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 할인 상품 조회, 상위 8개만 보여주기, 이 로직 서비스에서 따로 관리
@@ -171,7 +173,7 @@ public class ItemController {
 
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("list1", list1);
             model.addAttribute("list2", list2);
             model.addAttribute("list3", list3);
@@ -240,9 +242,6 @@ public class ItemController {
             // 해당 상품 이미지 조회
             ItemDto selectedDto = itemService.getItem(dto.getNum());
             dto.setMain_img(selectedDto.getMain_img());
-
-
-
             basketItemService.register(dto);
             BasketItemDto target = basketItemService.readByContent(dto);
             BasketItemDtos basketItemDtos = new BasketItemDtos();

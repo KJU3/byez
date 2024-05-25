@@ -108,7 +108,6 @@
                             <div class="item-info">
                                 <input class="num" type="hidden" value=${itemDetail.num}>
                                 <input class="name" type="hidden" value="${itemDetail.detail_name}">
-                                <input class="main_img" type="hidden" value="${itemDto.main_img}">
                                 <input class="price" type="hidden" value=${itemDetail.price}>
                                 <input class="disc_price" type="hidden" value=${itemDetail.disc_price}>
                                 <input class="cust_type" type="hidden" value="${itemDetail.cust_type}">

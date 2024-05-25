@@ -121,7 +121,7 @@
                     <ul class="weekly_best">
                         <c:forEach  var="board" items="${boardList2}">
                             <li><a href="/goods/${board.num}">
-                                <img src="${board.main_img}" alt="">
+                                <img src="/img/${board.main_img}" alt="">
                             </a>
                                 <p class="item_name">
                                     <span>${board.name}</span>
@@ -157,7 +157,7 @@
                     <ul class="weekly_best">
                         <c:forEach  var="board" items="${boardList3}">
                             <li><a href="/goods/${board.num}">
-                                <img src="${board.main_img}" alt="">
+                                <img src="/img/${board.main_img}" alt="">
                             </a>
                                 <p class="item_name">
                                     <span>${board.name}</span>
