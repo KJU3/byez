@@ -68,6 +68,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <c:if test="${addresses.size() == 0}">
+                <p class="message">등록된 배송지가 없습니다.</p>
+            </c:if>
             <div class="btn_wrapper"> <!-- 버튼을 감싸는 div -->
                 <a href="addrRegisterForm" class="add_address_btn">배송지등록</a>
             </div>

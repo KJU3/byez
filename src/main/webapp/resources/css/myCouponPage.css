@@ -56,3 +56,8 @@ section {width: 100%; min-width: 1200px; height: fit-content;
 .content > table tr {
     border-bottom: 1px solid gray;
 }
+
+.message {
+    text-align: center;
+    padding: 40px 0px;
+}

@@ -131,3 +131,9 @@ section {width: 100%; min-width: 1200px; height: fit-content;
   box-sizing: border-box;
   border: 1px solid gray;
 }
+
+input[readonly] {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  pointer-events: none;
+}
