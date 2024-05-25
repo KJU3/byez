@@ -190,7 +190,7 @@ $(document).ready(function(){
         const price = parseInt($('.item-info').find('.disc_price').val());
         const opt1 = $('.opt1').val();
         const opt2 = $('.opt2').val();
-        const opt3 = $('.infoWrapper').find('.type').val();
+        const opt3 = $('.cust_type').val();
 
 
         // form 동적으로 생성

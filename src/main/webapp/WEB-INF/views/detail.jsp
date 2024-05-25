@@ -26,8 +26,8 @@
         </p>
         <div class="info">
             <div class="infoImgWrapper">
-                <img src="${itemDto.main_img}" alt="" class="detail_img">
-                <img src="${itemDetail.detail_img}" alt="" class="detail_img">
+                <img src="/img/${itemDto.main_img}" alt="" class="detail_img">
+                <img src="/img/${itemDetail.detail_img}" alt="" class="detail_img">
                 <p>소재 : <span class="matr">${itemDetail.matr}</span></p>
                 <p>제조국 : <span class="origin">${itemDetail.origin}</span></p>
                 <p>제조사 : <span class="mfg_corp">${itemDetail.mfg_corp}</span></p>
@@ -45,7 +45,7 @@
                 <p>
                     <span class="disc_price"><fmt:formatNumber value="${itemDetail.disc_price}" pattern="#,###"/></span>
                     <span class="price"><fmt:formatNumber value="${itemDetail.price}" pattern="#,###"/></span>
-                    <span class="disc_rate">${itemDetail.disc_rate * 100}%</span>
+                    <span class="disc_rate"><fmt:formatNumber value="${itemDetail.disc_rate * 100}" pattern="#,###"/>%</span>
                 </p>
 <%--                <div class="newbie">--%>
 <%--                    <span>신규가입 혜택</span>--%>
@@ -345,6 +345,6 @@
 <div class="modal_box"></div>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
-<script src="/js/detail.js?after?after?after?after?after?after?after"></script>
+<script src="/js/detail.js"></script>
 </body>
 </html>
