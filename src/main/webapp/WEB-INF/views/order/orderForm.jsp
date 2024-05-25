@@ -353,9 +353,11 @@
                 <c:forEach items="${coupons}" var="coupon">
                     <tr>
                         <td>
-                            <input type="radio" name="options" onclick="saveSelectedCoupon('${coupon.couponDto.name}', '${coupon.couponDto.minPayPrice}', '${coupon.couponDto.maxDiscPrice}', '${coupon.couponDto.prmo}', '${coupon.couponDto.discType}', '${coupon.custCouponsDto.seq}')"/>
+                            <input type="radio" id="${coupon.custCouponsDto.seq}" name="options" onclick="saveSelectedCoupon('${coupon.couponDto.name}', '${coupon.couponDto.minPayPrice}', '${coupon.couponDto.maxDiscPrice}', '${coupon.couponDto.prmo}', '${coupon.couponDto.discType}', '${coupon.custCouponsDto.seq}')"/>
                             <!-- 이 부분에 쿠폰명 또는 다른 정보를 출력할 수 있습니다. -->
-                                ${coupon.couponDto.name}
+                            <label for="${coupon.custCouponsDto.seq}">
+                                    ${coupon.couponDto.name}
+                            </label>
                         </td>
                         <td>
                             <span>${coupon.couponDto.maxDiscPrice}</span>원
