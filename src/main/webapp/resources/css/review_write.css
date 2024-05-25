@@ -112,7 +112,7 @@ section {
     height: 70px;
     width: 100px;
     text-align: left;
-
+padding-top:10px;
 }
 
 .content table td {
@@ -125,10 +125,12 @@ section {
     width: 100%;
     height: 400px;
     text-align: left;
-    border: 2px black solid;
+    border: 1px gray solid;
     box-sizing: border-box;
     resize: none;
     overflow: auto;
+    padding: 10px;
+
 }
 
 
@@ -151,6 +153,9 @@ section {
     height: 50px;
     margin-right: 10px;
     margin-top: 10px;
+    background-color: white;
+    border : 1px gray solid;
+    font-size: 16px;
 }
 .btn_area {
     display: flex;
@@ -161,6 +166,9 @@ section {
     height: 50px;
     margin-right: 10px;
     margin-top: 10px;
+    background-color: white;
+    border:1px solid gray;
+    font-size: 16px;
 }
 .btn_right {
     display: flex;
@@ -178,11 +186,42 @@ section {
 .item_info{
     display: flex;
     flex-direction: column;
+    padding-left : 10px;
 }
 .item_name{
     font-size: 24px; /* 원하는 글자 크기로 변경하세요 */
     font-weight: bold; /* 텍스트를 굵게 만듭니다 */
+    margin-bottom: 10px;
+    padding-top: 10px;
 }
 .second button{
     background-color: #6b7684;
 }
+table select,
+table input,
+table textarea{
+    border : 1px solid gray;
+}
+table input[type="text"]{
+    border:gray solid 1px;
+    margin-top:10px
+}
+
+#writebtn {margin-right: 0; transition: 0.3s;}
+#writebtn:hover {background-color: black; color: white; border-color: black;}
+#updatebtn {margin-right: 0; transition: 0.3s;}
+#updatebtn:hover{background-color: black; color: white; border-color: black;}
+
+.stars {margin: 5px auto; width: fit-content; height: fit-content; font-size: 1.2vw; color:gold;}
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.rate { display: inline-block;border: 0;margin-right: 15px;}
+.rate > input {display: none;}
+.rate > label {float: right;color: #ddd}
+.rate > label:before {display: inline-block;font-size: 4rem;padding: 2.3rem .2rem;margin: 0 5px;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
+.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
+.rate input:checked ~ label,
+.rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  }
+.rate input:checked + .rate label:hover,
+.rate input input:checked ~ label:hover,
+.rate input:checked ~ .rate label:hover ~ label,
+.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  }
