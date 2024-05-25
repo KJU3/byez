@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ItemController {
 
     private ItemServiceImpl itemService;
-
     private BasketItemServiceImpl basketItemService;
 
 
@@ -85,7 +84,7 @@ public class ItemController {
     @GetMapping("/item")
     public String itemList(SearchCondition sc, Model model, HttpSession session) {
         // 추가적으로 페이징 핸들러 처리
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -93,7 +92,7 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             // 카테고리 상품 조회
@@ -105,7 +104,7 @@ public class ItemController {
             PageHandler ph = new PageHandler(searchCnt, sc);
 
             // 모델 저장 및 페이지 이동
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
             model.addAttribute("searchCnt", searchCnt);
             model.addAttribute("list", list);
             model.addAttribute("ph", ph);
@@ -190,7 +189,7 @@ public class ItemController {
 
     @GetMapping("/goods/{num}")
     public String detail(@PathVariable String num, Model model, HttpSession session) {
-        int cnt = 0;
+        int basketCnt = 0;
         try {
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
@@ -199,15 +198,17 @@ public class ItemController {
                 BasketItemDto dto = new BasketItemDto();
                 dto.setId(id);
                 // 장바구니 상품 수량 조회
-                cnt = basketItemService.getCount(dto);
+                basketCnt = basketItemService.getCount(dto);
             }
 
             ItemDetailPageDto itemDetail = itemService.readDetailItem(num);
+            ItemDto itemDto = itemService.getItem(num);
             if (itemDetail == null) {
                 throw new Exception("상세 상품 정보를 정상적으로 조회하지 못했습니다. 존재하지 않는 상품일 확률이 높습니다.");
             }
 
-            model.addAttribute("cnt", cnt);
+            model.addAttribute("basketCnt", basketCnt);
+            model.addAttribute("itemDto", itemDto);
             model.addAttribute("itemDetail", itemDetail);
 
         } catch (Exception e) {
@@ -240,14 +241,15 @@ public class ItemController {
             ItemDto selectedDto = itemService.getItem(dto.getNum());
             dto.setMain_img(selectedDto.getMain_img());
 
+
+
             basketItemService.register(dto);
             BasketItemDto target = basketItemService.readByContent(dto);
-            BasketItemDtos dtos = new BasketItemDtos();
-            dtos.addBasketItemDto(target);
+            BasketItemDtos basketItemDtos = new BasketItemDtos();
+            basketItemDtos.addBasketItemDto(target);
 
-
-            ratt.addFlashAttribute("dtos", dtos);
-            return "redirect:/order";
+            ratt.addFlashAttribute("basketItemDtos", basketItemDtos);
+            return "redirect:/order/orderForm";
         } catch (Exception e) {
             model.addAttribute("errorMsg", e.getMessage());
             return "errorPage";

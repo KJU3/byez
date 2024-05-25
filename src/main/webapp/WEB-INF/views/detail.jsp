@@ -26,6 +26,7 @@
         </p>
         <div class="info">
             <div class="infoImgWrapper">
+                <img src="${itemDto.main_img}" alt="" class="detail_img">
                 <img src="${itemDetail.detail_img}" alt="" class="detail_img">
                 <p>소재 : <span class="matr">${itemDetail.matr}</span></p>
                 <p>제조국 : <span class="origin">${itemDetail.origin}</span></p>
@@ -107,6 +108,7 @@
                             <div class="item-info">
                                 <input class="num" type="hidden" value=${itemDetail.num}>
                                 <input class="name" type="hidden" value="${itemDetail.detail_name}">
+                                <input class="main_img" type="hidden" value="${itemDto.main_img}">
                                 <input class="price" type="hidden" value=${itemDetail.price}>
                                 <input class="disc_price" type="hidden" value=${itemDetail.disc_price}>
                                 <input class="cust_type" type="hidden" value="${itemDetail.cust_type}">
@@ -120,7 +122,7 @@
                     <div class="total_price_box">
                         <span>총 상품금액</span>
                         <span>
-                                <span class="total_price">8,999,900</span> 원
+                                <span class="total_price"><fmt:formatNumber value="${itemDetail.disc_price}" pattern="#,###"/></span> 원
                             </span>
                     </div>
                 </div>
@@ -343,7 +345,6 @@
 <div class="modal_box"></div>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
-<script src="/js/count.js"></script>
-<script src="/js/detail.js?after?after?after?after?after"></script>
+<script src="/js/detail.js?after?after?after?after?after?after?after"></script>
 </body>
 </html>
