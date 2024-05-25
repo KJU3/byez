@@ -55,7 +55,7 @@
                     <div class="container">
                         <!-- 이미지 -->
                         <div class="box box1">
-                            <img src="${offList.main_img}" alt="Product Image">
+                            <img src="/img/${offList.main_img}" alt="Product Image">
                         </div>
                         <!-- 상품상세 -->
                         <div class="box box2">
@@ -80,7 +80,7 @@
                         <c:forEach var="onList" items="${reviewOnList}">
                             <li class="reviewDone">
                                 <div class="first">
-                                    <div class="first_image"><img src="${onList.main_img}"></div>
+                                    <div class="first_image"><img src="/img/${onList.main_img}"></div>
                                     <div class="first_info">
                                         <p class="item_name"> 상품명 : ${onList.item_name}</p>
                                         <p class="item_score"> 별점 : ${onList.score}점</p>
