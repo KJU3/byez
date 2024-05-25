@@ -76,6 +76,8 @@ section {width: 100%; min-width: 1200px; height: fit-content;
   margin-top: 10px;
   cursor: pointer;
   float: right;
+  transition: border .3s;
+  transition: background-color .3s;
 }
 
 .edit_address_btn:hover {
@@ -104,6 +106,10 @@ section {width: 100%; min-width: 1200px; height: fit-content;
 
 .cancle_btn:hover {
   border: 1px solid black;
+}
+
+tbody input {
+  text-indent: 5px;
 }
 
 .addrNameInput,

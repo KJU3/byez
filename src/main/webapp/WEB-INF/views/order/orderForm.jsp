@@ -387,6 +387,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <c:if test="${coupons.size() == 0}">
+                <p class="message">보유중인 쿠폰이 없습니다.</p>
+            </c:if>
         </div>
         <div>
             <button id="couponModalCancel">적용취소</button>
