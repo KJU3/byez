@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -54,13 +54,13 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="item.html">상품 대시보드</a>
-                        <a class="nav-link" href="item.html">상품 목록</a>
-                        <a class="nav-link" href="itemRegisterForm.html">상품 등록</a>
-                        <a class="nav-link" href="item.html">상품 관리</a>
-                        <a class="nav-link" href="item.html">분류 관리</a>
-                        <a class="nav-link" href="item.html">재고 관리</a>
-                        <a class="nav-link" href="item.html">상품 옵션 관리</a>
+                        <a class="nav-link" href="#">상품 대시보드</a>
+                        <a class="nav-link" href="/itemList">상품 목록</a>
+                        <a class="nav-link" href="/itemRegister">상품 등록</a>
+                        <a class="nav-link" href="#">상품 관리</a>
+                        <a class="nav-link" href="#">분류 관리</a>
+                        <a class="nav-link" href="/itemStock">재고 관리</a>
+                        <a class="nav-link" href="#">상품 옵션 관리</a>
                     </nav>
                 </div>
 

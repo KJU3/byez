@@ -9,17 +9,23 @@ public class AdminItemController {
 
     @GetMapping("/admin/item")
     public String index() {
-        return "adminItem";
+        return "adminItemList";
     }
 
-    @GetMapping("/admin/itemForm")
-    public String getAddForm() {
-        return "adminItemForm";
-    }
 
     @GetMapping("/admin/itemRegisterForm")
     public String getRegisterForm() {
-        return "adminItemRegisterForm";
+        return "adminItemRegister";
+    }
+
+    @GetMapping("/admin/itemForm")
+    public String getModifyForm() {
+        return "adminItemModify";
+    }
+
+    @GetMapping("/admin/itemStock")
+    public String getStockForm() {
+        return "adminItemStock";
     }
 
 }
