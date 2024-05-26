@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/review_list.css?after?after">
+    <link rel="stylesheet" href="/css/review_list.css?after?after?after">
     <link rel="stylesheet" href="/css/footer.css?after">
     <link rel="stylesheet" href="/css/aside.css?after">
     <link rel="stylesheet" href="/css/quick.css">
@@ -30,11 +30,11 @@
     <div class="wrapper">
         <div class="title">
             <p>
-                <a href="main.html"><span>home</span></a>
+                <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="mypage.html"><span>마이페이지</span></a>
-                <span>></span>
-                <a href="/review/list"><span>리뷰</span></a>
+                <a href="/mypage/index"><span>마이페이지</span></a>
+
+
 
             </p>
             <p>나의 게시물 관리</p>
@@ -59,9 +59,9 @@
                         </div>
                         <!-- 상품상세 -->
                         <div class="box box2">
-                            <h3>${offList.item_name}</h3>
-                            <h5>${offList.opt1} ${offList.opt2} ${offList.opt3}</h5>
-                            <h5><c:out value="${fn:substring(offList.reg_date, 0, 10)}"/></h5>
+                            <p class="mainP">${offList.item_name}</p>
+                            <p class="subP">${offList.opt1} ${offList.opt2} ${offList.opt3}</p>
+                            <p class="subP"><c:out value="${fn:substring(offList.reg_date, 0, 10)}"/></p>
                         </div>
                         <!-- 리뷰버튼 -->
                         <div class="box box3">
@@ -98,11 +98,11 @@
                                         <p><c:out value="${fn:substring(onList.reg_date, 0, 10)}"/></p>
                                         <a href="/review/delete?review_num=${onList.review_num}"
                                            onclick="return confirm('삭제하시겠습니까?')">
-                                            <button>삭제</button>
+                                            <button id="deletebtn">삭제</button>
                                         </a>
                                         <a href="/review/modify?review_num=${onList.review_num}&ord_num=${onList.ord_num}&item_num=${onList.item_num}"
                                            onclick="return confirm('수정하시겠습니까?')">
-                                            <button>수정</button>
+                                            <button id="updatebtn">수정</button>
                                         </a>
                                     </div>
                                 </div>
@@ -121,11 +121,7 @@
 </div>
 </div>
 </section>
-<footer>
-    <div class="wrapper">
-        <p>© 2024 spao-copymachine. All rights not reserved.</p>
-    </div>
-</footer>
+
 <div class="quick">
     <a href="#none" onclick="jQuery('html,body').animate({scrollTop:0},'slow')">
         <img src="/img/quick_up.png" alt="">
@@ -141,3 +137,5 @@
 </html>
 
 
+<%@include file="../views/include/footer.jsp" %>
+<%@include file="../views/include/quick.jsp" %>

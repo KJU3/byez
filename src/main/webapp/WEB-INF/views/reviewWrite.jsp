@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/review_write.css?after">
+    <link rel="stylesheet" href="/css/review_write.css?after?after">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
     <div class="wrapper">
         <div class="title">
             <p>
-                <a href="main.html"><span>home</span></a>
+                <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="mypage.html"><span>마이페이지</span></a>
+                <a href="/mypage/index"><span>마이페이지</span></a>
                 <span>></span>
                 <a href="/review/list"><span>리뷰</span></a>
             </p>
@@ -73,13 +73,14 @@
                             한줄평
                         </th>
                         <td>
-                            <input id="title" name="title" type="text" placeholder="한줄평 (100자 제한)"
+                            <input id="title" name="title" type="text" placeholder="(100자 제한)"
                                    value="${reviewDto.title}">
                         </td>
                     </tr>
                     <tr>
                         <th colspan="3">
-                            <textarea id="content" name="content" placeholder="자세한리뷰 (100자 제한)"
+                            <div><p class="detailReview">자세한 리뷰</p></div>
+                            <textarea id="content" name="content" placeholder="(100자 제한)"
                                       class="put_large_content" contenteditable="true">${reviewDto.content}</textarea>
                         </th>
                     </tr>
@@ -87,7 +88,7 @@
                 </table>
                 <div class="btn_area">
                     <a href="list" onclick="return confirm('취소하시고 목록으로 가시겠습니까?')">
-                        <button type="button">목록</button>
+                        <button type="button" id="listbtn">목록</button>
                     </a>
                     <div class="btn_right">
                         <c:if test="${mode eq 'write'}">
