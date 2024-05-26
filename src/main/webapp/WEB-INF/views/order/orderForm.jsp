@@ -329,14 +329,7 @@
     </div>
 </section>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-<div class="quick">
-    <a href="#none" onclick="jQuery('html,body').animate({scrollTop:0},'slow')">
-        <img src="/img/quick_up.png" alt="" />
-    </a>
-    <a href="#none" onclick="jQuery('html,body').animate({scrollTop:$(document).height()},'slow');">
-        <img src="/img/quick_down.png" alt="" />
-    </a>
-</div>
+<jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <div class="couponModalShadow">
     <div class="couponModal">
         <c:set var="limitDate" value="2500-01-01" />
@@ -364,7 +357,7 @@
                             </label>
                         </td>
                         <td>
-                            <span>${coupon.couponDto.maxDiscPrice}</span>원
+                            <span><fmt:formatNumber value="${coupon.couponDto.maxDiscPrice}" type="number" groupingUsed="true"/></span>원
                         </td>
                         <td>
                             <c:choose>
@@ -372,7 +365,7 @@
                                     ${coupon.couponDto.prmo}%
                                 </c:when>
                                 <c:otherwise>
-                                    -${coupon.couponDto.prmo}
+                                    -<fmt:formatNumber value="${coupon.couponDto.prmo}" type="number" groupingUsed="true"/>원
                                 </c:otherwise>
                             </c:choose>
                         </td>
@@ -451,5 +444,58 @@
 <script src="/js/nav.js"></script>
 <script src="/js/tab.js"></script>
 <script src="/js/orderForm.js"></script>
+<script>
+    function validateName(name) {
+        var MAX_LENGTH = 50;
+
+        if(name.trim() === "" || name.trim().length > MAX_LENGTH) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateZpcd(zpcd) {
+        var zpcdPattern = /^\d{5,6}$/;
+
+        if(zpcd.trim() === "" || !zpcdPattern.test(zpcd.trim())) {
+            return false;
+        }
+    }
+
+    function validateMainAddr(mainAddr) {
+        if(mainAddr.trim() === "") {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateDetailAddr(detailAddr) {
+        if(detailAddr.trim() === "") {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateMobileNum(mobileNum) {
+        var mobilePattern = /^01(?:0|1|[6-9])\d{3,4}\d{4}$/;
+
+        if(!mobilePattern.test(mobileNum.trim())) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateDeliveryMsg(deliveryMsg) {
+        if(deliveryMsg.trim() === "") {
+            return false;
+        }
+
+        return true;
+    }
+</script>
 </body>
 </html>
