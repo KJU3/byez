@@ -152,4 +152,6 @@ public class AdminItemDto {
     public void setMfg_corp(String mfg_corp) {
         this.mfg_corp = mfg_corp;
     }
+
+
 }

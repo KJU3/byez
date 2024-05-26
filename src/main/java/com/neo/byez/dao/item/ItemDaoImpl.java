@@ -1,5 +1,6 @@
 package com.neo.byez.dao.item;
 
+import com.neo.byez.domain.item.AdminItemDto;
 import com.neo.byez.domain.item.Category;
 import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
@@ -84,8 +85,6 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectList(namespace+"selectItemType", category);
     }
 
-    // 상품 상태
-
 
     //    메인페이지 여성 top 8개 상품 띄우기
     public List<ItemDto> selectWTop8(ItemDto dto) throws Exception {
@@ -100,6 +99,22 @@ public class ItemDaoImpl implements ItemDao {
     //    메인페이지 혼성 top 8개 상품 띄우기
     public List<ItemDto> selectUTop8(ItemDto dto) throws Exception {
         return session.selectList(namespace+"selectUTop8", dto);
+    }
+
+    public List<AdminItemDto> selectAllItemOnAdmin(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectAllItemOnAdmin", sc);
+    }
+
+    public List<AdminItemDto> selectAllItemStockInfoOnAdmin(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectAllItemStockInfoOnAdmin", sc);
+    }
+
+    public int increaseStockQty(String num, Integer qty) throws Exception {
+        Map map = new HashMap();
+        map.put("qty", qty);
+        map.put("num", num);
+
+        return session.update(namespace + "increaseStockQty", map);
     }
 
 }
