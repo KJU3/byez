@@ -16,7 +16,6 @@
 </head>
 
 <body>
-  <section>
     <div class="wrapper">
 
       <div class="result-wrapper">
@@ -42,7 +41,6 @@
         </div>
       </div>
     </div>
-  </section>
 </body>
 
 <script src="/js/jquery-3.6.4.min.js"></script>

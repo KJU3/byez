@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    <section>
         <div class="wrapper">
             <form action="/find/modify" method="GET">
                 <div class="input-new-pwd">
@@ -63,7 +62,6 @@
                 </div>
             </form>
         </div>
-    </section>
 </body>
 
 <script src="/js/jquery-3.6.4.min.js"></script>

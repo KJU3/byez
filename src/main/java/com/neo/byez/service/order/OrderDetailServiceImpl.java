@@ -5,6 +5,7 @@ import com.neo.byez.dao.order.OrderDetailDaoImpl;
 import com.neo.byez.domain.ReviewDto;
 import com.neo.byez.domain.order.ItemOptionDto;
 import com.neo.byez.domain.order.OrderDetailDto;
+import com.neo.byez.domain.order.OrderDetailJoinItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,11 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
         return ordDetailDao.selectByOrdNum(ord_num);
     }
 
+    @Override
+    public OrderDetailDto selectNumAndSeq(String ord_num, Integer seq) throws Exception {
+        return ordDetailDao.selectNumAndSeq(ord_num,seq);
+    }
+
 
     @Override
     public List<OrderDetailDto> getOrderDetailsList(String id) throws Exception {
@@ -38,8 +44,19 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
 
     @Override
+    public List<OrderDetailDto> getEtcPage(Integer curPage, Integer pageSize, String userId) throws Exception {
+        return ordDetailDao.selectEtcPage(curPage,pageSize,userId);
+    }
+
+
+    @Override
     public int getCount(String userId) throws Exception {
         return ordDetailDao.getCount(userId);
+    }
+
+    @Override
+    public int getEtcCount(String userId) throws Exception {
+        return ordDetailDao.getEtcCount(userId);
     }
 
     @Override
@@ -75,7 +92,7 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
 
     @Override
-    public OrderDetailDto selectOneSeqForExchange(String ord_num, Integer seq) throws Exception {
+    public OrderDetailDto selectOneSeq(String ord_num, Integer seq) throws Exception {
         return ordDetailDao.selectNumAndSeq(ord_num, seq);
     }
 
@@ -100,12 +117,12 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
     //--------------------------찬빈추가
     @Override
-    public List<OrderDetailDto> searchById(String id) {
+    public List<OrderDetailJoinItemDto> searchById(String id) {
         return ordDetailDao.selectById(id);
     }
 
     @Override
-    public OrderDetailDto searchOrdItem(String ord_num, String item_num, String id) {
+    public OrderDetailJoinItemDto searchOrdItem(String ord_num, String item_num, String id) {
         return ordDetailDao.selectOrdItem(ord_num,item_num,id);
     }
 
@@ -120,7 +137,7 @@ public class OrderDetailServiceImpl implements  OrderDetailService{
     }
     @Override
     public boolean validateSearchOrdItem(String ord_num, String item_num, String id) {
-        OrderDetailDto ordDetailDto = ordDetailDao.selectOrdItem(ord_num, item_num, id);
+        OrderDetailJoinItemDto ordDetailDto = ordDetailDao.selectOrdItem(ord_num, item_num, id);
         if (ordDetailDto==null||ordDetailDto.getItem_num()==null || ordDetailDto.getOrd_num()==null) {
             return false;
         } else {
