@@ -153,5 +153,23 @@ public class AdminItemDto {
         this.mfg_corp = mfg_corp;
     }
 
-
+    @Override
+    public String toString() {
+        return "AdminItemDto{" +
+                "num='" + num + '\'' +
+                ", name='" + name + '\'' +
+                ", item_type='" + item_type + '\'' +
+                ", cust_type='" + cust_type + '\'' +
+                ", state_code='" + state_code + '\'' +
+                ", price=" + price +
+                ", disc_price=" + disc_price +
+                ", disc_rate=" + disc_rate +
+                ", stock_qty=" + stock_qty +
+                ", mfg_corp='" + mfg_corp + '\'' +
+                ", mfg_name='" + mfg_name + '\'' +
+                ", rel_date='" + rel_date + '\'' +
+                ", reg_date='" + reg_date + '\'' +
+                ", up_date='" + up_date + '\'' +
+                '}';
+    }
 }
