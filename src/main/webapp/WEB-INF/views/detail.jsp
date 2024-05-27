@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%--찬빈추가--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="dateOK" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/detail.css?after?after?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
-    <link rel="stylesheet" href="/css/quick.css?after">
+    <link rel="stylesheet" href="/css/detail.css?after?after?after?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +28,16 @@
         </p>
         <div class="info">
             <div class="infoImgWrapper">
-                <img src="/img/${itemDetail.detail_img}" alt="" class="detail_img">
+                <div class="foldImg">
+                    <img src="/img/${itemDto.main_img}" alt="" class="detail_img">
+                    <img src="/img/${itemDetail.detail_img}" alt="" class="detail_img">
+                </div>
+                <div class="more">
+                    <button>
+                        <span>상품설명 더보기</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </button>
+                </div>
                 <p>소재 : <span class="matr">${itemDetail.matr}</span></p>
                 <p>제조국 : <span class="origin">${itemDetail.origin}</span></p>
                 <p>제조사 : <span class="mfg_corp">${itemDetail.mfg_corp}</span></p>
@@ -44,7 +55,7 @@
                 <p>
                     <span class="disc_price"><fmt:formatNumber value="${itemDetail.disc_price}" pattern="#,###"/></span>
                     <span class="price"><fmt:formatNumber value="${itemDetail.price}" pattern="#,###"/></span>
-                    <span class="disc_rate">${itemDetail.disc_rate * 100}%</span>
+                    <span class="disc_rate"><fmt:formatNumber value="${itemDetail.disc_rate * 100}" pattern="#,###"/>%</span>
                 </p>
 <%--                <div class="newbie">--%>
 <%--                    <span>신규가입 혜택</span>--%>
@@ -120,7 +131,7 @@
                     <div class="total_price_box">
                         <span>총 상품금액</span>
                         <span>
-                                <span class="total_price">8,999,900</span> 원
+                                <span class="total_price"><fmt:formatNumber value="${itemDetail.disc_price}" pattern="#,###"/></span> 원
                             </span>
                     </div>
                 </div>
@@ -183,6 +194,34 @@
                 <li>별점순</li>
             </ul>
             <ul class="review_list">
+                <c:forEach var="reviewList" items="${reviewList}">
+                <li>
+                    <div>
+                        <div class="wrap-star">
+                            <div class='star-rating'>
+                                <span style ="width:${20*reviewList.score}%"></span>
+                        </div>
+                        </div>
+                        <span><dateOK:formatDate value="${reviewList.reg_date}" pattern="yyyy.M.d" /></span>
+                        <p>${reviewList.title}</p>
+                        <p>${reviewList.content}</p>
+                        <ul class="review_pic">
+                            <li>
+                                <img src="/img/hello1.jpeg" alt="">
+                            </li>
+                            <li>
+                                <img src="/img/hello2.jpeg" alt="">
+                            </li>
+                            <li>
+                                <img src="/img/hello4.jpeg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><span>${reviewList.writer}</span>님의 리뷰입니다.</p>
+                    </div>
+                </li>
+                </c:forEach>
                 <li>
                     <div>
                         <div class="wrap-star">
@@ -337,13 +376,12 @@
         </div>
     </div>
 </section>
-<%@include file="../views/include/quick.jsp"%>
-<%@include file="../views/include/footer.jsp"%>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <div class="modal_bg"></div>
 <div class="modal_box"></div>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
-<script src="/js/count.js"></script>
-<script src="/js/detail.js?after?after?after?after?after"></script>
+<script src="/js/detail.js?after"></script>
 </body>
 </html>

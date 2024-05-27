@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="dateOK" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -11,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/qna_read.css?after">
+    <link rel="stylesheet" href="/css/qna_read.css?after?after">
     <link rel="stylesheet" href="/css/footer.css?after">
     <link rel="stylesheet" href="/css/aside.css">
     <link rel="stylesheet" href="/css/quick.css">
@@ -29,9 +31,7 @@
             <p>
                 <a href="main.html"><span>home</span></a>
                 <span>></span>
-                <a href="mypage.html"><span>마이페이지</span></a>
-                <span>></span>
-                <a href="/qna/list"><span>나의문의</span></a>
+                <span>나의문의</span>
             </p>
             <p>나의 문의</p>
         </div>
@@ -51,7 +51,7 @@
                 </tr>
                 <tr class="put_line_class">
                     <th scope="row">입력날짜</th>
-                    <td colspan="3"> <c:out value="${fn:substring(qnaDto.reg_date, 0, 10)}" /></td>
+                    <td colspan="3"><dateOK:formatDate value="${qnaDto.reg_date}" pattern="yyyy.M.d" /></td>
                 </tr>
                 <tr>
                     <td colspan="4">${qnaDto.qna_content}</td>
@@ -68,10 +68,10 @@
             </div>
             <div class="content">
                 <div class="btn_area">
-                    <a href="/qna/list"><button>목록</button></a>
+                    <a href="/qna/list"><button class="listbtn">목록</button></a>
                     <div class="btn_right">
-                        <a href="/qna/delete?seq_num=${qnaDto.seq_num}" onclick="return confirm('삭제하시겠습니까?')"><button>삭제</button></a>
-                        <a href="/qna/update?seq_num=${qnaDto.seq_num}" onclick="return confirm('수정하시겠습니까?')"><button>수정</button></a>
+                        <a href="/qna/delete?seq_num=${qnaDto.seq_num}" onclick="return confirm('삭제하시겠습니까?')"><button class="deletebtn">삭제</button></a>
+                        <a href="/qna/update?seq_num=${qnaDto.seq_num}" onclick="return confirm('수정하시겠습니까?')"><button class="updatebtn">수정</button></a>
                     </div>
                 </div>
             </div>
@@ -87,8 +87,7 @@
                     </tr>
                     <tr class="put_line_class">
                         <th class="redred" scope="row">답변날짜</th>
-                        <td>     <c:out value="${fn:substring(qnaDto.up_date, 0, 10)}" /></td>
-
+                        <td><dateOK:formatDate value="${qnaDto.up_date}" pattern="yyyy.M.d" /></td>
                     </tr>
                     <tr class="put_detail_content">
                         <td colspan="3">
@@ -100,7 +99,7 @@
             </div>
             <div class="content">
                 <div class="btn_area">
-                    <a href="/qna/list"><button>목록</button></a>
+                    <a href="/qna/list"><button class="listbtn">목록</button></a>
                 </div>
             </div>
         </c:if>
@@ -114,19 +113,8 @@
         </div> -->
     </div>
 </section>
-<footer>
-    <div class="wrapper">
-        <p>© 2024 spao-copymachine. All rights not reserved.</p>
-    </div>
-</footer>
-<div class="quick">
-    <a href="#none" onclick="jQuery('html,body').animate({scrollTop:0},'slow')">
-        <img src="/img/quick_up.png" alt="">
-    </a>
-    <a href="#none" onclick="jQuery('html,body').animate({scrollTop:$(document).height()},'slow');">
-        <img src="/img/quick_down.png" alt="">
-    </a>
-</div>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/aside.js"></script>
 <script src="/js/nav.js"></script>

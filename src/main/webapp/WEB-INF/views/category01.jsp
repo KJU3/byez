@@ -136,7 +136,7 @@
             <p>
                 <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="item/categories/01"><span>남성</span></a>
+                <span>남성</span>
                 <!-- <span>></span>
                 <a href="category.html"><span>상의</span></a>
                 <span>></span>
@@ -149,7 +149,7 @@
                     <li><a href="/item/categories/0102">아우터</a></li>
                     <li><a href="/item/categories/0103">하의</a></li>
                     <li><a href="/item/categories/0104">신발</a></li>
-                    <li><a href="/item/categories/99">기타</a></li>
+                    <li><a href="/item/categories/99">액세사리</a></li>
                 </ul>
                 <div>
                     <div class="item_num">
@@ -293,8 +293,8 @@
     </div>
 </section>
 
-<%@include file="../views/include/quick.jsp"%>
-<%@include file="../views/include/footer.jsp"%>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js?after?after?after?after"></script>
 <script src="/js/sort.js"></script>
