@@ -27,19 +27,16 @@
             <ul id="main_slide" class="slick">
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
-<%--                        <img src="img/hello.jpeg">--%>
                         <img src="img/qwerty.jpeg">
                     </figure>
                 </li>
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
-<%--                        <img src="img/hello22.jpeg">--%>
                         <img src="img/qwerty2.jpeg">
                     </figure>
                 </li>
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
-<%--                        <img src="img/hello33.jpeg">--%>
                         <img src="img/qwerty3.jpeg">
                     </figure>
                 </li>

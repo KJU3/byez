@@ -49,7 +49,6 @@ section {width: 100%; min-width: 1200px; height: fit-content;  margin-top: 90px;
 .sex {padding: 3px; background-color: black; width: fit-content; color: white;}
 .rank {width: 50px; height: 50px; background-color: red; display: flex; justify-content: center; align-items: center; color: white; position: absolute; top:0; left: 5px; font-size: 20px; font-weight: bold;}
 
-
 .filter_wrapper {width: 90%; min-width: 215px; height: 100%; margin: auto; border-bottom: 1px solid #bcbcbc;}
 .filter_wrapper>p {font-size: 20px; font-weight: bold; margin-bottom: 15px;}
 .filter_con_col {width: 17px; height: 17px; border: 1px solid #bcbcbc; box-sizing: border-box; border-radius: 50%; display: inline-block; margin-right: 5px;}
