@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
-    <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/index.css?after?after">
+    <link rel="stylesheet" href="/css/nav.css?after?after?after?after?after?after?after">
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/tab.css">
-    <link rel="stylesheet" href="/css/slick.css?after?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
-    <link rel="stylesheet" href="/css/quick.css">
+    <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/quick.css?after">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,16 +27,19 @@
             <ul id="main_slide" class="slick">
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
+<%--                        <img src="img/hello.jpeg">--%>
                         <img src="img/qwerty.jpeg">
                     </figure>
                 </li>
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
+<%--                        <img src="img/hello22.jpeg">--%>
                         <img src="img/qwerty2.jpeg">
                     </figure>
                 </li>
                 <li class="slider_item">
                     <figure class="toms_menu_slide_img">
+<%--                        <img src="img/hello33.jpeg">--%>
                         <img src="img/qwerty3.jpeg">
                     </figure>
                 </li>
@@ -195,6 +198,6 @@
 <script src="/js/nav.js"></script>
 <script src="/js/tab.js"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="/js/slick.js?after"></script>
+<script src="/js/slick.js"></script>
 </body>
 </html>

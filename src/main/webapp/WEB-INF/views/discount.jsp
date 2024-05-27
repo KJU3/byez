@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/discount.css?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
+    <link rel="stylesheet" href="/css/discount.css?after?after?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,17 +20,8 @@
 <body>
 <%@include file="../views/include/nav.jsp"%>
 <section>
-    <div class="wrapper">
-        <p>
-            <a href="/"><span>home</span></a>
-            <span>></span>
-            <a href="/item/discount"><span>할인 상품</span></a>
-        </p>
-        <div>
-            <p>할인 상품</p>
-        </div>
-
-    </div>
+<%--    <div class="wrapper">--%>
+<%--    </div>--%>
 </section>
 <section>
     <p>SALE</p>
@@ -38,6 +29,11 @@
 </section>
 <section>
     <div class="wrapper">
+        <p>
+            <a href="/"><span>home</span></a>
+            <span>></span>
+            <span>할인 상품</span>
+        </p>
         <ul class="remoteBtn">
             <li><a href="#sweatshirt">
                 <span>맨투맨/스웨트셔츠</span>

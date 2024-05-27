@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/like.css?after?after?after?after?after">
     <link rel="stylesheet" href="/css/footer.css?after?after">
     <link rel="stylesheet" href="/css/quick.css">
-    <link rel="stylesheet" href="/css/aside.css?after">
+    <link rel="stylesheet" href="/css/aside.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
             <p>
                 <a href="/"><span>home</span></a>
                 <span>></span>
-                <a href="/like"><span>위시리스트</span></a>
+                <span>위시리스트</span>
             </p>
             <p>위시 리스트</p>
         </div>
