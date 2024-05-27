@@ -197,9 +197,9 @@ public class ItemController {
     @GetMapping("/goods/{num}")
     public String detail(@PathVariable String num, Model model, HttpSession session) {
         int basketCnt = 0;
-        //찬빈 추가
-        List<ReviewDto> reviewList = reviewService.searchByItem(num);
         try {
+            //찬빈 추가
+            List<ReviewDto> reviewList = reviewService.searchByItem(num);
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("id");
             id = "user1";

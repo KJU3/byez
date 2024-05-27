@@ -61,7 +61,7 @@
                         <!-- 상품상세 -->
                         <div class="box box2">
                             <p class="mainP"><a href="/goods/${offList.item_num}">${offList.item_name}</a></p>
-                            <p class="subP">${offList.opt1} ${offList.opt2} ${offList.opt3}</p>
+                            <p class="subP">[사이즈 : ${offList.opt1} / 컬러 : ${offList.opt2}]</p>
                             <p class="subP"><c:out value="${fn:substring(offList.reg_date, 0, 10)}"/></p>
                         </div>
                         <!-- 리뷰버튼 -->
@@ -84,7 +84,7 @@
                                     <div class="first">
                                         <div class="first_image"><img src="/img/${onList.main_img}"></div>
                                         <div class="first_info">
-                                            <p class="item_name"> <a href="/goods/${onList.item_num}">상품명 : ${onList.item_name}</a></p>
+                                            <p class="item_name"> <a href="/goods/${onList.item_num}">${onList.item_name}</a></p>
                                             <div class="wrap-star">
                                                 <div class='star-rating'>
                                                     <span style="width: ${20 * onList.score}%"></span>
