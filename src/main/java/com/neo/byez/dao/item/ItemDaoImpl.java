@@ -4,6 +4,7 @@ import com.neo.byez.domain.item.AdminItemDto;
 import com.neo.byez.domain.item.Category;
 import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
+import com.neo.byez.domain.item.ItemRegisterInfo;
 import com.neo.byez.domain.item.SearchCondition;
 import java.util.HashMap;
 import java.util.List;
@@ -115,6 +116,11 @@ public class ItemDaoImpl implements ItemDao {
         map.put("num", num);
 
         return session.update(namespace + "increaseStockQty", map);
+    }
+
+
+    public ItemRegisterInfo selectItemDetailInfoOnAdmin(String num) throws Exception {
+        return session.selectOne(namespace + "selectItemDetailInfoOnAdmin", num);
     }
 
 }

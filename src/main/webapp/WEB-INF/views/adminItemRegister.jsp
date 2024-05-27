@@ -69,7 +69,7 @@
                     </div>
                     <div class="card-body">
                         <div class="registerForm">
-                            <form action="">
+                            <form action="/admin/itemRegister" method="post">
                                 <table>
                                     <tr>
                                         <td>상품 번호</td>
@@ -98,7 +98,7 @@
                                     <tr>
                                         <td>할인 기간</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="period"> -->
+                                            <input type="text" placeholder="period">
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
                                                     <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
@@ -129,7 +129,7 @@
                                     <tr>
                                         <td>고객 유형</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="cust_type"> -->
+                                            <input type="text" placeholder="cust_type">
                                             <select name="cust_type" id="cust_type">
                                                 <option value="" disabled selected>--고객 유형을 선택해주세요--</option>
                                                 <option value="f">여성</option>
@@ -146,7 +146,7 @@
                                     <tr>
                                         <td>색상</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="col"> -->
+                                            <input type="text" placeholder="col">
                                             <select id="col" name="col" multiple="multiple">
                                                 <option value="">선택</option><option value="" disabled selected>--색깔 유형을 선택해주세요--</option>
                                                 <option value="검정">#000000</option>
@@ -178,7 +178,7 @@
                                     <tr>
                                         <td>상품 출시일</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="rel_date"> -->
+                                            <input type="text" placeholder="rel_date">
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
                                                     <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
@@ -189,7 +189,7 @@
                                     <tr>
                                         <td>상품 입고일</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="gr_date"> -->
+                                            <input type="text" placeholder="gr_date">
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
                                                     <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
@@ -208,7 +208,7 @@
                                     <tr>
                                         <td>제조연월</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="mfg_date"> -->
+                                            <input type="text" placeholder="mfg_date">
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
                                                     <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
@@ -227,7 +227,7 @@
                                     <tr>
                                         <td>판매 상태</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="state_code"> -->
+                                            <input type="text" placeholder="state_code">
                                             <select name="state_code" id="state_code">
                                                 <option value="" disabled selected>--판매 상태를 선택해주세요--</option>
                                                 <option value="SLA1">판매중</option>
@@ -279,7 +279,7 @@
                                         <td><input type="text" placeholder="remark"></td>
                                     </tr>
                                 </table>
-                                <button type="submit" class="add-button">등록하기</button>
+                                <button type="submit" class="add-button" >등록하기</button>
                             </form>
                         </div>
                     </div>

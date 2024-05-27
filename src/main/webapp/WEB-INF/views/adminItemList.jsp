@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
     <title>Tables - SB Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/table.css?after">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -86,107 +86,61 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>
-                                    111
-                                </td>
-                                <td>
-                                    <a href="itemForm">
-                                        티셔츠
-                                    </a>
-                                </td>
-                                <td>
-                                    010101
-                                </td>
-                                <td>
-                                    남성용
-                                </td>
-                                <td>
-                                    판매중
-                                </td>
-                                <td>
-                                    10000
-                                </td>
-                                <td>
-                                    8000
-                                </td>
-                                <td>
-                                    0.2
-                                </td>
-                                <td>(주)111컴퍼니</td>
-                                <td>2024.05.24</td>
-                                <td>2024.05.24</td>
-                                <td>2024.05.24</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>
-                                    112
-                                </td>
-                                <td>
-                                    <a href="itemForm">
-                                        티셔츠2
-                                    </a>
-                                </td>
-                                <td>
-                                    020101
-                                </td>
-                                <td>
-                                    여성용
-                                </td>
-                                <td>
-                                    품절
-                                </td>
-                                <td>
-                                    10000
-                                </td>
-                                <td>
-                                    7000
-                                </td>
-                                <td>
-                                    0.3
-                                </td>
-                                <td>(주)112컴퍼니</td>
-                                <td>2024.05.25</td>
-                                <td>2024.05.22</td>
-                                <td>2024.05.27</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>
-                                    113
-                                </td>
-                                <td>
-                                    <a href="itemForm">
-                                        셔츠
-                                    </a>
-                                </td>
-                                <td>
-                                    020101
-                                </td>
-                                <td>
-                                    여성용
-                                </td>
-                                <td>
-                                    판매중
-                                </td>
-                                <td>
-                                    20000
-                                </td>
-                                <td>
-                                    15000
-                                </td>
-                                <td>
-                                    0.25
-                                </td>
-                                <td>(주)11컴퍼니</td>
-                                <td>2024.04.25</td>
-                                <td>2024.06.22</td>
-                                <td>2023.05.27</td>
-                            </tr>
+                            <c:forEach var="item" items="${list}">
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        ${item.num}
+                                    </td>
+                                    <td>
+                                        <a href="/admin/item/${item.num}">
+                                            ${item.name}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        ${item.item_type}
+                                    </td>
+                                    <td>
+                                        ${item.cust_type}
+                                    </td>
+                                    <td>
+                                        ${item.state_code}
+                                    </td>
+                                    <td>
+                                        <p><fmt:formatNumber value="${item.price}" pattern="#,###"/></p>
+                                    </td>
+                                    <td>
+                                        <p><fmt:formatNumber value="${item.disc_price}" pattern="#,###"/></p>
+                                    </td>
+                                    <td>
+                                        <span class="disc_rate"><fmt:formatNumber value="${item.disc_rate * 100}" pattern="#,###"/>%</span>
+                                    </td>
+                                    <td>${item.mfg_corp}</td>
+                                    <td>${item.rel_date}</td>
+                                    <td>${item.reg_date}</td>
+                                    <td>${item.up_date}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
+
+                        <div class="paging">
+                            <!-- 이전 페이지 버튼 -->
+                            <c:if test="${ph.showPrev}">
+                                <a href="<c:url value='/admin/item?page=${ph.beginPage-1}&pageSize=${ph.sc.pageSize}' />">&lt;</a>
+                            </c:if>
+
+                            <!-- 네비 숫자 -->
+                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/admin/item?page=${ph.sc.page}&pageSize=${ph.sc.pageSize}"/>">${i}</a>
+                            </c:forEach>
+
+                            <!-- 이후 페이지 버튼 -->
+                            <c:if test="${ph.showNext}">
+                                <a href="<c:url value='/admin/item?page=${ph.endPage+1}&pageSize=${ph.sc.pageSize}' />">&gt;</a>
+                            </c:if>
+
+                        </div>
                         <button class="register">선택 삭제</button>
                         <button class="register">전체 삭제</button>
                         <button class="register" onclick="location.href='/itemRegister' ">상품 등록</button>

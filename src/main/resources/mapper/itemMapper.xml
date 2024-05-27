@@ -272,6 +272,46 @@
     order by s.sales_qty desc, i.like_cnt desc, i.review_cnt desc;
   </select>
 
+  <select id="selectItemDetailInfoOnAdmin" parameterType="string" resultType="ItemRegisterInfo">
+    select
+        i.num as num,
+        i.name as name,
+        i.price as price,
+        i.disc_price as disc_pirce,
+        d.mfg_name as mfg_name,
+        s.sales_qty as sales_qty,
+        i.main_img as main_img,
+        i.item_type as item_type,
+        i.review_cnt as review_cnt,
+        i.like_cnt as like_cnt,
+        i.review_rate as review_rate,
+        i.cust_type as cust_type,
+        p.disc_rate as disc_rate,
+        p.start_date as start_date,
+        p.end_date as end_date,
+        d.comt as remark,
+        d.detail_img as detail_img,
+        d.rel_date as rel_date,
+        d.gr_date as gr_date,
+        d.mfg_corp as mfg_corp,
+        d.mfg_date as mfg_date,
+        s.view_cnt as view_cnt,
+        d.model as model,
+        s.stock_qty as stock_aty,
+        d.origin as origin,
+        s.state_code as state_code,
+        d.matr as maftr,
+        d.comt as comt
+    from item i
+    inner join item_price p
+    on i.num = p.num
+    inner join item_state s
+    on i.num = s.num
+    inner join item_detail d
+    on i.num = d.num
+    where i.num = #{num}
+  </select>
+
   <update id="increaseStockQty" parameterType="map">
     update item_state
     set stock_qty = stock_qty + #{qty}

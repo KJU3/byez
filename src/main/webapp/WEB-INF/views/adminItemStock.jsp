@@ -85,35 +85,37 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="item" items="${list}">
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td>
-                                    111
+                                    ${item.num}
                                 </td>
                                 <td>
                                     <a href="itemForm.html">
-                                        티셔츠
+                                        ${item.name}
                                     </a>
                                 </td>
                                 <td>
-                                    111
+                                    ${item.stock_qty}
                                 </td>
                                 <td>
-                                    판매중
+                                    <!-- 판매량 추가 -->
                                 </td>
                                 <td>
-                                    5000
+                                   ${item.price}
                                 </td>
                                 <td>
-                                    10000
+                                        ${item.disc_price}
                                 </td>
                                 <td>
-                                    8000
+                                        ${item.disc_rate}
                                 </td>
-                                <td>(주)111컴퍼니</td>
-                                <td>2024.05.24</td>
-                                <td>2024.05.24</td>
+                                <td>${item.mfg_corp}</td>
+                                <td>${item.rel_date}</td>
+                                <td>${item.up_date}</td>
                             </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                         <button class="register">선택 삭제</button>

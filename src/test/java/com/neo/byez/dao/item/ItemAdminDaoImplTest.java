@@ -52,4 +52,11 @@ class ItemAdminDaoImplTest {
         ItemStateDto updated = itemStateDao.select(num);
         assertEquals(selected.getStock_qty() + qty, updated.getStock_qty());
     }
+    @Test
+    void selectItemDetailInfoOnAdmin() throws Exception {
+        String num = "304";
+
+        ItemRegisterInfo result = dao.selectItemDetailInfoOnAdmin(num);
+        System.out.println(result);
+    }
 }

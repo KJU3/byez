@@ -344,6 +344,6 @@
 <div class="modal_box"></div>
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
-<script src="/js/detail.js"></script>
+<script src="/js/detail.js?after"></script>
 </body>
 </html>
