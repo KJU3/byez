@@ -77,7 +77,10 @@
                         <button id="changeOptionBtn" type = "button">옵션변경</button>
                     </td>
                     <td class="orderNum">
-                        <p>${orderDetailDto.ord_date}</p>
+                        <p>
+                            <fmt:parseDate value="${orderDetailDto.ord_date}" var="registered" pattern="yyyy-MM-dd HH:mm:ss" />
+                            <fmt:formatDate pattern="yyyy-MM-dd" value="${registered}"/>
+                        </p>
                         <p class="ord_num">
                             <a href="/order/orderHist?ord_num=${orderDetailDto.ord_num}">${orderDetailDto.ord_num}</a>
                         </p>
