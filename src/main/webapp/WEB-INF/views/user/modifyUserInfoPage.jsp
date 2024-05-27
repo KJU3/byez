@@ -24,8 +24,6 @@
                 <p>
                     <a href="/"><span>home</span></a>
                     <span>></span>
-                    <a href="/mypage/index"><span>마이페이지</span></a>
-                    <span>></span>
                     <span>회원정보 수정</span>
                 </p>
                 <p>회원정보 수정</p>
@@ -92,7 +90,7 @@
                     <tr class="hidden new-mobile-num-show">
                         <td>변경할 휴대폰 번호</td>
                         <td>
-                            <input type="text" id="mobile_num" name="mobile_num" placeholder="- 제외한 숫자만 입력하십시오." maxlength="11" oninput="restrictMobileNumbers(this.value)">
+                            <input type="text" id="mobile_num" name="mobile_num" placeholder="- 제외한 숫자만 입력하십시오." maxlength="11" oninput="restrictMobileNumbers(this.value); inputNum(this);">
                             <span id="mobile-number-error-msg"></span>
                         </td>
                         <td><button type="button" id="saveNewMobileNumBtn" disabled>휴대폰 번호 저장</button></td>
@@ -139,6 +137,10 @@
 <script src="/js/nav.js"></script>
 <script src="/js/aside.js"></script>
 <script>
+    function inputNum(element) {
+        element.value = element.value.replace(/[^0-9]/g, "");
+    }
+
     function checkPwdLength() {
         let pwd = document.getElementById('pwd').value;
         let msg = document.getElementById('pwd-length-error-msg');
