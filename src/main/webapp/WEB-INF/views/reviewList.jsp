@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="dateOK" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -95,7 +96,8 @@
                                         </div>
                                     </div>
                                     <div class="second">
-                                        <p><c:out value="${fn:substring(onList.reg_date, 0, 10)}"/></p>
+<%--                                        <p><c:out value="${fn:substring(onList.reg_date, 0, 10)}"/></p>--%>
+                                        <p><dateOK:formatDate value="${onList.reg_date}" pattern="yyyy.M.d" /></p>
                                         <a href="/review/delete?review_num=${onList.review_num}"
                                            onclick="return confirm('삭제하시겠습니까?')">
                                             <button id="deletebtn">삭제</button>
