@@ -97,8 +97,8 @@
                                         <a href="/goods/${orderDetailDto.item_num}">
                                             <img src="/img/${orderDetailDto.item_num}.jpeg" class="img">
                                         </a>
-                                        <p class="item_name">${orderDetailDto.item_name}</p>
-                                        <p class="option">옵션 : ${orderDetailDto.opt1}/${orderDetailDto.opt2}</p>
+                                        <p class="item_name"><strong>${orderDetailDto.item_name}</strong></p>
+                                        <p class="option">[컬러 : ${orderDetailDto.opt1}/ 사이즈 : ${orderDetailDto.opt2}]</p>
                                     </td>
                                     <td class="number order_actions">
                                         <p>
@@ -264,8 +264,8 @@
                     "src": "/img/" + item.item_num + ".jpeg",
                     "class": "img"
                 });
-                var $itemName = $("<p></p>").addClass("item_name").text(item.item_name);
-                var $itemOptions = $("<p></p>").addClass("option").text("옵션 : " + item.opt1 + "/" + item.opt2);
+                var $itemName = $("<p></p>").addClass("item_name").html("<strong>" + item.item_name + "</strong>");
+                var $itemOptions = $("<p></p>").addClass("option").text("[컬러 : " + item.opt1 + "/ 사이즈 : " + item.opt2 + "]");
 
                 $link.append($img);
                 $tdInfo.append($link, $itemName, $itemOptions);
@@ -302,8 +302,8 @@
                     "src": "/img/" + item.item_num + ".jpeg",
                     "class": "img"
                 });
-                var $itemName = $("<p></p>").addClass("item_name").text(item.item_name);
-                var $itemOptions = $("<p></p>").addClass("option").text("옵션 : " + item.opt1 + "/" + item.opt2);
+                var $itemName = $("<p></p>").addClass("item_name").html("<strong>" + item.item_name + "</strong>");
+                var $itemOptions = $("<p></p>").addClass("option").text("[컬러 : " + item.opt1 + "/ 사이즈 : " + item.opt2 + "]");
 
                 $link.append($img);
                 $tdInfo.append($link, $itemName, $itemOptions);
@@ -344,7 +344,8 @@
                     "action": "/refund",
                     "method": "post",
                     "class": "form_center"
-                }).append(
+                }).css("margin-right", "3px") // 오른쪽 여백 추가
+                .append(
                     $("<input>").attr({
                         "type": "hidden",
                         "name": "seq",

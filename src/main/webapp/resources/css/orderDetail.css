@@ -105,12 +105,12 @@ form {
     margin-right: 10px; /* 오른쪽 여백을 추가하여 버튼 사이에 간격을 제공 */
 }
 
-input[type="submit"] {
-    padding: 5px 10px; /* 버튼의 내부 패딩을 조정하여 보다 편안한 클릭 영역제공 */
-    background-color: #f8f8f8; /* 배경색 설정 */
-    border: 1px solid gray; /* 경계선 설정 */
-    cursor: pointer; /* 커서를 포인터로 설정하여 클릭 가능 요소임을 나타냄 */
-}
+/*input[type="submit"] {*/
+/*    padding: 5px 10px; !* 버튼의 내부 패딩을 조정하여 보다 편안한 클릭 영역제공 *!*/
+/*    background-color: #f8f8f8; !* 배경색 설정 *!*/
+/*    border: 1px solid gray; !* 경계선 설정 *!*/
+/*    cursor: pointer; !* 커서를 포인터로 설정하여 클릭 가능 요소임을 나타냄 *!*/
+/*}*/
 
 input[type="submit"]:hover {
     background-color: #e7e7e7; /* 호버 시 배경색 변경 */

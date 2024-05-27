@@ -305,7 +305,7 @@
                         <a href="/goods/${orderDetailDto.item_num}">
                             <img src="/img/${orderDetailDto.item_num}.jpeg" class="img">
                         </a>
-                        <p class="item_name"> ${orderDetailDto.item_name} </p>
+                        <p class="item_name"> <strong>${orderDetailDto.item_name}</strong> </p>
                         <p id ="originalOption">옵션: ${orderDetailDto.opt1}/${orderDetailDto.opt2}</p>
                         <div id = "changedOption" style ="display :  none;">
                             <span id="options"></span>
