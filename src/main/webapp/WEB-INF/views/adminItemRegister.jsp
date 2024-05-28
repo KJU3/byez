@@ -99,16 +99,16 @@
                                         <td>할인 기간</td>
                                         <td>
                                             <input type="text" placeholder="period" name="period">
-                                            <%--                                            <fieldset class="search">--%>
-                                            <%--                                                <label for="date3" class="uniform-height">--%>
-                                            <%--                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
-                                            <%--                                                </label>--%>
-                                            <%--                                                ~--%>
-                                            <%--                                                <label for="date4" class="uniform-height">--%>
-                                            <%--                                                    <input type="date" id="date4" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
-                                            <%--                                                </label>--%>
-                                            <%--                                                <!-- <input alt="조회"  class= "uniform-height 조회" type="image" src="img/조회.gif"> -->--%>
-                                            <%--                                            </fieldset>--%>
+<%--                                            <fieldset class="search">--%>
+<%--                                                <label for="date3" class="uniform-height">--%>
+<%--                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
+<%--                                                </label>--%>
+<%--                                                ~--%>
+<%--                                                <label for="date4" class="uniform-height">--%>
+<%--                                                    <input type="date" id="date4" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
+<%--                                                </label>--%>
+<%--                                                <!-- <input alt="조회"  class= "uniform-height 조회" type="image" src="img/조회.gif"> -->--%>
+<%--                                            </fieldset>--%>
                                         </td>
                                     </tr>
                                     <tr>
@@ -129,7 +129,7 @@
                                     <tr>
                                         <td>고객 유형</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="cust_type" name="cust_type">--%>
+<%--                                            <input type="text" placeholder="cust_type" name="cust_type">--%>
                                             <select name="cust_type" id="cust_type">
                                                 <option value="" disabled selected>--고객 유형을 선택해주세요--</option>
                                                 <option value="f">여성</option>
@@ -146,28 +146,29 @@
                                     <tr>
                                         <td>색상</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="col">--%>
+<%--                                            <input type="text" placeholder="col">--%>
                                             <select id="col" name="col" multiple="multiple">
-                                                <option value="">선택</option><option value="" disabled selected>--색깔 유형을 선택해주세요--</option>
-                                                <option value="검정">#000000</option>
-                                                <option value="하양">#ffffff</option>
-                                                <option value="남색">#000080</option>
-                                                <option value="회색">#9c9c9c</option>
-                                                <option value="라이트그레이">#dfdfdf</option>
-                                                <option value="카키">#556b2f</option>
-                                                <option value="핑크">#ffc0cb</option>
-                                                <option value="레드">#ff0000</option>
-                                                <option value="파랑">#0000ff</option>
-                                                <option value="베이지">#f5f5dc</option>
-                                                <option value="크림">#fff8ed</option>
-                                                <option value="골드">#fafad2</option>
-                                                <option value="실버">#c0c0c0</option>
-                                                <option value="노랑">#ffff00</option>
-                                                <option value="갈색">#a52a2a</option>
-                                                <option value="라벤더">#e6e6fa</option>
-                                                <option value="라이트그린">#90ee90</option>
-                                                <option value="라이트블루">#add8e6</option>
-                                            </select>
+        <option value="" disabled selected>--색깔 유형을 선택해주세요--</option>
+        <option value="#000000">black</option>
+        <option value="#ffffff">white</option>
+        <option value="#000080">navy</option>
+        <option value="#9c9c9c">gray</option>
+        <option value="#dfdfdf">lightgray</option>
+        <option value="#556b2f">khaki</option>
+        <option value="#ffc0cb">pink</option>
+        <option value="#ff0000">red</option>
+        <option value="#0000ff">blue</option>
+        <option value="#f5f5dc">beige</option>
+        <option value="#fff8ed">cream</option>
+        <option value="#fafad2">gold</option>
+        <option value="#c0c0c0">silver</option>
+        <option value="#ffff00">yellow</option>
+        <option value="#a52a2a">brown</option>
+        <option value="#e6e6fa">lavender</option>
+        <option value="#90ee90">lightgreen</option>
+        <option value="#add8e6">lightblue</option>
+    </select>
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -178,10 +179,10 @@
                                     <tr>
                                         <td>상품 출시일</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="rel_date" name="rel_date">--%>
+<%--                                            <input type="text" placeholder="rel_date" name="rel_date">--%>
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
-                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
+                                                    <input type="date" id="date3" class="date-input" max="2030-12-31" min="2020-01-01" value="2024-05-27">
                                                 </label>
                                             </fieldset>
                                         </td>
@@ -189,10 +190,10 @@
                                     <tr>
                                         <td>상품 입고일</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="gr_date" name="gr_date">--%>
+<%--                                            <input type="text" placeholder="gr_date" name="gr_date">--%>
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
-                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
+                                                    <input type="date" id="date3" class="date-input" max="2030-12-31" min="2020-01-01" value="2024-05-27">
                                                 </label>
                                             </fieldset>
                                         </td>
@@ -208,10 +209,10 @@
                                     <tr>
                                         <td>제조연월</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="mfg_date" name="mfg_date">--%>
+<%--                                            <input type="text" placeholder="mfg_date" name="mfg_date">--%>
                                             <fieldset class="search">
                                                 <label for="date3" class="uniform-height">
-                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
+                                                    <input type="date" id="date3" class="date-input" max="2030-12-31" min="2020-01-01" value="2024-05-27">
                                                 </label>
                                             </fieldset>
                                         </td>
@@ -227,7 +228,7 @@
                                     <tr>
                                         <td>판매 상태</td>
                                         <td>
-                                            <%--                                            <input type="text" placeholder="state_code" name="state_code">--%>
+<%--                                            <input type="text" placeholder="state_code" name="state_code">--%>
                                             <select name="state_code" id="state_code">
                                                 <option value="" disabled selected>--판매 상태를 선택해주세요--</option>
                                                 <option value="SLA1">판매중</option>
