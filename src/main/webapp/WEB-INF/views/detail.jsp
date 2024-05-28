@@ -9,9 +9,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
-    <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/detail.css?after?after?after?after?after">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/nav.css?after">
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="stylesheet" href="/css/footer.css?after">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -210,10 +210,10 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello4.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -237,10 +237,10 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello4.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -263,7 +263,7 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -306,10 +306,10 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello3.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -332,10 +332,10 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello3.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>
@@ -358,10 +358,10 @@
                                 <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello2.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                             <li>
-                                <img src="/img/hello3.jpeg" alt="">
+                                <img src="/img/hello1.jpeg" alt="">
                             </li>
                         </ul>
                     </div>

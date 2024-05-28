@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="css/nav.css?after">
-    <link rel="stylesheet" href="css/basket.css?after?after?after?after?after?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
+    <link rel="stylesheet" href="css/basket.css?after?after?after?after?after?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
                                     <input type="checkbox" class="allBasketItemCheckBox" checked="checked">
                                 </div>
                             </th>
-                            <th>상품정보</th>
+                            <th style="height: 50px">상품정보</th>
                             <th>수량</th>
                             <th>가격</th>
                             <th>합계</th>
@@ -75,7 +75,7 @@
                                     <input type="checkbox" class="allBasketItemCheckBox" checked="checked">
                                 </div>
                             </th>
-                            <th>상품정보</th>
+                            <th style="height: 50px">상품정보</th>
                             <th>수량</th>
                             <th>가격</th>
                             <th>합계</th>
@@ -284,7 +284,7 @@
 <jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <!-- 4. 자스 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="/js/nav.js?after?after?after"></script>
-<script src="/js/basket.js?after?after?after?after"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/basket.js"></script>
 </body>
 </html>
