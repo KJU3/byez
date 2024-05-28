@@ -230,6 +230,7 @@
     select
       i.num as num,
       i.name as name,
+      i.main_img as main_img,
       i.item_type as item_type,
       i.cust_type as cust_type,
       s.state_code as state_code,
@@ -255,6 +256,7 @@
     select
       i.num as num,
       i.name as name,
+      i.main_img as main_img,
       s.stock_qty as stock_qty,
       i.price as price,
       i.price - (i.price * p.disc_rate) as disc_price,
