@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css" />
-    <link rel="stylesheet" href="/css/orderForm.css" />
-    <link rel="stylesheet" href="/css/footer.css?after?after">
+    <link rel="stylesheet" href="/css/orderForm.css?after" />
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css" />
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -199,16 +199,9 @@
                                 <option value="etc">직접 입력</option>
                             </select>
                             <!-- 배송메시지 직접 입력 - 글자 수 제한 구현 필요-->
-                            <textarea
-                                    id="delivery_msg"
-                                    class="order_textarea"
-                                    name="etc_textarea"
-                                    style="display: none"
-                                    maxlength="50"
-                                    oninput="setDeliveryMsg(this.value)"
-<%--                                    onkeyup="return textarea_maxlength(this)"--%>
-                                    placeholder="최대 50자까지 입력 가능합니다."
-                            ></textarea>
+                            <textarea id="delivery_msg" class="order_textarea" name="etc_textarea"
+                                      style="display: none" maxlength="50" oninput="setDeliveryMsg(this.value)"
+                                      placeholder="최대 50자까지 입력 가능합니다."></textarea>
                         </div>
                     </li>
                 </ul>
@@ -258,7 +251,7 @@
                                             </a>
                                         </p>
                                         <p>
-                                            [사이즈 : ${item.opt1} / 컬러 : ${item.opt2}]
+                                            [컬러 : ${item.opt1} / 사이즈 : ${item.opt2}]
                                         </p>
                                         <div>
                                             ${item.opt3}

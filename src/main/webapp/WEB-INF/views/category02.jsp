@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/category.css?after?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
+    <link rel="stylesheet" href="/css/category.css?after?after?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<%@include file="../views/include/nav.jsp"%>
+<jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <section>
     <div class="wrapper">
         <div class="filter">
@@ -222,7 +222,7 @@
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 <jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <script src="/js/jquery-3.6.4.min.js"></script>
-<script src="/js/nav.js?after?after?after?after?after"></script>
+<script src="/js/nav.js"></script>
 <script src="/js/sort.js"></script>
 <script src="/js/accordion.js"></script>
 </body>

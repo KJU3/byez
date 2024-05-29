@@ -72,42 +72,42 @@
                                 <table>
                                     <tr>
                                         <td>상품 번호</td>
-                                        <td><input type="text" placeholder="num"></td>
+                                        <td><input type="text" placeholder="num" name="num"></td>
                                     </tr>
                                     <tr>
                                         <td>상품명</td>
-                                        <td><input type="text" placeholder="name"></td>
+                                        <td><input type="text" placeholder="name" name="name"></td>
                                     </tr>
                                     <tr>
                                         <td>판매가</td>
-                                        <td><input type="text" placeholder="price"></td>
+                                        <td><input type="text" placeholder="price" name="price"></td>
                                     </tr>
                                     <tr>
                                         <td>할인 적용가</td>
-                                        <td><input type="text" placeholder="disc_price"></td>
+                                        <td><input type="text" placeholder="disc_price" name="disc_price"></td>
                                     </tr>
                                     <tr>
                                         <td>상품 대표 이미지</td>
-                                        <td><input type="text" placeholder="main_img"></td>
+                                        <td><input type="text" placeholder="main_img" name="main_img"></td>
                                     </tr>
                                     <tr>
                                         <td>상품 유형</td>
                                         <td>
-                                            <input type="text" placeholder="item_type (ex:010101)">
+                                            <input type="text" placeholder="item_type (ex:010101)" name="cust_type">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>리뷰 수</td>
-                                        <td><input type="text" placeholder="review_cnt" value="0"></td>
+                                        <td><input type="text" placeholder="review_cnt" value="0" name="review_cnt"></td>
                                     </tr>
                                     <tr>
                                         <td>좋아요 수</td>
-                                        <td><input type="text" placeholder="like_cnt" value="0"></td>
+                                        <td><input type="text" placeholder="like_cnt" value="0" name="like_cnt"></td>
                                     </tr>
                                     <tr>
 
                                         <td>평균 별점</td>
-                                        <td><input type="text" placeholder="review_rate" value="0"></td>
+                                        <td><input type="text" placeholder="review_rate" value="0" name="review_rate"></td>
                                     </tr>
                                     <tr>
                                         <td>고객 유형</td>
@@ -123,27 +123,27 @@
                                     </tr>
                                     <tr>
                                         <td>할인율</td>
-                                        <td><input type="text" placeholder="disc_rate"></td>
+                                        <td><input type="text" placeholder="disc_rate" name="disc_rate"></td>
                                     </tr>
                                     <tr>
                                         <td>할인 기간</td>
                                         <td>
-                                            <!-- <input type="text" placeholder="period"> -->
-                                            <fieldset class="search">
-                                                <label for="date3" class="uniform-height">
-                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
-                                                </label>
-                                                ~
-                                                <label for="date4" class="uniform-height">
-                                                    <input type="date" id="date4" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">
-                                                </label>
-                                                <!-- <input alt="조회"  class= "uniform-height 조회" type="image" src="img/조회.gif"> -->
-                                            </fieldset>
+                                            <input type="text" placeholder="period" name="period">
+<%--                                            <fieldset class="search">--%>
+<%--                                                <label for="date3" class="uniform-height">--%>
+<%--                                                    <input type="date" id="date3" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
+<%--                                                </label>--%>
+<%--                                                ~--%>
+<%--                                                <label for="date4" class="uniform-height">--%>
+<%--                                                    <input type="date" id="date4" class="date-input" max="2077-06-20" min="2077-06-05" value="2077-06-15">--%>
+<%--                                                </label>--%>
+<%--                                                <!-- <input alt="조회"  class= "uniform-height 조회" type="image" src="img/조회.gif"> -->--%>
+<%--                                            </fieldset>--%>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>사이즈</td>
-                                        <td><input type="text" placeholder="size"></td>
+                                        <td><input type="text" placeholder="size" name="size"></td>
                                     </tr>
                                     <tr>
                                         <td>색상</td>
@@ -174,19 +174,19 @@
                                     </tr>
                                     <tr>
                                         <td>비고</td>
-                                        <td><input type="text" placeholder="remark"></td>
+                                        <td><input type="text" placeholder="remark" name="remark"></td>
                                     </tr>
                                     <tr>
                                         <td>상품명 상세</td>
-                                        <td><input type="text" placeholder="detail_name"></td>
+                                        <td><input type="text" placeholder="detail_name" name="detail_name"></td>
                                     </tr>
                                     <tr>
                                         <td>상품 상세</td>
-                                        <td><input type="text" placeholder="comt" value="..."></td>
+                                        <td><input type="text" placeholder="comt" value="..." name="comt"></td>
                                     </tr>
                                     <tr>
                                         <td>상품 상세 이미지</td>
-                                        <td><input type="text" placeholder="detail_img"></td>
+                                        <td><input type="text" placeholder="detail_img" name="detail_img"></td>
                                     </tr>
                                     <tr>
                                         <td>상품 출시일</td>
@@ -212,11 +212,11 @@
                                     </tr>
                                     <tr>
                                         <td>제조사</td>
-                                        <td><input type="text" placeholder="mfg_corp"></td>
+                                        <td><input type="text" placeholder="mfg_corp" name="mfg_corp"></td>
                                     </tr>
                                     <tr>
                                         <td>제조자</td>
-                                        <td><input type="text" placeholder="mfg_name"></td>
+                                        <td><input type="text" placeholder="mfg_name" name="mfg_name"></td>
                                     </tr>
                                     <tr>
                                         <td>제조연월</td>
