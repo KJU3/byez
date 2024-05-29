@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/modifyUserInfoPage.css">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
-    <link rel="stylesheet" href="/css/aside.css?after">
+    <link rel="stylesheet" href="/css/modifyUserInfoPage.css?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/aside.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +23,6 @@
             <div class="title">
                 <p>
                     <a href="/"><span>home</span></a>
-                    <span>></span>
-                    <a href="/mypage/index"><span>마이페이지</span></a>
                     <span>></span>
                     <span>회원정보 수정</span>
                 </p>

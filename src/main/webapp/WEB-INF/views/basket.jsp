@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="css/nav.css?after">
-    <link rel="stylesheet" href="css/basket.css?after?after?after?after?after">
-    <link rel="stylesheet" href="/css/footer.css?after?after">
+    <link rel="stylesheet" href="css/basket.css?after?after?after?after?after?after?after">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,16 +16,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<%@include file="../views/include/nav.jsp"%>
-
+<jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <!-- 2. section : 장바구니 타이틀, 장바구니 상품 목록, 모두삭제/선택삭제 버튼, 주문 정보-->
 <section>
 <%--    </c:forEach>--%>
     <div class="wrapper">
         <!-- 2-1. 타이틀 : 장바구니 -->
         <p>
-            <a href="/"><span>HOME></span></a>
-            <span></span>
+            <a href="/"><span>home</span></a>
+            <span>></span>
             <span>장바구니</span>
         </p>
 
@@ -50,7 +49,7 @@
                                     <input type="checkbox" class="allBasketItemCheckBox" checked="checked">
                                 </div>
                             </th>
-                            <th>상품정보</th>
+                            <th style="height: 50px">상품정보</th>
                             <th>수량</th>
                             <th>가격</th>
                             <th>합계</th>
@@ -60,7 +59,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="6">
+                                <td colspan="6" class="noItem">
                                     장바구니에 담긴 상품이 없습니다.
                                 </td>
                             </tr>
@@ -75,7 +74,7 @@
                                     <input type="checkbox" class="allBasketItemCheckBox" checked="checked">
                                 </div>
                             </th>
-                            <th>상품정보</th>
+                            <th style="height: 50px">상품정보</th>
                             <th>수량</th>
                             <th>가격</th>
                             <th>합계</th>
@@ -121,7 +120,7 @@
                                                     <strong>${list.get(i).name}</strong>
                                                 </p>
                                                 <p>
-                                                    [사이즈 : ${list.get(i).opt1} / 컬러 : ${list.get(i).opt2}]
+                                                    [컬러 : ${list.get(i).opt1} / 사이즈 : ${list.get(i).opt2}]
                                                 </p>
                                                 <div>
                                                         ${list.get(i).opt3}
@@ -160,46 +159,49 @@
                                                                     <label>
                                                                         <b>수량</b>
                                                                     </label>
-                                                                    <div class="modalQty">
-                                                                        <div class="count_box">
-                                                                            <div class="count-wrap _count">
-                                                                                <button type="button" class="minus">-</button>
-                                                                                <input type="text" class="inp qty" value="${list.get(i).qty}" readonly/>
-                                                                                <button type="button" class="plus">+</button>
+                                                                    <div class="counting">
+                                                                        <div class="modalQty">
+                                                                            <div class="count_box">
+                                                                                <div class="count-wrap _count">
+                                                                                    <button type="button" class="minus">-</button>
+                                                                                    <input type="text" class="inp qty" value="${list.get(i).qty}" readonly/>
+                                                                                    <button type="button" class="plus">+</button>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </li>
 
-                                                                <li>
-                                                                    <label>
-                                                                        <b>사이즈</b>
-                                                                    </label>
-                                                                    <input type="hidden" class="opt1" name="opt1" value="${list.get(i).opt1}" placeholder="${list.get(i).opt1}">
-                                                                    <select class="changeOpt1" onchange="selectOpt1(this.value);">
-                                                                        <option value="" disabled selected>--사이즈 유형을 선택해주세요--</option>
-                                                                        <c:forEach var="size" items="${list2.get(i).sizes}">
-                                                                            <option value=${size}>${size}</option>
-                                                                        </c:forEach>
-                                                                    </select>
                                                                 </li>
 
                                                                 <li>
                                                                     <label>
                                                                         <b>색상</b>
                                                                     </label>
-                                                                    <input type="hidden" class="opt2" name="opt2" value="${list.get(i).opt2}" placeholder="${list.get(i).opt2}" >
-                                                                    <select class="changeOpt2" onchange="selectOpt2(this.value);">
+                                                                    <input type="hidden" class="opt1" name="opt1" value="${list.get(i).opt1}" placeholder="${list.get(i).opt1}" >
+                                                                    <select class="changeOpt1" onchange="selectOpt1(this.value);">
                                                                         <option value="" disabled selected>--색상을 선택해주세요--</option>
                                                                         <c:forEach var="color" items="${list2.get(i).colors}">
                                                                             <option value=${color}>${color}</option>
                                                                         </c:forEach>
                                                                     </select>
                                                                 </li>
+
+                                                                <li>
+                                                                    <label>
+                                                                        <b>사이즈</b>
+                                                                    </label>
+                                                                    <input type="hidden" class="opt2" name="opt2" value="${list.get(i).opt2}" placeholder="${list.get(i).opt2}">
+                                                                    <select class="changeOpt2" onchange="selectOpt2(this.value);">
+                                                                        <option value="" disabled selected>--사이즈 유형을 선택해주세요--</option>
+                                                                        <c:forEach var="size" items="${list2.get(i).sizes}">
+                                                                            <option value=${size}>${size}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </li>
                                                             </ul>
 
-                                                            <button class="modalBtn sendModalBtn">수정</button>
-                                                            <button class="modalBtn closeModalBtn">취소</button>
+                                                            <button class="modalBtn closeModalBtn"><p>취소</p></button>
+                                                            <button class="modalBtn sendModalBtn"><p>수정</p></button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -212,7 +214,7 @@
 
                     <div class="deleteBtnArea">
                         <!-- margin-left : 10px -->
-                        <button class="deleteAllBtn btnStyle" data-id="${list.get(i).id}">모두삭제</button>
+                        <button class="deleteAllBtn btnStyle" data-id="${list.get(i).id}">모두 삭제</button>
                         <button class="deleteSeveralBtn btnStyle" data-id="${list.get(i).id}">선택된 상품 삭제</button>
                     </div>
                 </c:if>
@@ -281,7 +283,7 @@
 <jsp:include page="/WEB-INF/views/include/quick.jsp"/>
 <!-- 4. 자스 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="/js/nav.js?after?after?after"></script>
-<script src="/js/basket.js?after?after?after"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/basket.js"></script>
 </body>
 </html>

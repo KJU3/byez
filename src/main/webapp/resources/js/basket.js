@@ -2,6 +2,7 @@ $(document).ready(function() {
   let totalCnt = 0;
   let orderPrice = 0;
 
+
   // 장바구니 상품 조회
   // 수량, 가격 계산
   // 주문 예상 정보 업데이트
@@ -162,6 +163,7 @@ $(".orderBtn").on("click", function(){
           const qty = parseInt($(e).find('.eachBasketItemQty').val());
           const opt1 = $(e).find('.eachBasketItemOpt1').val();
           const opt2 = $(e).find('.eachBasketItemOpt2').val();
+          const opt3 = $(e).find('.eachBasketItemOpt3').val();
 
 
 
@@ -176,12 +178,19 @@ $(".orderBtn").on("click", function(){
           formContents += "<input name='orders[" + orderNumber + "].qty' type='hidden' value='" + qty + "'>";
           formContents += "<input name='orders[" + orderNumber + "].opt1' type='hidden' value='" + opt1 + "'>";
           formContents += "<input name='orders[" + orderNumber + "].opt2' type='hidden' value='" + opt2 + "'>";
+          formContents += "<input name='orders[" + orderNumber + "].opt3' type='hidden' value='" + opt3 + "'>";
 
 
           // 주문 번호 증가
           orderNumber += 1;
       }
   });
+
+  // 주문 개수 없는 경우 요청 처리하지 말기
+  if (orderNumber === 0) {
+    alert("장바구니의 담긴 상품이 없습니다.");
+    return;
+  }
 
   // form 전송
   $(".orderCheckedBasketItemForm").html(formContents);
