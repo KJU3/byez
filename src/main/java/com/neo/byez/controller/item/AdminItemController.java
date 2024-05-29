@@ -18,7 +18,7 @@ public class AdminItemController {
     @GetMapping("/admin/item")
     public String list(SearchCondition sc, Model model) {
         try {
-            sc.setPageSize(15);
+            sc.setPageSize(10);
             List<AdminItemDto> list = itemService.readAllItemOnAdmin(sc);
             int totalCnt = itemService.getCount();
 
