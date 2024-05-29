@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/orderHist.css?after">
+    <link rel="stylesheet" href="/css/orderHist.css?after?after">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -76,9 +76,9 @@
                             <c:if test="${orderedItem.ord_state == '주문대기'|| orderedItem.ord_state == '주문완료'}">
                                 <button id="orderCancelBtn" onclick="location.href='/cancel?ord_num=${orderResultInfoDto.ord_num}'" >주문취소</button>
                             </c:if>
-                            <c:if test="${orderedItem.ord_state == '주문대기'|| orderedItem.ord_state == '주문완료'}">
-                                <button id="changeDeliveryBtn">배송지변경</button>
-                            </c:if>
+<%--                            <c:if test="${orderedItem.ord_state == '주문대기'|| orderedItem.ord_state == '주문완료'}">--%>
+<%--                                <button id="changeDeliveryBtn">배송지변경</button>--%>
+<%--                            </c:if>--%>
                         </td>
                     </tr>
                 </c:forEach>
