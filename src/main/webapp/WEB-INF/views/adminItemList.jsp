@@ -97,17 +97,17 @@
                                     </td>
                                     <td>
                                         <a href="/admin/item/${item.num}">
-                                            ${item.name}
+                                                ${item.name}
                                         </a>
                                     </td>
                                     <td>
-                                        ${item.item_type}
+                                            ${item.item_type}
                                     </td>
                                     <td>
-                                        ${item.cust_type}
+                                            ${item.cust_type}
                                     </td>
                                     <td>
-                                        ${item.state_code}
+                                            ${item.state_code}
                                     </td>
                                     <td>
                                         <p><fmt:formatNumber value="${item.price}" pattern="#,###"/></p>
