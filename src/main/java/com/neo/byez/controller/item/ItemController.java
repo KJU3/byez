@@ -237,7 +237,9 @@ public class ItemController {
             dto.setNum(itemNum);
             // 세션에서 아이디 조회
             String id = (String) session.getAttribute("userId");
-
+//            if (id == null) {
+//                return "forward:/order";
+//            }
             // 장바구니 상품 등록
             dto.setId(id);
             // 해당 상품 이미지 조회
