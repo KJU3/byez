@@ -14,6 +14,7 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/form.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/img/favicon-32x32_2.png">
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -147,7 +148,7 @@
                                         <td>색상</td>
                                         <td>
 <%--                                            <input type="text" placeholder="col">--%>
-                                            <select id="col" name="col" multiple="multiple">
+                                            <select id="col" name="col" multiple="multiple" style="height: 200px;">
         <option value="" disabled selected>--색깔 유형을 선택해주세요--</option>
         <option value="#000000">black</option>
         <option value="#ffffff">white</option>
