@@ -133,9 +133,9 @@
 <%--                                            <input type="text" placeholder="cust_type" name="cust_type">--%>
                                             <select name="cust_type" id="cust_type">
                                                 <option value="" disabled selected>--고객 유형을 선택해주세요--</option>
-                                                <option value="f">여성</option>
-                                                <option value="m">남성</option>
-                                                <option value="u">혼성</option>
+                                                <option value="여성용">여성</option>
+                                                <option value="남성용">남성</option>
+                                                <option value="혼성">혼성</option>
                                             </select>
                                         </td>
                                     </tr>
