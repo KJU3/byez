@@ -14,7 +14,6 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/table.css?after">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="/img/favicon-32x32_2.png">
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -97,7 +96,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/admin/item/${item.num}">
+                                        <a href="/admin/item/${item.num}" style="text-decoration:none;">
                                                 ${item.name}
                                         </a>
                                     </td>
@@ -173,4 +172,3 @@
 <script src="/js/datatables-simple-demo.js"></script>
 </body>
 </html>
-
