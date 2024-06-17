@@ -10,11 +10,12 @@ import java.util.List;
 public interface ReviewService {
     public int getCount();
     public int  write(ReviewDto reviewDto);
-    public int remove(Integer review_num,String id);
+    public int remove(Integer review_num);
     public int removeAll();
     public int modify(ReviewDto reviewDto);
     public List<ReviewDto> searchById(String id);
     public List<ReviewItemJoinDto> searchJoinItem(String id);
 
     public ReviewDto searchByReviewNum(Integer review_num);
+    public List<ReviewDto> searchByItem(String item_num);
 }

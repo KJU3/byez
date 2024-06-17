@@ -24,8 +24,8 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public int remove(Integer review_num, String id) {
-        return reviewDao.delete(review_num,id);
+    public int remove(Integer review_num) {
+        return reviewDao.delete(review_num);
     }
 
     @Override
@@ -52,4 +52,6 @@ public class ReviewServiceImpl implements ReviewService{
     public ReviewDto searchByReviewNum(Integer review_num) {
         return reviewDao.selectByReviewNum(review_num);
     }
+    @Override
+    public List<ReviewDto> searchByItem(String item_num){return reviewDao.selectByItem(item_num);}
 }

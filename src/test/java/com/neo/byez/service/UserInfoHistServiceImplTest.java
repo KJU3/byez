@@ -1,9 +1,11 @@
 package com.neo.byez.service;
 
-import com.neo.byez.dao.UserDaoImpl;
-import com.neo.byez.dao.UserInfoHistDao;
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.dao.user.UserInfoHistDao;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
+import com.neo.byez.service.user.UserInfoHistServiceImpl;
+import com.neo.byez.service.user.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +21,14 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UserInfoHistServiceImplTest {
 
-    @Autowired UserInfoHistServiceImpl userInfoHistService;
-    @Autowired UserInfoHistDao userInfoHistDao;
-    @Autowired UserServiceImpl userService;
-    @Autowired UserDaoImpl userDao;
+    @Autowired
+    UserInfoHistServiceImpl userInfoHistService;
+    @Autowired
+    UserInfoHistDao userInfoHistDao;
+    @Autowired
+    UserServiceImpl userService;
+    @Autowired
+    UserDaoImpl userDao;
 
     @Before
     public void reset() throws Exception {

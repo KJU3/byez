@@ -143,7 +143,7 @@ public class OrdEtcReqServiceImplTest {
 //
 //            OrderStateDto orderStateDto = new OrderStateDto("20240503-0001", "CNL1");
 //
-//            assertTrue(ordEtcReqService.insertCancelInfo(ordEtcReqDto, ordDetailDto, orderDto, orderStateDto) == true);
+////            assertTrue(ordEtcReqService.insertCancelInfo(ordEtcReqDto, ordDetailDto, orderDto, orderStateDto) == true);
 //    }
 //
 //            @Test(expected = DataIntegrityViolationException.class)
@@ -160,7 +160,7 @@ public class OrdEtcReqServiceImplTest {
 //
 //                OrderStateDto orderStateDto = new OrderStateDto("20240503-0001", null);
 //
-//                assertTrue(ordEtcReqService.insertCancelInfo(ordEtcReqDto, ordDetailDto, orderDto, orderStateDto) == true);
+//                assertTrue(ordEtcReqService.insertCancelInfo(session, ordEtcReqDto, ordDetailDto, orderDto, orderStateDto) == true);
 //            }
 //
 //            //주문반품 테스트

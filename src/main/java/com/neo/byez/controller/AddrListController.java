@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,30 +19,35 @@ public class AddrListController {
     @Autowired
     AddrListService addrListService;
 
-    @RequestMapping("/goMyAddrList")
-    public String goMyAddrList(HttpServletRequest request, Model model) throws Exception {
+    @RequestMapping("/myAddrList")
+    public String myAddrList(HttpServletRequest request, Model model) throws Exception {
 
-//        HttpSession session = request.getSession();
-//        String loginId = (String) session.getAttribute("loginId");
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
 
-        String loginId = "spa11";
-
-        List<AddressEntryDto> addresses = addrListService.getUsersAddrById(loginId);
+        List<AddressEntryDto> addresses = addrListService.getUsersAddrById(userId);
 
         model.addAttribute("addresses", addresses);
 
         return "myAddrList";
     }
 
-    @RequestMapping("goAddrRegisterForm")
-    public String goAddrRegisterForm() throws Exception {
+    @RequestMapping("addrRegisterForm")
+    public String addrRegisterForm() throws Exception {
         return "addrRegisterForm";
     }
 
-    @RequestMapping("goAddrEditForm")
-    public String goAddrEditForm(Integer seq, Model model) throws Exception {
+    @RequestMapping("addrEditForm")
+    public String addrEditForm(HttpServletRequest request, Integer seq, Model model) throws Exception {
+
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
 
         AddressEntryDto addressEntryDto = addrListService.getUsersAddrBySeq(seq);
+
+        if(!(addressEntryDto.getId().equals(userId))) { // 다른 사용자 정보 못보게 방지
+            return "redirect: /myAddrList";
+        }
 
         model.addAttribute("address", addressEntryDto);
 
@@ -57,16 +63,14 @@ public class AddrListController {
             return "addrRegisterForm";
         }
 
-//        HttpSession session = request.getSession();
-//        String loginId = (String) session.getAttribute("loginId");
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
 
-        String loginId = "spa11";
-
-        addressEntryDto.setId(loginId);
+        addressEntryDto.setId(userId);
 
         addrListService.registerAddr(addressEntryDto);
 
-        return "redirect: /home";
+        return "redirect: /myAddrList";
     }
 
     @RequestMapping("/editAddress")
@@ -74,7 +78,7 @@ public class AddrListController {
 
         addrListService.changeAddr(addressEntryDto);
 
-        return "redirect: /goMyAddrList";
+        return "redirect: /myAddrList";
     }
 
     @RequestMapping("/deleteAddress")
@@ -82,6 +86,6 @@ public class AddrListController {
 
         addrListService.deleteAddrBySeq(seq);
 
-        return "redirect: /goMyAddrList";
+        return "redirect: /myAddrList";
     }
 }

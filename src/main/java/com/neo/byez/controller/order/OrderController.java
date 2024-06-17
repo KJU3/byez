@@ -1,8 +1,14 @@
 package com.neo.byez.controller.order;
 
+import com.neo.byez.domain.UserCouponDetails;
+import com.neo.byez.domain.item.*;
+import com.neo.byez.domain.order.OrderDto;
 import com.neo.byez.domain.order.OrderReadyInfo;
-import com.neo.byez.domain.order.OrderResultInfo;
+import com.neo.byez.domain.order.OrderResultInfoDto;
+import com.neo.byez.domain.order.OrderResultInfoDto;
 import com.neo.byez.domain.order.PaymentInfo;
+import com.neo.byez.service.CustCouponsServiceImpl;
+import com.neo.byez.service.order.OrderResultInfoServiceImpl;
 import com.neo.byez.service.order.OrderServiceImpl;
 import com.neo.byez.service.order.PayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,65 +20,23 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = {"/order"})
 public class OrderController {
+    private OrderServiceImpl orderService;
+    private CustCouponsServiceImpl custCouponsService;
+    private OrderResultInfoServiceImpl orderResultInfoService;
     @Autowired
-    OrderServiceImpl orderService;
-
-    @Autowired
-    PayServiceImpl payService;
-
-    /*
-        OrderController
-        주문에 관련된 요청을 처리
-
-        주문 관련 요청
-        1. 주문 폼 페이지 요청
-        2. 주문 요청
-        3. 주문 완료 페이지 요청
-
-        etc.
-        주문번호 생성 요청
-
-        1. 주문 폼 페이지 요청
-        고객이 장바구니, 상품상세에서 주문상품(옵션, 수량 포함)목록으로 주문 폼 요청
-        orderFormRequest
-
-        매개변수 :
-        1. 로그인한 고객 아이디 userID
-        2. 주문 상품 목록 orderDetailList
-        3. 모델객체 Model
-
-        반환해야하는 값
-        #. 주문자 정보
-        #. 배송지 목록
-        #. 주문상품 목록
-        #. 쿠폰목록
-        #. 주문정보
-
-
-        2. 주문 요청
-        주문 폼 페이지에서 주문 요청
-        orderReady
-
-        매개변수 :
-        #. 주문자 정보
-        #. 배송지 정보
-        #. 주문상품목록 정보
-        #. 쿠폰 정보
-        #. 주문 정보
-        #. 결제 정보
-
-        반환해야 하는 값
-        #. 주문자 정보
-        #. 배송지 정보
-        #. 주문상품 정보
-        #. 쿠폰 정보
-        #. 주문 정보
-        #. 결제 정보
-     */
+    public OrderController(OrderServiceImpl orderService, CustCouponsServiceImpl custCouponsService, OrderResultInfoServiceImpl orderResultInfoService) {
+        this.orderService = orderService;
+        this.custCouponsService = custCouponsService;
+        this.orderResultInfoService = orderResultInfoService;
+    }
 
     /*
         주문 요청 - 주문 프로세스
@@ -140,8 +104,6 @@ public class OrderController {
         6. 결제 완료 페이지 이동
 
      */
-    // 결제 완료 전 주문폼의 정보를 DB에 저장
-
 
     // 0. 주문번호 생성
     @ResponseBody
@@ -157,40 +119,18 @@ public class OrderController {
         return ResponseEntity.ok().body(ordNum);
     }
 
-    @GetMapping("/orderComplete")
-    public String orderComplete(Model m){
-
-        String ord_num = "202405141958127607";
-
-        // 주문 상세 정보 조회
-        OrderResultInfo orderResultInfo = orderService.getOrderCompleteInfo(ord_num);
-
-        // 만약 결과가 null이면 에러페이지 이동
-        if (orderResultInfo == null){
-            m.addAttribute("msg", "주문 내역 조회 실패");
-            return "/order/error";
-        }
-
-        // 주문 상세 정보 담기
-        m.addAttribute("orderResultInfo", orderResultInfo);
-
-        // 주문 상세 페이지 이동
-        return "/order/orderComplete";
-    }
-
     // 주문 정보 유효성 검증 후 저장
     @ResponseBody
     @PostMapping("/orderReady")
-    public ResponseEntity<Object> orderReady(@RequestBody OrderReadyInfo orderReadyInfo, String id){
+    public ResponseEntity<Object> orderReady(@RequestBody OrderReadyInfo orderReadyInfo, HttpSession session){
+        String userId = (String)session.getAttribute("userId");
+        String userName = (String)session.getAttribute("userName");
         PaymentInfo paymentInfo = null;
         try {
-            // 테스트 ID
-            id = "asdf";
             // 주문 정보 검증 및 저장 시도
             // 예외 발생하면 검증 or 저장 실패
-            orderService.saveOrderInfo(orderReadyInfo, id);
-            paymentInfo = new PaymentInfo(orderReadyInfo, "asdf@asdf.com", "김씨", "01012345678");
-
+            orderService.saveOrderInfo(orderReadyInfo, userId);
+            paymentInfo = new PaymentInfo(orderReadyInfo, "user1@user1.com", userName, "01012345678");
 
         } catch (Exception e){
             e.printStackTrace();
@@ -204,8 +144,43 @@ public class OrderController {
                 .body(paymentInfo);
     }
 
-    @GetMapping("/orderForm")
-    public String index(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    // 주문 폼 요청
+    @RequestMapping("/orderForm")
+    public String index(HttpSession session, BasketItemDtos basketItemDtos, Model m) throws Exception {
+        String id = (String)session.getAttribute("userId");
+
+
+        List<BasketItemDto> basketItemDtoList = basketItemDtos.getOrders();
+        HashMap<String,Object> map = orderService.orderForm(id, basketItemDtoList);
+        List<UserCouponDetails> coupons = custCouponsService.getUserCouponDetailsByUserId(id);
+
+        m.addAttribute("coupons", coupons);
+        m.addAttribute("orderDto", map.get("orderDto"));
+        m.addAttribute("basketItemDtoList", basketItemDtoList);
+        m.addAttribute("addressEntryDtoList", map.get("addressEntryDtoList"));
+
         return "/order/orderForm";
+    }
+
+    // 주문완료페이지 - 임시 생성
+    @GetMapping("/orderHist")
+    public String orderHist(String ord_num, Model m){
+        OrderResultInfoDto orderResultInfoDto = orderResultInfoService.getOrderResultInfo(ord_num);
+        List<OrderResultInfoDto> orderResultInfoDtoList = orderResultInfoService.getOrderedItemList(ord_num);
+
+        if(orderResultInfoDto == null || orderResultInfoDtoList.size() == 0){
+            m.addAttribute("msg", "주문상세 정보 조회 실패!!!");
+            return "/order/error";
+        }
+
+        m.addAttribute("orderResultInfoDto", orderResultInfoDto);
+        m.addAttribute("orderResultInfoDtoList", orderResultInfoDtoList);
+
+        return "/order/orderHist";
+    }
+
+    @GetMapping("/orderComplete")
+    public String orderComplete(){
+        return "/order/orderComplete";
     }
 }

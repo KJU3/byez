@@ -9,7 +9,7 @@ public interface ReviewDao {
     int count();
     int insert(ReviewDto reviewDto);
 
-    int delete(Integer review_num,String id);
+    int delete(Integer review_num);
     int deleteAll();
 
     int update(ReviewDto reviewDto);
@@ -18,4 +18,5 @@ public interface ReviewDao {
     List<ReviewDto> selectAll();
     List<ReviewItemJoinDto> selectJoinItem(String id);
     ReviewDto selectByReviewNum(Integer review_num);
+    List<ReviewDto> selectByItem(String item_num);
 }

@@ -190,6 +190,7 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson.version}</version>
     </dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
@@ -381,6 +382,13 @@
     <!--      <artifactId>spring-security-config</artifactId>-->
     <!--      <version>5.8.12</version>-->
     <!--    </dependency>-->
+
+    <!-- @Valid 사용하기 위한 라이브러리 -->
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.2.0.Final</version>
+    </dependency>
 
 
   </dependencies>

@@ -18,14 +18,12 @@ public class CustCouponsController {
     CustCouponsService custCouponsService;
 
     // 마이페이지 쿠폰함
-    @RequestMapping("/goMyCouponPage")
-    public String goMyCouponPage(HttpServletRequest request, Model model) throws Exception {
+    @RequestMapping("/myCouponPage")
+    public String myCouponPage(HttpSession session, Model model) throws Exception {
 
         // 현재 접속 고객의 id정보를 가져옴
 //        HttpSession session = request.getSession();
-//        String loginId = (String) session.getAttribute("loginId");
-
-        String loginId = "spa11";
+        String loginId = (String) session.getAttribute("userId");
 
         // 고객의 id정보로 보유쿠폰들을 가져와서 view에 전달
         List<UserCouponDetails> coupons = custCouponsService.getUserCouponDetailsByUserId(loginId);

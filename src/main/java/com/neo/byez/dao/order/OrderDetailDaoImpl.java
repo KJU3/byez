@@ -2,6 +2,7 @@ package com.neo.byez.dao.order;
 
 import com.neo.byez.domain.ReviewDto;
 import com.neo.byez.domain.order.OrderDetailDto;
+import com.neo.byez.domain.order.OrderDetailJoinItemDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -58,9 +59,15 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
     }
 
     @Override
-    public int getCount() throws Exception{
-        return session.selectOne(namespace + "count");
+    public int getCount(String id) throws Exception{
+        return session.selectOne(namespace + "countById", id);
     }
+
+    @Override
+    public int getEtcCount(String id) throws Exception {
+        return session.selectOne(namespace + "countEtcById", id);
+    }
+
     @Override
     public List<OrderDetailDto> selectByOrdNum(String ord_num) throws Exception{
         return session.selectList(namespace + "selectByOrdNum" , ord_num);
@@ -73,8 +80,8 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
 
     //옵션변경
     @Override
-    public int updateOption(OrderDetailDto OrderDetailDto ) throws Exception {
-        return session.update(namespace + "updateOption", OrderDetailDto);
+    public int updateOption(OrderDetailDto orderDetailDto) throws Exception {
+        return session.update(namespace + "updateOption", orderDetailDto);
     }
 
     @Override
@@ -86,29 +93,43 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
     }
 
     @Override
-    public int updateOrdState(OrderDetailDto OrderDetailDto ) throws Exception {
-        return session.update(namespace + "updateOrdState", OrderDetailDto);
+    public int updateOrdState(OrderDetailDto orderDetailDto) throws Exception {
+        return session.update(namespace + "updateOrdState", orderDetailDto);
     }
 
     @Override
-    public int updateEachOrdState(OrderDetailDto OrderDetailDto) {
-        return session.update(namespace + "updateEachOrdState", OrderDetailDto);
+    public int updateEachOrdState(OrderDetailDto orderDetailDto) {
+        return session.update(namespace + "updateEachOrdState", orderDetailDto);
     }
 
     @Override
-    public List<OrderDetailDto> selectPage(Map map) throws Exception {
-        return session.selectList(namespace + "selectPage", map);
+    public List<OrderDetailDto> selectPage(Integer curPage, Integer pageSize, String userId) throws Exception {
+        Map map = new HashMap();
+        map.put("offset", (curPage - 1) * 10);
+        map.put("pageSize",  pageSize);
+        map.put("id", userId);
+        return session.selectList(namespace + "selectPage", map );
     }
-   //찬빈 추가
+
     @Override
-    public List<OrderDetailDto> selectById(String id) {
+    public List<OrderDetailDto> selectEtcPage(Integer curPage, Integer pageSize, String userId) throws Exception {
+        Map map = new HashMap();
+        map.put("offset", (curPage - 1) * 10);
+        map.put("pageSize",  pageSize);
+        map.put("id", userId);
+        return session.selectList(namespace + "selectEtcPage", map );
+    }
+
+    //찬빈 추가
+    @Override
+    public List<OrderDetailJoinItemDto> selectById(String id) {
         Map map = new HashMap();
         map.put("id", id);
         return session.selectList(namespace + "selectById", map);
     }
 
     @Override
-    public OrderDetailDto selectOrdItem(String ord_num, String item_num, String id) {
+    public OrderDetailJoinItemDto selectOrdItem(String ord_num, String item_num, String id) {
         Map map = new HashMap<>();
         map.put("ord_num", ord_num);
         map.put("item_num", item_num);

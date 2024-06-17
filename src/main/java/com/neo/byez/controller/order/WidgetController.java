@@ -2,6 +2,8 @@ package com.neo.byez.controller.order;
 
 import javax.servlet.http.*;
 
+import com.neo.byez.service.CustCouponsServiceImpl;
+import com.neo.byez.service.order.OrderServiceImpl;
 import com.neo.byez.service.order.PayServiceImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,15 +27,25 @@ import java.util.Base64;
 public class WidgetController {
     @Autowired
     PayServiceImpl payService;
+    @Autowired
+    CustCouponsServiceImpl custCouponsService;
+    @Autowired
+    OrderServiceImpl orderService;
+
+
 
 //    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/confirm")
-    public ResponseEntity<JSONObject> confirmPayment(@RequestBody String jsonBody) throws Exception {
+    public ResponseEntity<JSONObject> confirmPayment(@RequestBody String jsonBody, HttpSession session) throws Exception {
         JSONParser parser = new JSONParser();
         String orderId;
         String amount;
         String paymentKey;
+        // 쿠폰 시퀀스 임의로 추가
+        int couponSeq = 0;
+        String id = (String) session.getAttribute("userId");
+
         try {
             // 클라이언트에서 받은 JSON 요청 바디입니다.
             JSONObject requestData = (JSONObject) parser.parse(jsonBody);
@@ -96,12 +108,22 @@ public class WidgetController {
         Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
         responseStream.close();
-        System.out.println("responseStream.close() : " + jsonObject);
 
         if(isSuccess){
             try {
-                payService.payApproval(orderId);
-            }catch (Exception e){
+                // 결제 정보 업데이트
+                payService.payApproval(orderId, "결제완료");
+
+                // 주문 정보 업데이트
+                orderService.modifyOrder(orderId, "주문완료");
+
+                // 쿠폰 상태 사용으로 변경
+                custCouponsService.useCoupon(couponSeq);
+
+                // 주문번호로 장바구니 상품 삭제
+                orderService.removeBasketItemByOrderNum(orderId, id);
+
+            } catch (Exception e){
                 return ResponseEntity.internalServerError().body(jsonObject);
             }
         }
@@ -134,6 +156,7 @@ public class WidgetController {
      * @return
      * @throws Exception
      */
+
     @RequestMapping(value = "/fail", method = RequestMethod.GET)
     public String failPayment(HttpServletRequest request, Model model) throws Exception {
         String failCode = request.getParameter("code");

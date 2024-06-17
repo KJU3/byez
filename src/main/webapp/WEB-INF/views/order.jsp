@@ -4,6 +4,7 @@
 <%@ page session="true"%><html>
 <head>
     <title>Title</title>
+    <link rel="icon" href="/img/favicon-32x32_2.png">
 </head>
 <body>
 
@@ -19,10 +20,7 @@
         <tbody>
         <c:forEach var="orderItemDto" items="${list}">
             <tr>
-                <td>${orderItemDto.num}</td>
-                <td>${orderItemDto.name}</td>
-                <td>${orderItemDto.qty}</td>
-                <td>${orderItemDto.price * orderItemDto.qty}</td>
+                <td>${orderItemDto.seq}</td>
             </tr>
         </c:forEach>
         </tbody>

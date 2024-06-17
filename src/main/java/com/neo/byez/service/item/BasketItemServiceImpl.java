@@ -1,9 +1,8 @@
 package com.neo.byez.service.item;
 
-
+import com.neo.byez.domain.item.*;
 import com.neo.byez.dao.item.BasketItemDaoImpl;
 import com.neo.byez.domain.item.BasketItemDto;
-import com.neo.byez.domain.item.BasketItemDtos;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,10 +90,14 @@ public class BasketItemServiceImpl implements BasketItemService {
             List<BasketItemDto> list = dao.getList(dto);
 
             // 중복되는 상품 확인
-            boolean isDuplicated = list.stream()
-                                       .anyMatch( item -> item.equals(dto));
-
-            if (!isDuplicated) {
+            Optional<BasketItemDto> found = list.stream().filter(i -> i.equals(dto)).findFirst();
+            if (found.isPresent()) {
+                // 수량 증가
+                BasketItemDto target = found.get();
+                target.setQty(target.getQty() + dto.getQty());
+                // 업데이트
+                dao.update(target);
+            } else {
                 rowCnt = dao.insert(dto);
             }
         } catch (Exception e) {
@@ -121,24 +124,15 @@ public class BasketItemServiceImpl implements BasketItemService {
         return rowCnt == 1;
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean removeSeveral(BasketItemDtos dtos) throws Exception {
+    public boolean removeSeveral(BasketItemDtos dtos) {
         List<BasketItemDto> list = dtos.getOrders();
         int selectedCnt = list.size();
         int removeCnt = 0;
 
-        try {
-            for (BasketItemDto dto : list) {
-                removeCnt += remove(dto) ? 1 : 0;
-            }
 
-            if (removeCnt != selectedCnt) {
-                throw new Exception("제대로 삭제되지 않았습니다.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+        for (BasketItemDto dto : list) {
+            removeCnt += remove(dto) ? 1 : 0;
         }
 
         return removeCnt == selectedCnt;
@@ -244,6 +238,9 @@ public class BasketItemServiceImpl implements BasketItemService {
             throw e;
         }
     }
-}
 
-// 1 <= rowCnt && rowCnt <= 5
+    @Override
+    public BasketItemDto readByContent(BasketItemDto dto) throws Exception {
+        return dao.selectByContent(dto);
+    }
+}

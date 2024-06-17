@@ -12,11 +12,10 @@
         VALUES (#{ord_num}, #{id}, #{item_num}, #{title}, #{writer}, #{content}, #{score}, #{reg_id}, #{up_id})
     </insert>
 
-    <delete id="delete" parameterType="map">
+    <delete id="delete" parameterType="Integer">
         DELETE
         FROM review
         WHERE review_num = #{review_num}
-          AND id = #{id}
 
     </delete>
     <delete id="deleteAll">
@@ -29,10 +28,14 @@
         SET title=#{title},
             content=#{content},
             score=#{score},
-            up_date=now()
+            up_date=curdate()
         WHERE review_num = #{review_num}
     </update>
-
+<select id="selectByItem" parameterType="String" resultType="ReviewDto">
+SELECT *
+FROM review
+    WHERE item_num=#{item_num}
+</select>
     <select id="selectById" parameterType="String" resultType="ReviewDto">
         SELECT *
         FROM review
@@ -46,12 +49,11 @@
     </select>
 
     <select id="selectJoinItem" parameterType="String" resultType="com.neo.byez.domain.ReviewItemJoinDto">
-        SELECT r.*, o.*,i.main_img
+        SELECT r.*, o.*
         FROM review r
                  INNER JOIN ord_detail o ON r.item_num = o.item_num AND r.ord_num = o.ord_num
-                 INNER JOIN item i ON r.item_num = i.num
         WHERE r.id = #{id}
-        order by review_num
+        order by review_num desc
     </select>
     <select id="selectByReviewNum" parameterType="Integer" resultType="ReviewDto">
         SELECT *

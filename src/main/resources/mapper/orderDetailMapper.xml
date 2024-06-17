@@ -18,8 +18,8 @@
 
     <!-- Insert 문 -->
     <insert id="insert" parameterType="OrderDetailDto">
-        INSERT INTO ord_detail (ord_num, seq, item_num, id, item_name, price, item_comt, item_qty, item_price, ord_date, opt1, opt2, opt3, opt4, opt5, reg_date, reg_id, up_date, up_id)
-        VALUES (#{ord_num}, #{seq}, #{item_num}, #{id}, #{item_name}, #{price}, #{item_comt}, #{item_qty}, #{item_price}, now(), #{opt1}, #{opt2}, #{opt3}, #{opt4}, #{opt5}, now(), #{id}, now(), #{id});
+        INSERT INTO ord_detail (ord_num, seq, item_num, id, main_img, item_name, price, item_comt, item_qty, item_price, ord_date, review, ord_state, opt1, opt2, opt3, opt4, opt5, reg_date, reg_id, up_date, up_id)
+        VALUES (#{ord_num}, #{seq}, #{item_num}, #{id}, #{main_img}, #{item_name}, #{price}, #{item_comt}, #{item_qty}, #{item_price}, now(), #{review}, #{ord_state}, #{opt1}, #{opt2}, #{opt3}, #{opt4}, #{opt5}, now(), #{id}, now(), #{id});
     </insert>
 
     <!-- Select 문 (주문번호로 조회) -->
@@ -84,7 +84,7 @@
         select *
         from ord_detail
         WHERE id = #{id}
-          AND ord_state NOT IN ('구매완료', '배송완료', '주문완료');
+          AND ord_state NOT IN ('구매확정', '배송완료', '주문완료', '주문대기');
     </select>
 
     <update id = "updateOption" parameterType="OrderDetailDto">
@@ -100,9 +100,21 @@
         where ord_num = #{ord_num} and seq = #{seq}
     </select>
 
+<!--  아이디로 검색하는것으로 수정 (20240522 수정)  -->
     <select id = "selectPage" parameterType="map" resultType="OrderDetailDto">
         SELECT *
         FROM ord_detail
+        where id = #{id}
+        ORDER BY ord_num DESC
+            LIMIT #{offset},#{pageSize}
+    </select>
+
+<!--    취소교환반품 목록 페이징(20240526 유경추가)-->
+    <select id = "selectEtcPage" parameterType="map" resultType="OrderDetailDto">
+        SELECT *
+        FROM ord_detail
+        where id = #{id}
+          AND ord_state NOT IN ('구매확정', '배송완료', '주문완료', '주문대기')
         ORDER BY ord_num DESC
             LIMIT #{offset},#{pageSize}
     </select>
@@ -114,17 +126,34 @@
         set ord_state = #{ord_state}
         where ord_num = #{ord_num} and seq = #{seq}
     </update>
+
+<!--아이디별 구매내역 갯수 count  20240522 추가함-->
+    <select id="countById" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM ord_detail
+        where id = #{id}
+    </select>
+
+    <select id="countEtcById" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM ord_detail
+        where id = #{id}
+          AND ord_state NOT IN ('구매확정', '배송완료', '주문완료', '주문대기');
+    </select>
+
 <!-- 찬빈 추가 -->
 <!--  id를 통해 리뷰가 작성되지 않은 결제가 완료된 주문번호 속 상품을 가져온다.   -->
-    <select id="selectById" parameterType="map" resultType="OrderDetailDto">
-        SELECT *
-        FROM ord_detail
-        WHERE id = #{id} AND review='N'
+    <select id="selectById" parameterType="map" resultType="com.neo.byez.domain.order.OrderDetailJoinItemDto">
+        SELECT o.*,i.main_img
+        FROM ord_detail o
+                 INNER JOIN item i ON o.item_num = i.num
+        WHERE o.id = #{id} AND o.review='N' AND o.ord_state='구매확정'
     </select>
 <!--주문번호와 상품번호를 통해 ordDetail 테이블의 값을 가져온다.-->
-    <select id="selectOrdItem" parameterType="map" resultType="OrderDetailDto">
-        SELECT *
-        FROM ord_detail
+    <select id="selectOrdItem" parameterType="map" resultType="com.neo.byez.domain.order.OrderDetailJoinItemDto">
+        SELECT o.*,i.main_img
+        FROM ord_detail o
+                 INNER JOIN item i ON o.item_num = i.num
         WHERE ord_num = #{ord_num} AND item_num = #{item_num} AND id=#{id}
     </select>
 <!--리뷰작성후 해당 sql를 구동시켜 리뷰상태가 완료된 상태임으로 바꿔주는 sql-->
@@ -132,5 +161,11 @@
         UPDATE ord_detail
         SET review = 'Y'
         WHERE ord_num =#{ord_num} AND item_num=#{item_num}
+    </update>
+
+    <update id="updateOrdState" parameterType="OrderDetailDto">
+        update ord_detail
+        set ord_state = #{ord_state}
+        where ord_num = #{ord_num}
     </update>
 </mapper>

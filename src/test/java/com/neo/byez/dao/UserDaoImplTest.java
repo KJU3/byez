@@ -1,6 +1,7 @@
 package com.neo.byez.dao;
 
-import com.neo.byez.domain.UserDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.domain.user.UserDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,8 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 
 public class UserDaoImplTest{
-    @Autowired UserDaoImpl userDao;
+    @Autowired
+    UserDaoImpl userDao;
 
     // @Before : 각각의 @Test 전 실행됨.
     // 각 테스트 실행 전 DB table 에 30개의 더미데이터 insert

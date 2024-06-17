@@ -1,7 +1,9 @@
 package com.neo.byez.dao;
 
-import com.neo.byez.domain.UserDto;
-import com.neo.byez.domain.UserInfoHistDto;
+import com.neo.byez.dao.user.UserDaoImpl;
+import com.neo.byez.dao.user.UserInfoHistDaoImpl;
+import com.neo.byez.domain.user.UserDto;
+import com.neo.byez.domain.user.UserInfoHistDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UserInfoHistDaoImplTest {
 
-    @Autowired UserInfoHistDaoImpl userInfoHistDao;
-    @Autowired UserDaoImpl userDao;
+    @Autowired
+    UserInfoHistDaoImpl userInfoHistDao;
+    @Autowired
+    UserDaoImpl userDao;
 
     // 1. 초기테스트
     // 1.1. 테스트하는 클래스의 주입 상태 확인

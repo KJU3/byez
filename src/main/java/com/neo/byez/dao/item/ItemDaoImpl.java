@@ -1,8 +1,14 @@
 package com.neo.byez.dao.item;
 
+import com.neo.byez.domain.item.AdminItemDto;
 import com.neo.byez.domain.item.Category;
+import com.neo.byez.domain.item.ItemDetailPageDto;
 import com.neo.byez.domain.item.ItemDto;
+import com.neo.byez.domain.item.ItemRegisterInfo;
+import com.neo.byez.domain.item.SearchCondition;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,25 +26,45 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectOne(namespace + "count");
     }
 
-    // 모두 조회
-    public List<ItemDto> selectAll() throws Exception {
-        return session.selectList(namespace + "selectAll");
-    }
-
-    // 조회
     public ItemDto select(String num) throws Exception {
         return session.selectOne(namespace +"select", num);
     }
+
+    public ItemDetailPageDto selectDetailItem(String num) throws Exception {
+        return session.selectOne(namespace + "selectDetailItem", num);
+    }
+
+
+    // 모두 조회
+    public List<ItemDto> selectAll(Integer page, Integer pageSize) throws Exception {
+        Map map = new HashMap();
+        map.put("offset", (page-1)*pageSize);
+        map.put("pageSize", pageSize);
+        return session.selectList(namespace + "selectAll", map);
+    }
+
+    public List<ItemDto> selectBySearchCondition(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectBySearchCondition", sc);
+    }
+
+    public int countSearchResult(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "countSearchResult", sc);
+    }
+
+    public List<ItemDto> selectDiscountItem(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectDiscountItem", sc);
+    }
+
+    public int countDiscountItem(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "countDiscountItem", sc);
+    }
+
+
 
     // 등록
     public int insert(ItemDto dto) throws Exception {
         return session.insert(namespace +"insert", dto);
     }
-
-    // 상품 상태 등록
-
-    // 상품 가격 등록
-
 
     // 수정
     public int update(ItemDto dto) throws Exception {
@@ -60,15 +86,6 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectList(namespace+"selectItemType", category);
     }
 
-//    // 상품 상태 등록
-//    public int insertItemState(ItemStateDto dto) throws Exception {
-//        return session.insert(namespace + "insertItemState", dto);
-//    }
-//    // 상품 가격 등록
-//    public int insertItemPrice(ItemPriceDto dto) throws Exception {
-//        return session.insert(namespace + "insertItemPrice", dto);
-//    }
-
 
     //    메인페이지 여성 top 8개 상품 띄우기
     public List<ItemDto> selectWTop8(ItemDto dto) throws Exception {
@@ -83,6 +100,27 @@ public class ItemDaoImpl implements ItemDao {
     //    메인페이지 혼성 top 8개 상품 띄우기
     public List<ItemDto> selectUTop8(ItemDto dto) throws Exception {
         return session.selectList(namespace+"selectUTop8", dto);
+    }
+
+    public List<AdminItemDto> selectAllItemOnAdmin(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectAllItemOnAdmin", sc);
+    }
+
+    public List<AdminItemDto> selectAllItemStockInfoOnAdmin(SearchCondition sc) throws Exception {
+        return session.selectList(namespace + "selectAllItemStockInfoOnAdmin", sc);
+    }
+
+    public int increaseStockQty(String num, Integer qty) throws Exception {
+        Map map = new HashMap();
+        map.put("qty", qty);
+        map.put("num", num);
+
+        return session.update(namespace + "increaseStockQty", map);
+    }
+
+
+    public ItemRegisterInfo selectItemDetailInfoOnAdmin(String num) throws Exception {
+        return session.selectOne(namespace + "selectItemDetailInfoOnAdmin", num);
     }
 
 }

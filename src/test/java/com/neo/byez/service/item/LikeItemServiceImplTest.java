@@ -1,42 +1,39 @@
 package com.neo.byez.service.item;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-import javax.sql.DataSource;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @ExtendWith(SpringExtension.class)
-class LikeItemServiceImpTest {
+class LikeItemServiceImplTest {
 
     @Autowired
-    LikeItemService service;
+    LikeItemServiceImpl service;
 
-    @Autowired
-    DataSource ds;
 
     @BeforeEach
     public void init() throws Exception {
 //        clearDB();
     }
 
-    @AfterEach
-    public void clear() throws Exception {
-//        clearDB();
+    @Before
+    public void check() {
+        assertNotNull(service);
     }
 
-    @DisplayName("테스트 코드 환경 확인")
     @Test
-    public void check() {
-        assertNotNull(ds);
-        assertNotNull(service);
+    public void test() throws Exception {
+//        List<LikeItemDto> likeItems = service.getSelectedPage(48, 12);
+//        assertEquals(12, likeItems.size());
     }
 
     // 등록
