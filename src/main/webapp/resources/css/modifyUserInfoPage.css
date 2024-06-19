@@ -33,7 +33,6 @@ tr td:first-of-type {
     font-weight: bold;
     width: 30%;
 }
-
 table button {
     width: 130px;
     padding: 10px 0;
@@ -58,12 +57,19 @@ table button:hover {
 .no-bottom {
     border-bottom: 0;
 }
-
-.content tr:nth-of-type(7) {
+img {
+    width: 30px;
+}
+.sns-kakao td:nth-of-type(3), .sns-naver td:nth-of-type(3) {
+    float: left;
+}
+.content tr:nth-of-type(5) {
     border-top: 1px solid #bcbcbc;
 }
-
-.content tr:nth-of-type(10) {
+.content tr:nth-of-type(9) {
+    border-top: 1px solid #bcbcbc;
+}
+.content tr:nth-of-type(12) {
     border-top: 1px solid #bcbcbc;
 }
 
