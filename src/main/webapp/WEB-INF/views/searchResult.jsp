@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/search_result.css?after">
+    <link rel="stylesheet" href="/css/search_result.css?after?after">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -46,7 +46,7 @@
             </c:if>
         </div>
         <div class="filter">
-            <div class="filter_wrapper">
+            <form class="filter_wrapper">
                 <p>FILTER</p>
                 <button class="accordion">
                     <span>구분</span>
@@ -65,10 +65,10 @@
                 </button>
                 <div class="panel">
                     <div class="price_search">
-                        <input type="text">
+                        <input type="text" id="priceMin">
                         <span>~</span>
-                        <input type="text">
-                        <button type="submit">검색</button>
+                        <input type="text" id="priceMax">
+                        <!-- <button type="submit">검색</button> -->
                     </div>
                 </div>
 
@@ -152,10 +152,11 @@
                 <div class="panel">
                     <div class="detail_search">
                         <input type="text">
-                        <button type="submit">검색</button>
+                        <!-- <button type="submit">검색</button> -->
                     </div>
                 </div>
-            </div>
+                <button type="submit">검색</button>
+            </form>
         </div>
         <div class="content">
             <div class="category">
@@ -303,6 +304,6 @@
 <script src="/js/jquery-3.6.4.min.js"></script>
 <script src="/js/nav.js"></script>
 <script src="/js/sort.js"></script>
-<script src="/js/accordion.js"></script>
+<script src="/js/accordion.js?after"></script>
 </body>
 </html>
