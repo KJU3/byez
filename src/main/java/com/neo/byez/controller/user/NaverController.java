@@ -35,7 +35,7 @@ public class NaverController {
         String nickname = naverService.getUserNickname(accessToken);
 
         String userId = userService.getCustIdBySnsNickname(nickname);
-        if (userId != null) {
+        if (!userId.isEmpty()) {
             HttpSession session = request.getSession();
             session.setAttribute("loginState", "Y");
             session.setAttribute("userId", userId);
@@ -52,7 +52,7 @@ public class NaverController {
                           Model model, HttpServletRequest request) {
         String accessToken = naverService.getAccessTokenFromNaver(code, state);
         String nickname = naverService.getUserNickname(accessToken);
-        
+
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("userId");
         UserDto userDto = userService.getCustLoginInfo(id);
@@ -66,7 +66,7 @@ public class NaverController {
             // 2.1.1.4. 전체 고객 닉네임 조회 결과 동일한 닉네임 없는 경우
             // 2.1.2. 아이디와 닉네임을 고객 테이블의 각 컬럼에 저장
             // 2.1.3. 다시 회원정보 변경 페이지로 이동
-            if (nickname != null && userDto.getNaver_conn().equals("N") && userDto.getNickname() == null && userService.getCustIdBySnsNickname(nickname) == null) {
+            if (nickname != null && userDto.getNaver_conn().equals("N") && userDto.getNickname() == null && userService.getCustIdBySnsNickname(nickname).isEmpty()) {
                 session.setAttribute("nickname", nickname);
                 userService.saveNaverNickname(id, nickname);
                 return "redirect:/mypage/modifyPage";
@@ -88,7 +88,5 @@ public class NaverController {
         } catch (Exception e) {
             return "errorPage";
         }
-        
     }
-
 }
