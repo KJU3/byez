@@ -45,24 +45,23 @@
                         <td>${userDto.nickname}</td>
                         <td><button type="button" id="sns-connect" onclick="showSNSList()">계정 연결</button></td>
                     </tr>
-                    <p></p>
                     <tr class="hidden no-bottom sns-kakao">
                         <td></td>
                         <td>Kakao</td>
                         <td>
-                            카카오 연동
-                            <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoConnection">
+                            <a class="kakao-connect" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=873c82dfa901cd280c11ee222e944826&redirect_uri=http://localhost:8080/kakaoConnection">
                                 <img src="/img/kakao.png" alt="Kakao 로그인" class="login-logo">
+                                <span>카카오 연동</span>
                             </a>
                         </td>
                     </tr>
                     <tr class="hidden sns-naver">
                         <td></td>
                         <td>Naver</td>
-                        <td>
-                            네이버 연동
-                            <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=nV14togkwJUZVzs2_YnF&state=STATE_STRING&redirect_uri=http://localhost:8080/naverConnection">
+                        <td >
+                            <a class="naver-connect" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=nV14togkwJUZVzs2_YnF&state=STATE_STRING&redirect_uri=http://localhost:8080/naverConnection">
                                 <img src="/img/naver.png" alt="Naver 로그인">
+                                <span>네이버 연동</span>
                             </a>
                         </td>
                     </tr>

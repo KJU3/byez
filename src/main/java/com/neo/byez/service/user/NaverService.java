@@ -93,14 +93,11 @@ public class NaverService {
             requestHeaders.put("Authorization", header);
             String responseBody = get(apiURL, requestHeaders);
 
-            System.out.println("responseBody 출력결과: " +responseBody);
-
             // JSON 파싱
             JSONParser parser = new JSONParser();
             JSONObject jsonObj = (JSONObject) parser.parse(responseBody);
             JSONObject response = (JSONObject) jsonObj.get("response");
             nickname = (String) response.get("nickname");
-
 
         } catch (Exception e) {
             e.getMessage();
