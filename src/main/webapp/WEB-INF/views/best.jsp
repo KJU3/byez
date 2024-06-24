@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYEZ</title>
     <link rel="stylesheet" href="/css/nav.css">
-    <link rel="stylesheet" href="/css/best.css">
+    <link rel="stylesheet" href="/css/best.css?after">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/quick.css">
     <script src="https://kit.fontawesome.com/f0e73cfa04.js" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
         <p>전체보기</p>
         <div class="category">
             <ul>
-                <li><a href="#">전체보기</a></li>
-                <li><a href="#">여성</a></li>
-                <li><a href="#">남성</a></li>
-                <li><a href="#">혼성</a></li>
+                <li><a href="/item/best?gender=0&sort=1">전체보기</a></li>
+                <li><a href="/item/best?gender=1&sort=1">여성</a></li>
+                <li><a href="/item/best?gender=2&sort=1">남성</a></li>
+                <li><a href="/item/best?gender=3&sort=1">혼성</a></li>
             </ul>
             <div>
                 <div class="item_num">
@@ -44,15 +44,15 @@
                 <div class="sort">
                     <p><span>신상품</span> <i class="fa-solid fa-angle-down"></i></p>
                     <ul class="order">
-                        <li><a href="#">신상품</a></li>
-                        <li><a href="#">상품명</a></li>
-                        <li><a href="#">낮은가격</a></li>
-                        <li><a href="#">높은가격</a></li>
-                        <li><a href="#">제조사</a></li>
-                        <li><a href="#">인기상품</a></li>
-                        <li><a href="#">사용후기</a></li>
-                        <li><a href="#">조회수</a></li>
-                        <li><a href="#">좋아요</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=1">신상품</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=2">상품명</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=3">낮은가격</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=4">높은가격</a></li>
+<%--                        <li><a href="#">제조사</a></li>--%>
+                        <li><a href="/item/best?gender=${param.gender}&sort=5">인기상품</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=6">사용후기</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=7">조회수</a></li>
+                        <li><a href="/item/best?gender=${param.gender}&sort=8">좋아요</a></li>
                     </ul>
                 </div>
             </div>

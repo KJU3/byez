@@ -24,7 +24,7 @@ section {width: 100%; min-width: 1200px; height: fit-content;  margin-top: 90px;
 
 .item_num {width: 115px; height: 100%; float: left; display: flex; justify-content: center; align-items: center; border-left: 1px solid #bcbcbc; box-sizing: border-box;}
 .sort {width: 115px; height: 100%; float: left; display: flex; justify-content: center; align-items: center; border-left: 1px solid #bcbcbc; box-sizing: border-box; position: relative;}
-.order {position: absolute; top:100%; width: 100%; height: fit-content; background-color: white; border: 1px solid #bcbcbc; display: none; z-index: 5;}
+.order {position: absolute; top:100%; width: 100%; height: fit-content; background-color: white; border: 1px solid #bcbcbc; display: none; z-index: 5; padding: 5px 0;}
 
 .order>li {display: flex; justify-content: center; align-items: center; width: 100%; height: 40px;}
 

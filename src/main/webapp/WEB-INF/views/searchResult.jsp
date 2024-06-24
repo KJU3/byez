@@ -171,7 +171,7 @@
                             <li><a href="#">상품명</a></li>
                             <li><a href="#">낮은가격</a></li>
                             <li><a href="#">높은가격</a></li>
-                            <li><a href="#">제조사</a></li>
+<%--                            <li><a href="#">제조사</a></li>--%>
                             <li><a href="#">인기상품</a></li>
                             <li><a href="#">사용후기</a></li>
                             <li><a href="#">조회수</a></li>
