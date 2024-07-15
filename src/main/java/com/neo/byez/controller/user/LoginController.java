@@ -4,9 +4,7 @@ import com.neo.byez.common.validator.LoginValidator;
 import com.neo.byez.domain.user.UserDto;
 import com.neo.byez.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,20 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.net.URLEncoder;
-import java.security.SecureRandom;
 import java.util.List;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    public LoginController(UserServiceImpl service, BCryptPasswordEncoder encoder) {
+    public LoginController(UserServiceImpl service) {
         this.userService = service;
     }
 
