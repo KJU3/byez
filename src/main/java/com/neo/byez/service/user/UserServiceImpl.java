@@ -23,7 +23,6 @@ import java.sql.Timestamp;
 @Service
 public class UserServiceImpl implements UserService {
     private UserDaoImpl userDao;
-//    private MailService mailService;
     private BCryptPasswordEncoder passwordEncoder;
     private UserInfoHistDaoImpl userInfoHistDao;
     private BasketDaoImpl basketDao;
@@ -32,7 +31,6 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserDaoImpl userDao, BCryptPasswordEncoder passwordEncoder,
                            UserInfoHistDaoImpl userInfoHistDao, BasketDaoImpl basketDao) {
         this.userDao = userDao;
-//        this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
         this.userInfoHistDao = userInfoHistDao;
         this.basketDao = basketDao;
@@ -464,4 +462,3 @@ public class UserServiceImpl implements UserService {
         return selectedItem;
     }
 }
-
