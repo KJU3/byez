@@ -328,7 +328,7 @@
 
 
 <!--베스트 페이지 url에서 gender, sort 값 매개변수로 받아옴, 각 정렬기준별 top 50개의 상품 select-->
-  <select id="bestCategory" resultType="ItemDto" parameterType="map">
+  <select id="selectBest50" resultType="ItemDto" parameterType="map">
     SELECT a.*
     FROM item a
     <if test="sort == 1 or sort == 5 or sort == 7">
